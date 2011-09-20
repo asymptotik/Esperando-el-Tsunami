@@ -1,0 +1,410 @@
+/* 
+Arfully Masterminded by ZURB
+DHGamache Version 1.0
+*/
+
+/* -------------------------------------------------- 
+                                Table of Contents
+-----------------------------------------------------
+:: Global Reset & Standards
+:: Typography
+:: Links
+:: Buttons
+:: Lists
+:: Grid
+:: Notices/Alerts
+:: Modals
+:: Tables
+:: Misc
+*/
+
+
+/*	--------------------------------------------------
+	Global Reset & Standards
+	-------------------------------------------------- */
+	html, body { margin: 0; padding: 0; }
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, section { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+	table { border-collapse: collapse; border-spacing: 0; }
+	ol, ul { list-style: none; }
+	
+	/* HTML5 Fixes */
+	header, section, nav, footer { display: block; }
+
+	body { background: #fff; font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 14px; line-height: 22px; text-shadow: 0 0 1px rgba(0,0,0,0.01); color: #000; position: relative; }
+
+/*	--------------------------------------------------
+	Typography
+	-------------------------------------------------- */
+	h1, h2, h3, h4, h5, h6 { color: #000; font-weight: bold; line-height: 1.25 }
+	h1 { font-size: 62px; margin-bottom: 12px; line-height: 1; }
+	h2 { font-size: 35px; margin-bottom: 9px; }
+	h3 { font-size: 28px; margin-bottom: 9px; }
+	h4 { font-size: 21px; margin-bottom: 3px; }
+	h5 { font-size: 18px; font-weight: normal; margin-bottom: 3px;  }
+	h6 { font-size: 15px; font-weight: normal; }
+
+	p { line-height: 22px; margin: 0 0 18px; }
+	p img { margin: 0; }
+	p.lead { font-size: 18px; line-height: 24px;  }
+	
+	em { font-style: italic; line-height: inherit; }
+	strong { font-weight: bold; line-height: inherit; }
+	small { font-size: 80%; line-height: inherit; }
+	
+/*	Blockquotes  */
+	blockquote, blockquote p { line-height: 20px; color: #777; }
+	blockquote { margin: 0 0 18px; padding: 9px 20px 0 19px; border-left: 1px solid #ddd; }
+	blockquote cite { display: block; font-size: 12px; color: #555; }
+	blockquote cite:before { content: "\2014 \0020"; }
+	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
+	
+	hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 12px 0 18px; height: 0; }
+	
+	abbr, acronym { text-transform: uppercase; font-size: 90%; color: #222; border-bottom: 1px solid #ddd; cursor: help; }
+	abbr { text-transform: none; }
+
+	/* Want some @font-face goodness?  We've already got some awesome CSS for a few killer fonts, 
+	check out the public/fonts directory and just grab some font CSS from a font.css file */
+	
+
+@font-face {
+	font-family: 'HelsinkiRegular';
+	src: url('helsinki-webfont.eot');
+	src: local('☺'), url('helsinki-webfont.woff') format('woff'), url('helsinki-webfont.ttf') format('truetype'), url('helsinki-webfont.svg#webfontX9mrBzWF') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*	--------------------------------------------------
+	Links
+	-------------------------------------------------- */
+	/*a { color: #fff; text-decoration: underline; outline: 0; line-height: inherit; position: relative; font-weight: bold;  
+	-webkit-transition:all .1s ease-in;  
+   -moz-transition:all .1s ease-in;  
+   -o-transition:all .1s ease-in;  
+   transition:all .1s ease-in; }
+	*/
+	a:hover {
+	color: #F00;
+	background-color: #9CAEB2;
+}
+	p a, p a:visited { line-height: inherit; }
+	
+	
+/*	--------------------------------------------------
+	Buttons
+	-------------------------------------------------- */
+
+	.button {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+	position: relative;
+	cursor: pointer;
+	padding-top: 14px;
+	padding-right: 12px;
+	padding-bottom: 8px;
+	padding-left: 12px;
+	font-family: "Georgia", Times New Roman, Times, serif;
+	}
+	
+	.button.nice { 
+		background: #00a6fc url(../images/misc/button-gloss.png) repeat-x 0 -34px;
+		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+		text-shadow: 0 -1px 1px rgba(0,0,0,0.28);
+		background: #00a6fc url(../images/misc/button-gloss.png) repeat-x 0 -34px, -moz-linear-gradient(top, rgba(255,255,255,.4) 0%, transparent 100%);
+		background: #00a6fc url(../images/misc/button-gloss.png) repeat-x 0 -34px, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.4)), color-stop(100%,transparent));
+		border: 1px solid #0593dc;
+		-webkit-transition: all .15s ease-in-out;
+		-moz-transition: all .15s ease-in-out;
+		-o-transition: all .15s ease-in-out; 
+	}
+
+	.button.radius { 
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	}
+	.button.round { 
+		-moz-border-radius: 1000px;
+		-webkit-border-radius: 1000px;
+		border-radius: 1000px;
+	}
+	
+	.button.full-width { 
+		width: 100%;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		text-align: center; 
+	}
+	
+	.button.left-align { 
+		text-align: left; 
+		text-indent: 12px;
+	}
+	
+	.button:active {}
+	
+	/* Sizes ---------- */
+	.small.button 			{ font-size: 11px; padding: 8px 20px 10px; }
+	.medium.button 			{ font-size: 13px; }
+	.large.button 			{ font-size: 18px; padding: 11px 48px 13px; }
+	
+	/* Nice Sizes ---------- */
+	.nice.small.button 		{ background-repeat: repeat-x; background-position: 0 -36px, 0 0; }
+	.nice.large.button 		{ background-repeat: repeat-x; background-position: 0 -30px, 0 0; }
+	 
+	/* Colors ---------- */
+	.blue.button			{ background-color: #00a6fc;  }
+	.red.button				{ background-color: #e91c21; }
+	.white.button			{ background-color: #e9e9e9; color: #333; }
+	.charcoal.button		{ background-color: #141414; }
+	
+	/* Nice Colors ---------- */
+	.nice.blue.button		{ border: 1px solid #0593dc;  }
+	.nice.red.button		{ border: 1px solid #b90b0b;  }
+	.nice.white.button		{ border: 1px solid #cacaca; text-shadow: none !important; }
+	.nice.charcoal.button	{ border: 1px solid #000; }
+	
+	/* Hovers ---------- */
+	.button:hover 			{ background-color: #0192dd; color: #fff; }
+	.blue.button:hover		{ background-color: #0192dd; 	}
+	.red.button:hover 		{ background-color: #d01217; 	}
+	.white.button:hover		{ background-color: #dadada; color: #333; }
+	.charcoal.button:hover	{ background-color: #000; }
+	
+	
+	
+
+/*	--------------------------------------------------
+	Lists
+	-------------------------------------------------- */
+	ul, ol { margin-bottom: 18px; }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	ul ul, ol ol { margin: 4px 0 5px 30px; }
+	li { line-height: 18px; }
+	ul.large li { line-height: 21px; }
+	
+/* --------------------------------------------------
+	 Grid
+-------------------------------------------------- */
+
+	 /* Container */
+	 div.container { position: relative; width: 1050px; margin: 0 auto; padding: 0; }
+	 body.ie8 div.container { position: static; }
+
+	 .row { margin: 0 0 18px -30px; width: 1080px; }
+	 .column, .columns { float: left; display: inline; margin: 0 0 0 30px; }
+	
+	 .one      					{ width: 15px; }
+	 .two      					{ width: 60px; }
+	 .three    	 				{ width: 105px; }
+	 .four      				{ width: 150px; }
+	 .five      				{ width: 195px; }
+	 .six, .one-fourth 			{ width: 240px; }
+	 .seven     				{ width: 285px; }
+	 .eight, .one-third    		{ width: 330px; }
+	 .nine     			 		{ width: 375px; }
+	 .ten      					{ width: 420px; }
+	 .eleven     				{ width: 465px; }
+	 .twelve     				{ width: 510px; }
+	 .thirteen     				{ width: 555px; }
+	 .fourteen     				{ width: 600px; }
+	 .fifteen     				{ width: 645px; }
+	 .sixteen, .two-thirds    	{ width: 690px; }
+	 .seventeen     			{ width: 735px; }
+	 .eighteen     				{ width: 780px; }
+	 .nineteen     				{ width: 825px; }
+	 .twenty     				{ width: 870px; }
+	 .twenty-one     			{ width: 915px; }
+	 .twenty-two     			{ width: 960px; }
+	 .twenty-three    			{ width: 1005px; }
+	 .twenty-four     			{ width: 1050px; }
+
+	 .offset-by-one    			{ margin-left: 30px; }
+	 .offset-by-two    			{ margin-left: 75px; }
+	 .offset-by-three   		{ margin-left: 120px; }
+	 .offset-by-four   			{ margin-left: 165px; }
+	 .offset-by-five   			{ margin-left: 210px; }
+	 .offset-by-six    			{ margin-left: 255px; }
+	 .offset-by-seven   		{ margin-left: 300px; }
+	 .offset-by-eight   		{ margin-left: 345px; }
+	 .offset-by-nine   			{ margin-left: 390px; }
+	 .offset-by-ten    			{ margin-left: 435px; }
+	 .offset-by-eleven   		{ margin-left: 480px; }
+	 .offset-by-twelve   		{ margin-left: 525px; }
+	 .offset-by-thirteen  		{ margin-left: 570px; }
+	 .offset-by-fourteen  		{ margin-left: 615px; }
+	 .offset-by-fifteen  		{ margin-left: 660px; }
+	 .offset-by-sixteen  		{ margin-left: 705px; }
+	 .offset-by-seventeen  		{ margin-left: 750px; }
+	 .offset-by-eighteen  		{ margin-left: 795px; }
+	 .offset-by-nineteen  		{ margin-left: 840px; }
+	 .offset-by-twenty  		{ margin-left: 885px; }
+	 .offset-by-twenty-one  	{ margin-left: 930px; }
+	 .offset-by-twenty-two  	{ margin-left: 975px; }
+	 .offset-by-twenty-three  	{ margin-left: 1020px; }
+
+	 .two .row 					{ width: 90px; }
+	 .three .row 				{ width: 135px; }
+	 .four .row 				{ width: 180px; }
+	 .five .row 				{ width: 225px; }
+	 .six .row 					{ width: 270px; }
+	 .seven .row 				{ width: 315px; }
+	 .eight .row 				{ width: 360px; }
+	 .nine .row 				{ width: 405px; }
+	 .ten .row 					{ width: 450px; }
+	 .eleven .row 				{ width: 495px; }
+	 .twelve .row 				{ width: 540px; }
+	 .thirteen .row 			{ width: 585px; }
+	 .fourteen .row 			{ width: 630px; }
+	 .fifteen .row 				{ width: 675px; }
+	 .sixteen .row 				{ width: 720px; }
+	 .seventeen .row 			{ width: 765px; }
+	 .eighteen .row 			{ width: 810px; }
+	 .nineteen .row 			{ width: 855px; }
+	 .twenty .row 				{ width: 900px; }
+	 .twenty-one .row 			{ width: 945px; }
+	 .twenty-two .row 			{ width: 990px; }
+	 .twenty-three .row 		{ width: 1035px; }
+	 .twenty-four .row 			{ width: 1080px; }
+
+	
+	/* Slim (940/960) Grid */
+	 div.container.slim { position: relative; width: 940px; margin: 0 auto; padding: 0; }
+	 body.ie8 div.container.slim { position: static; }
+	 .slim .row { margin: 0 0 18px -20px; width: 960px; }
+	 .slim .column, .slim .columns { float: left; display: inline; margin: 0 0 0 20px; }
+
+	
+	.slim .one      			{ width: 40px; }
+	.slim .two      			{ width: 100px; }
+	.slim .three      			{ width: 160px; }
+	.slim .four      			{ width: 220px; }
+	.slim .five      			{ width: 280px; }
+	.slim .six      			{ width: 340px; }
+	.slim .seven      			{ width: 400px; }
+	.slim .eight      			{ width: 460px; }
+	.slim .nine      			{ width: 520px; }
+	.slim .ten      			{ width: 580px; }
+	.slim .eleven     			{ width: 640px; }
+	.slim .twelve     			{ width: 700px; }
+	.slim .thirteen     		{ width: 760px; }
+	.slim .fourteen    			{ width: 820px; }
+	.slim .fifteen    	 		{ width: 880px; }
+	.slim .sixteen     			{ width: 940px; }
+	.slim .one-half     		{ width: 420px; padding-right: 10px; }
+	.slim .one-third     		{ width: 300px; }
+	.slim .two-thirds    		{ width: 580px; }
+	.slim .ten .row  			{ width: 600px; }
+	.slim .eleven .row  		{ width: 660px; }
+	.slim .twelve .row  		{ width: 760px; }
+	
+	.slim .offset-by-one-half  	{ margin-left: 50px; }
+	.slim .offset-by-one    	{ margin-left: 80px; }
+	.slim .offset-by-two    	{ margin-left: 140px; }
+	.slim .offset-by-three   	{ margin-left: 200px; }
+	.slim .offset-by-four   	{ margin-left: 260px; }
+	.slim .offset-by-five   	{ margin-left: 320px; }
+	.slim .offset-by-six    	{ margin-left: 380px; }
+	.slim .offset-by-seven   	{ margin-left: 440px; }
+	.slim .offset-by-eight   	{ margin-left: 500px; }
+	.slim .offset-by-nine   	{ margin-left: 560px; }
+	.slim .offset-by-ten    	{ margin-left: 620px; }
+	.slim .offset-by-eleven   	{ margin-left: 680px; }
+	.slim .offset-by-twelve   	{ margin-left: 740px; }
+	.slim .offset-by-thirteen  	{ margin-left: 800px; }
+	.slim .offset-by-fourteen  	{ margin-left: 880px; }
+
+	.slim .two .row 			{ width: 120px; }
+	.slim .three .row 			{ width: 180px; }
+	.slim .four .row 			{ width: 240px; }
+	.slim .five .row 			{ width: 300px; }
+	.slim .six .row 			{ width: 360px; }
+	.slim .seven .row 			{ width: 420px; }
+	.slim .eight .row 			{ width: 480px; }
+	.slim .nine .row 			{ width: 540px; }
+	.slim .ten .row 			{ width: 600px; }
+	.slim .eleven .row 			{ width: 660px; }
+	.slim .twelve .row 			{ width: 720px; }
+	.slim .thirteen .row 		{ width: 780px; }
+	.slim .fourteen .row 		{ width: 840px; }
+	.slim .fifteen .row 		{ width: 900px; }
+	.slim .sixteen .row 		{ width: 960px; }
+	.slim .one-half .row 		{ width: 480px; }
+	.slim .one-third .row 		{ width: 320px; }
+	.slim .two-thirds .row 		{ width: 600px; }
+	
+
+	/* Clear the columns automagically */
+	 .row:after, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+	 * html .row, * html .clearfix { height: 1%; }
+	 .row, .clearfix { display: inline-block; }
+	 .row, .clearfix { display: block; }
+	
+
+/*    --------------------------------------------------
+    Tabs
+    -------------------------------------------------- */
+    dl.tabs { display: block; margin: 0; padding: 0; height: 30px; border-bottom: solid 1px #ddd; }
+    dl.tabs dt { display: block; width: auto; height: 30px; padding: 0px 9px 0 20px; line-height: 30px; float: left; color: #999; font-size: 11px; text-transform: uppercase; cursor: default; }
+    dl.tabs dt:first-child { padding: 0 9px 0 0px; }
+    dl.tabs dd { display: block; width: auto; height: 30px; padding: 0; float: left; }
+    dl.tabs dd a { display: block; width: auto; height: 29px; padding: 0px 9px; float: left; line-height: 30px; border: solid 1px #ddd; margin: 0 0 0 -1px; color: #555; background: #eee; }
+    dl.tabs dd a.active { background: #fff; border-width: 1px 1px 0px 1px; height: 30px; }
+    
+    ul.tabs { margin: 0; padding: 20px 0 0 0; display: block; }
+    ul.tabs li { display:none; }
+    ul.tabs li.active { display: block; }
+    
+    dl.contained.tabs dd a { padding: 0px 14px; }
+    ul.contained.tabs { padding: 0; }
+    ul.contained.tabs li { padding: 20px; border: solid 0px #ddd; border-width: 0px 1px 1px 1px; }
+
+
+/*	--------------------------------------------------
+	Tables
+	-------------------------------------------------- */
+	table { background: #fff; width: 100%; margin: 0 0 18px; border: solid #ddd; border-width: 0 1px 1px 0; border-collapse: separate; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
+	table thead { background: #555; }
+	table thead tr th,
+	table tbody tr td { font-size: 12px; line-height: 18px; }
+	table thead tr {  }
+	table thead tr th { padding: 8px 10px 9px; font-size: 14px; font-weight: bold; color: #fff; }
+	table tbody {  }
+	table tbody tr {  }
+	table tbody tr.even,
+	table tbody tr.alt { background: #f5f5f5; }
+	body.safari table tbody tr:nth-child(even) { background: #f5f5f5; }
+	table tbody tr td { color: #333; padding: 9px 10px; border-left: 1px solid #ddd; border-right: 1px solid #fff; vertical-align: top; }
+	/* Get fancy with rounded corners */
+	table thead tr th:first-child { -webkit-border-top-left-radius: 5px; -moz-border-radius: 3px 0 0 0; }
+	table thead tr th:last-child { -webkit-border-top-right-radius: 5px; -moz-border-radius: 0 3px 0 0; }
+	table tbody tr:last-child td:first-child { -webkit-border-bottom-left-radius: 5px; -moz-border-radius: 0 0 0 3px; }
+	table tbody tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -moz-border-radius: 0 0 3px 0; }
+	/* Style the tables a bit lighter */
+	table.alt { border-width: 1px 1px 1px 0; }
+	table.alt thead { background: #f5f5f5; }
+	table.alt thead tr th { color: #222; border-left: 1px solid #ddd; border-right: 1px solid #fff; }
+
+
+
+/* -------------------------------------------------- 
+                                     Misc Stuff
+---------------------------------------------------*/
+
+.left       { float: left; }
+.right      { float: right; }
+.hide     { display: none; }
+
+hr { display: block; border-top: 1px solid #ccc; border-bottom: 1px solid #eee; border-style: inset;}
+
+.highlight  { background: #ff0; }
+	
+	

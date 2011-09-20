@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- Uncomment to make IE8 render like IE7 -->
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>Esperando el Tsunami</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+
+
+
+
+<body id="index-page" class="in_unknown">
+
+
+
+<div class="loading"> <span> <img src="img/loading.png" width="510" height="510"> </span> </div>
+<div id="counters">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="ottonassar">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div class="spacer-share"></div>
+<iframe src="http://www.facebook.com/plugins/like.php?app_id=143465975739444&amp;href=http%3A%2F%2Fesperando.cc&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:60px; margin-left:2px;" allowTransparency="true"></iframe>
+<div class="spacer-share"></div>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="tall"></g:plusone>
+
+<!-- Place this tag after the last plusone tag -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+</div>
+
+<div id="menu"> 
+	<div id="menu-bg">
+		<a id="btn-film" class="button" href="#">The Film</a>
+		<a id="btn-trailer" class="button" href="#">Trailer</a> 
+		<a id="btn-album" class="button" href="#">Album</a> 
+		<a id="btn-screening" class="button" href="#">Screnings &amp; Concerts</a> 
+		<a id="btn-outtakes" class="button" href="#">Out Takes</a> 
+		<a id="btn-credits" class="button" href="#">Credits</a> 
+		<a id="btn-contact" class="button" href="#">Contact</a>
+	</div>
+</div>
+<ul class="best-things">
+  <li class="thing-one">
+    <div id="sec-film" class="content"><img src="img/01.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-two">
+    <div id="sec-trailer" class="content"><img src="img/02.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-three">
+    <div id="sec-album" class="content"><img src="img/03.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-four">
+    <div id="sec-screening" class="content"><img src="img/04.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-five">
+    <div id="sec-outtakes" class="content"> <img src="img/05.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-six">
+    <div id="sec-credits" class="content"> <img src="img/06.png" width="1920" height="1200"></div>
+  </li>
+  <li class="thing-seven">
+    <div id="sec-contact" class="content"><img src="img/07.png" width="1920" height="1200"></div>
+  </li>
+</ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<!-- IE Fix for HTML5 Tags -->
+<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<script src="js/app.js"></script>
+<!-- CUFON 
+<script src="js/cufon.js" type="text/javascript"></script>
+<script src="js/didot.font.js" type="text/javascript"></script>
+<script type="text/javascript">
+      Cufon.replace('.x'); // Works without a selector engine
+      Cufon.replace('.x'); // Requires a selector engine for IE 6-7, see above
+    </script>
+    -->
+
+    <script>
+    $(document).ready(function(){
+    	  $('.content').click(function()
+    			  { 
+    		      var currentId = $(this).attr('id');
+    		      var section = currentId.replace('btn-', 'sec-');
+    		      $('html,body').animate({scrollTop: $("#"+section).offset().top},'slow');
+    			  });
+    });
+
+</script>
+
+</body>
+</html>

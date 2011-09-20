@@ -1,0 +1,254 @@
+/*  --------------------------------------------------
+  Global Reset & Standards
+  -------------------------------------------------- */
+  html, body { margin: 0; padding: 0; }
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, img, small, strike, strong, em, sub, sup, tt, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td, section { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+  table { border-collapse: collapse; border-spacing: 0; }
+  ol, ul { list-style: none; }
+  
+  /* HTML5 Fixes */
+  header, section, nav, footer { display: block; }
+  
+/* Structural Setup 
+-------------------------------------------- */
+.best-things {
+	width: 100%; 
+	margin-bottom: 0; 
+}
+.best-things li {
+	height: 1200px;
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: center center;
+	overflow: hidden;
+	background-attachment: fixed;
+}
+.best-things li .content {
+	z-index: 2;
+}
+
+/* Loading
+-------------------------------------------- */
+.loading {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	background-color: #BFD1D8;
+	background-image: url(../img/bg-inicio.jpg);
+	background-repeat: repeat;
+	background-position: center center;
+}
+
+.loading span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -255px;
+	color: #fff;
+	font-family: Georgia, "Times New Roman", serif;
+	height: 510px;
+	width: 510px;
+	margin-top: -255px;
+}
+
+  
+/* Thing one 
+-------------------------------------------- */
+
+.best-things .thing-one {
+	background-image: url(../img/01.jpg); 
+	background-color: #BFD1D8;
+	z-index: 2;
+}
+.thing-one .content {
+	position: absolute;
+	left: 50%;
+	top: 20px;
+	margin-left: -960px;
+	z-index: 1;
+	margin-top: 10px;
+}
+
+/* Thing two 
+-------------------------------------------- */
+
+.best-things .thing-two {
+	background-color: #BFD1D8;
+	background-image: url(../img/02.jpg); 
+	z-index: 2;
+}
+.thing-two .content {
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	margin-left: -960px;
+	z-index: 1;
+}
+
+
+/* Thing three 
+-------------------------------------------- */
+
+.best-things .thing-three {
+	background-color: #BFD1D8; 
+	background-image: url(../img/03.jpg); 
+	z-index: 2;
+}
+.thing-three .content {
+	position: absolute; 
+	left: 50%; 
+	top: 10%; 
+	margin-left: -960px; 
+	z-index: 1; 
+}
+
+/* Thing four 
+-------------------------------------------- */
+
+.best-things .thing-four {
+	background-color: #BFD1D8;
+	background-image: url(../img/04.jpg); 
+	z-index: 2;
+}
+.thing-four .content {
+	position: absolute; 
+	left: 50%; 
+	top: 10px; 
+	margin-left: -960px; 
+	z-index: 1; 
+}
+
+/* Thing five 
+-------------------------------------------- */
+
+.best-things .thing-five {
+	background-color: #BFD1D8;
+	background-image: url(../img/05.jpg); 
+	z-index: 2;
+}
+.thing-five .content {
+	position: absolute; 
+	left: 50%; 
+	top: 10px; 
+	margin-left: -960px; 
+	z-index: 1; 
+}
+
+/* Thing six 
+-------------------------------------------- */
+
+.best-things .thing-six {
+	background-color: #BFD1D8;
+	background-image: url(../img/06.jpg); 
+	z-index: 2;
+}
+.thing-six .content {
+	position: absolute; 
+	left: 50%; 
+	top: 10px; 
+	margin-left: -960px; 
+	z-index: 1; 
+}
+
+/* Thing seven
+-------------------------------------------- */
+
+.best-things .thing-seven {
+	background-color: #BFD1D8;
+	background-image: url(../img/07.jpg); 
+	z-index: 2;
+}
+
+.thing-seven .content {
+	position: absolute; 
+	left: 50%; 
+	top: 10%; 
+	margin-left: -960px; 
+	z-index: 1; 
+}
+
+
+/* Fun Misc Shit 
+-------------------------------------------- */
+
+::selection {
+        background: #c8ef12; /* Safari */
+        }
+::-moz-selection {
+        background: #c8ef12; /* Firefox */
+}
+
+/* Main menu */
+
+#menu {
+	position: fixed;
+	left:50%;
+	z-index: 4;
+	height: 40px;
+	width: 2000px;
+	margin-left: -1000px;
+	color: #FFF;
+	text-align: center;
+	background-image: url(../img/menu-bar.png);
+	background-repeat: repeat-x;
+	top: 20px;
+	background-position: 50%;
+}
+#menu-bg {
+	background-image: url(../img/menu-bg.png);
+	height: 40px;
+	width: 700px;
+	background-repeat: no-repeat;
+	left: 50%;
+	margin-left: -350px;
+	position: absolute;
+}
+#menu a {
+	color: #929F9F;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+}
+#menu a:hover {
+	color: #949B86;
+	background-color: #1C1816;
+}
+#menu .line {
+	display: inline-block;
+	height: 32px;
+}
+
+.button {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  padding-top: 14px;
+  padding-right: 12px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  font-family: "Georgia", Times New Roman, Times, serif;
+}
+  
+#counters {
+	position: fixed;
+	left:20px;
+	z-index: 4;
+	width: 52px;
+	color: #FFF;
+	top: 32%;
+	text-align: center;
+}
+#counters .spacer-share {
+	height: 2px;
+	width: 55px;
+	margin-top: 10px;
+	border-top-width: 1px;
+	border-top-style: dotted;
+	border-top-color: #101010;
+	margin-bottom: 10px;
+}
