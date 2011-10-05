@@ -23,6 +23,12 @@ foreach ($events as $event) { $edit = $event; }
         <td class="label"><label>
           <div align="right"><strong>Place: </strong></div>
         </label></td>
+        <td><input name="screening_film" type="text" value="<?php echo stripslashes($edit->film)?>" alt="Esperando el Tsunami" /></td>
+      </tr>
+      <tr>
+        <td class="label"><label>
+          <div align="right"><strong>Place: </strong></div>
+        </label></td>
         <td><input name="screening_place" type="text" value="<?php echo stripslashes($edit->place)?>" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
       </tr>
       <tr>

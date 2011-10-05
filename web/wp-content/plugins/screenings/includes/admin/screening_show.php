@@ -17,6 +17,7 @@ foreach ($events as $event) {
 	$lastRecord = $event;
 }
 
+echo '<p><b>Film: </b>'.stripslashes($lastRecord->film).'</p>';
 echo '<p><b>Status: </b>';
 	if ($lastRecord->status == 1){
 		echo 'Fully booked';

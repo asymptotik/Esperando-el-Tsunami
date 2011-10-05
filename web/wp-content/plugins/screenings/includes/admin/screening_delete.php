@@ -18,7 +18,7 @@ foreach ($events as $event) {
 
 if (!$_POST['screening_delete_confirm'])
 {
-	echo 'Are you sure you want to delete: '.$lastRecord->place;
+	echo 'Are you sure you want to delete: '.stripslashes($lastRecord->place);
 	echo '<form method="post" action="'.str_replace( "%7E", "~", $_SERVER["REQUEST_URI"]).'">';
 		echo '<input type="hidden" name="screening_delete" value="true">';
 		echo '<input type="hidden" name="screening_delete_confirm" value="true">';

@@ -47,6 +47,7 @@ $count = 0;
 foreach ($check as $i) {
 	$count++;
 }
+$rows_affected = 0;
 if ($count < 1) {
 	$rows_affected = $wpdb->insert('wp_screenings_events', array( 
 		'status' => $post->status,
@@ -190,14 +191,10 @@ if ($count < 1) {
 }
 
 $msg = '<p class="dest upper">Thank you for creating a Screening of Petites Planètes!</p>
-<p>We will approve your screening as soon as possible and inform you by email once it has been approved. <br />
-	<br />
-	Please add <a href="screenings@petitesplanetes.cc">screenings@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.<br />
-	<br />
-	Already now you should have received an email with the details you just registered and your log-in info for <a href="http://www.petitesplanetes.cc">www.petitesplanetes.cc</a> so you can edit and manage your event. Please make sure you have received this email.<br />
-<br />
-	Thanks,<br />
-	Vincent Moon</p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />';
+<p>We will approve your screening as soon as possible and inform you by email once it has been approved.</p>
+<p>Please add <a href="screenings@petitesplanetes.cc">screenings@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
+<p>Already now you should have received an email with the details you just registered and your log-in info for <a href="http://www.petitesplanetes.cc">www.petitesplanetes.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>
+<p>Thanks,<br />Vincent Moon</p>';
 
 if ($count < 1) {
 	return $msg;

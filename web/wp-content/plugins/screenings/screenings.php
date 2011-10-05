@@ -186,7 +186,7 @@ function country_select_func() {
 // SHORTCODE FOR HOST A SCREENINGS PAGE [screenings_user]
 add_shortcode('screenings_user', 'screenings_user');
 function screenings_user() {
- include('includes/frontend/user_login.php'); 
-	
+  $output = include('includes/frontend/user_login.php'); 
+	return $output;
 }
 ?>

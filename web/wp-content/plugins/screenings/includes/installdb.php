@@ -4,6 +4,7 @@
 	  `id` INT NOT NULL AUTO_INCREMENT ,
 	  `active` VARCHAR(45) NULL ,
 	  `status` INT NULL ,
+	  `film` VARCHAR(128) NOT NULL ,
 	  `place` VARCHAR(128) NOT NULL ,
 	  `address` VARCHAR(255) NULL ,
 	  `show_address` VARCHAR(45) NULL ,
@@ -33,7 +34,7 @@
 	  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
 	  CONSTRAINT `fk_wp_screenings_attending_wp_screenings_events`
 	    FOREIGN KEY (`wp_screenings_events_id` )
-	    REFERENCES `screenings`.`wp_screenings_events` (`id` )
+	    REFERENCES `wp_screenings_events` (`id` )
 	    ON DELETE NO ACTION
 	    ON UPDATE NO ACTION);";
 	

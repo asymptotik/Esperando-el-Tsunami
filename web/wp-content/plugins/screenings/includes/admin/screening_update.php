@@ -9,6 +9,7 @@
 
 $post = new stdClass();
 $post->id = $_POST['screening_id'];
+$post->film = $_POST['screening_film'];
 $post->place = $_POST['screening_place'];
 $post->address = $_POST['screening_address'];
 $post->addressShow = $_POST['screening_address_show'];
@@ -25,6 +26,7 @@ $post->password = md5($_POST['screening_password']);
 
 global $wpdb;
 $rows = array( 
+  'film' => $post->film,
 	'place' => $post->place,
 	'address' => $post->address,
 	'show_address' => $post->addressShow,

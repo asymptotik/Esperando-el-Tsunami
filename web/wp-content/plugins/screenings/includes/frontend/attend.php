@@ -23,7 +23,7 @@ if (isset($_POST['attend_form'])) {
 	$number = $_POST['attend_number'];
 	$msg =	$_POST['attent_msg'];
 
-	$events = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE id = $itemID");
+	$events = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE id = '$itemID'");
 	foreach ($events as $event) {
 		$lastRecord = $event;
 	}

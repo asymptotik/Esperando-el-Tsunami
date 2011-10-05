@@ -11,7 +11,7 @@
  * @subpackage esperando
  * @since esperando 1.0
  */
- get_header(); 
+ get_header('main'); 
  ?>
 
 <?php 
@@ -32,19 +32,20 @@
 			  $innerQuery->query($innerArgs);
 			  if($innerQuery->have_posts())
 			  {
-			  	echo '<div id="menu">' . "\n";
-					echo '  <div id="menu-bg">' . "\n";
-
+			  	echo '<div id="menu-main">' . "\n";
+					
 				  while($innerQuery->have_posts()) 
 				  {	
 				  	  $innerQuery->the_post();
-				  	  echo '    <a id="btn-' . $post->post_name . '" class="button" href="#">'.  strtoupper (the_title('', '', false)) . '</a>' . "\n";
+				  	  echo '    <a id="btn-' . $post->post_name . '" class="menu-main-item" href="#">'.  strtoupper (the_title('', '', false)) . '</a>';
+				  	  if ( $innerQuery->current_post + 1 < $innerQuery->post_count )
+			  			{
+					  		echo '<img class="menu-main-sep" src="' . mr_image_url("menu-sep.gif") . '"/>';
+			  			}
 				  }
+				  
+				  echo '</div>' . "\n";
 			  }
-			  
-			  echo '  </div>' . "\n";
- 				echo '</div>' . "\n";
- 				
 			}
 ?>
 
@@ -116,7 +117,7 @@ function mr_bg()
 	
     $(document).ready(function(){
 
-    	  $('.button').click(function()
+    	  $('.menu-main-item').click(function()
     			  { 
     		      var currentId = $(this).attr('id');
     		      var section = currentId.replace('btn-', 'sec-');

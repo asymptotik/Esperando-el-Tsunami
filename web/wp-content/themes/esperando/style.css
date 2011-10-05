@@ -7,6 +7,33 @@ Author URI: http://chriscoyier.net
 Version: 1
 */
 
+@font-face {
+  font-family: 'Didot';
+  src: url('font/Didot-Regular.eot');
+  src: local('Didot Regular'), local('Didot'),
+    url("font/Didot-Regular.woff") format("woff"),
+    url("font/Didot-Regular.otf") format("opentype"),
+    url("font/Didot-Regular.svg#didot") format("svg");
+}
+
+@font-face {
+  font-family: 'Didot Italic';
+  src: url('font/Didot-Italic.eot');
+  src: local('Didot Italic'),
+    url("font/Didot-Italic.woff") format("woff"),
+    url("font/Didot-Italic.otf") format("opentype"),
+    url("font/Didot-Italic.svg#didot") format("svg");
+}
+
+@font-face {
+  font-family: 'GillSans Light';
+  src: url('font/GillSans-Light.eot');
+  src: local('GillSans Light'),
+    url("font/GillSans-Light.woff") format("woff"),
+    url("font/GillSans-Light.otf") format("opentype"),
+    url("font/GillSans-Light.svg#gillsans") format("svg");
+}
+
 /**Start Reset*********************************/
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0;border: 0;outline: 0;font-size: 100%;vertical-align: baseline;background: transparent;}
@@ -25,20 +52,25 @@ table {border-collapse: collapse;border-spacing: 0;}
 /**End Reset*********************************/
 
 
-body { background: white; font: 14px/1.4 Georgia, Serif; }
+body { background: white; font: 16px/1.1 "Didot Italic", Serif; }
 .screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
 .clear { clear: both; }
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 * html .group, *:first-child+html .group { zoom: 1; } /* First selector = IE6, Second Selector = IE 7 */
 
-/* #page-wrap { width: 960px; margin: 20px auto; } */
+#page-wrap { width: 960px; margin: 20px auto; } 
+#page-wrap-main {  }
 
-h1, h2, h3 { font-weight: normal; margin: 0 0 10px 0; }
+h1, h2, h3, h4 { font-weight: normal; margin: 10px 0 10px 0; }
+
 h1 { }
-h2 { }
-h3 { }
+h2 { font-size: 18px; }
+h3 { font-size: 14px; }
+h4 { font-size: 14px; }
 
-p { margin: 0 0 10px 0; }
+
+p { margin: 10px 0 10px 0; }
+p + h1, p + h2, p + h3, p + h4 { margin: 20px 0 10px 0; }
 a { }
 a:hover { } 
 
@@ -46,6 +78,14 @@ blockquote { }
 blockquote p { }
 
 ul, ol { margin: 0 0 10px 0; }
+
+/* General Styles */
+
+.italic { 
+	font-face: "Didot Italic";
+}
+
+/* post */
 
 .post { }
 
@@ -184,53 +224,51 @@ textarea { }
 
 /* Main menu */
 
-#menu {
-    background-image: url("img/menu-paper.png");
+#menu-main {
+    background-image: url("img/bg-main-menu.jpg");
     background-position: 50% 50%;
     background-repeat: repeat-x;
-    color: #FFFFFF;
-    height: 70px;
+    height: 100px;
+    width: 1920px;
     left: 50%;
-    margin-left: -1000px;
+    margin-left: -960px;
     position: fixed;
     text-align: center;
     top: 0;
-    width: 2000px;
     z-index: 4;
 }
 
-#menu-bg {
-    background-repeat: no-repeat;
-    height: 40px;
-    left: 50%;
-    margin-left: -490px;
-    position: absolute;
-    width: 980px;
-}
-
-#menu a {
+#menu-main a {
     color: #25201D;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-#menu a:hover {
+#menu-main a:hover {
   text-decoration: underline overline;
 }
 
-#menu .line {
+#menu-main .line {
   display: inline-block;
   height: 32px;
 }
 
-.button {
+.menu-main-item {
     color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
     font-family: "Georgia",Times New Roman,Times,serif;
-    padding: 20px 7px 6px;
+    padding: 36px 7px 6px;
     position: relative;
     text-decoration: none;
+}
+
+.menu-main-sep
+{
+	width: 1px;
+	height: 13px;
+	margin-left: 5px;
+	margin-bottom: -2px;
 }
 
 #counters {
@@ -253,3 +291,434 @@ textarea { }
   margin-bottom: 10px;
 }
 
+/* content */
+  
+.post ul
+{
+	list-style-type: disc;
+	margin-left: 20px;
+}
+
+.post hr {
+    border-color: #000000 -moz-use-text-color;
+    border-style: solid none;
+    border-width: 2px 0 1px;
+    height: 7px;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+table.h2 {
+	width: 100%;
+}
+
+.h2-content {
+  width: 0;
+}
+
+table.h2 hr
+{
+	display:block;
+  border-color: #000000 -moz-use-text-color;
+  border-style: dotted none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  margin: 0 0 6px 0;
+  width: 100%;
+  }
+  
+table.h2 h2 {
+	display: inline;
+  font-family: "Didot Italic", Serif;
+  font-style: italic;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+table.h3 {
+  width: 100%;
+}
+
+.h3-content {
+  width: 0;
+  padding: 0 6px;
+}
+
+table.h3 hr
+{
+  display:block;
+  border-color: #000000 -moz-use-text-color;
+  border-style: solid none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  margin: 0 0 4px 0;
+  width: 100px;
+  }
+  
+table.h3 h3 {
+  display: inline;
+  font-family: "Didot Italic", Serif;
+  font-style: italic;
+  font-size: 12px;
+  margin: 0 10px;
+}
+
+table.h3 .h3-left hr {
+	float: right;
+}
+	
+table.btn-wrapper-rnd {
+  width: 100%;
+}
+
+.btn-wrapper-content {
+  width: 0;
+  padding: 0 10px;
+}
+
+table.btn-wrapper-rnd hr
+{
+  display:block;
+  border-color: #000000 -moz-use-text-color;
+  border-style: dotted none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  margin: 0 0 20px 0;
+  width: 100%;
+}
+
+.latest-news hr
+{
+  border-color: #000000 -moz-use-text-color;
+  border-style: dotted none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+  
+.latest-news-excerpt
+{
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.latest-news-info
+{
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.home 
+{
+	text-align: center;
+}
+
+.giant-title {
+	font-family: "Didot", sans-serif;
+	font-size: 80px;
+	line-height: 65px;
+	margin: 10px 0;
+	}
+	
+.sans
+{
+	font-family: "GillSans Light", sans-serif;
+	font-weight: light;
+	
+}
+
+.italic {
+	font-family: "Didot Italic", Serif;
+	}
+	
+.bigger {
+	font-size: 18px;
+}
+	
+/* screenings */
+
+form input, form select, form textarea {
+
+    border: 1px solid #000;
+    color: #000;
+    font: 11px "Arial";
+    padding: 4px;
+    width: 200px;
+}
+
+form input[type="checkbox"] { 
+	width: 20px;
+}
+
+.scrn-col-left {
+	width: 460px;
+	float:left;
+}
+
+.scrn-col-right {
+  width: 460px;
+  float:left;
+  margin-left: 40px;
+}
+
+.scrn-screenings {
+	margin: 10px 0 0 0 ;
+}
+
+.screenings h2 {
+	text-align: center;
+	text-transform: lowercase;
+}
+
+.screenings .required {
+	color: #0f0;
+}
+
+.screenings .public {
+	color: #f00;
+	}
+	
+.btn-text a {
+	background-color: #666;
+	padding: 6px 20px 5px 20px;
+	text-decoration: none;
+	color: #fff;
+}
+
+.btn-text a:hover {
+	background-color: #aaa;
+	color: #000;
+}
+
+#host_screening td input, #host_screening td select, #host_screening td textarea {
+    width: 294px;
+    margin: 4px 0;
+}
+
+#host_screening td input[type="checkbox"] { 
+  width: 20px;
+}
+
+#host_screening table td {
+  width: 30%;
+}
+  
+#host_screening table td.label {
+  width: 20%;
+}
+
+#host_screening table td.label + td + td {
+	padding-left: 40px;
+}
+  
+#host_screening #submit {
+	float: right;
+	margin: 20px 2px 0 0;
+}
+	
+/* Icons and Buttons
+ *--------------------------------------------------------------
+ */
+	
+/* Icons */
+
+.icon {
+	background: transparent url(img/icon-sprt.png) no-repeat;
+	margin: 0 auto;
+}
+	
+.icon-circle-star {
+	background-position: 0px 0px; 
+	width: 97px;
+	height: 92px;
+}
+
+.icon-wave {
+	background-position: -97px 0px; 
+  width: 99px;
+  height: 77px;
+}
+
+.icon-shell {
+	background-position: -196px 0px; 
+  width: 129px;
+  height: 82px;
+}
+
+.icon-butterfly {
+	background-position: -325px 0px; 
+  width: 111px;
+  height: 85px;
+}
+
+.icon-arrow {
+	background-position: -436px 0px; 
+  width: 87px;
+  height: 90px;
+}
+
+.icon-ship {
+	background-position: -523px 0px; 
+  width: 141px;
+  height: 85px;
+}
+
+.icon-star {
+	background-position: -664px 0px; 
+  width: 93px;
+  height: 92px;
+}
+
+.icon-knot {
+	background-position: -757px 0px; 
+  width: 235px;
+  height: 37px;
+}
+
+/* Rectangle Buttons */
+
+.btn-rect {
+  background: transparent url(img/btn-rect-sprt.png) no-repeat;
+}
+
+.btn-rect-sm {
+	background-position: 0px 0px; 
+  width: 134px;
+  height: 33px;
+}
+	
+.btn-rect-sm:hover {
+	background-position: 0px -33px; 
+}
+
+.btn-rect-md {
+	background-position: -135px 0px; 
+  width: 183px;
+  height: 33px;
+}
+
+.btn-rect-md:hover {
+  background-position: 0px -33px; 
+}
+
+.btn-rect-sm-lg {
+	background-position: -319px 0px; 
+  width: 223px;
+  height: 33px;
+}
+
+.btn-rect-lg:hover {
+  background-position: 0px -33px; 
+}
+
+ /* round buttons */
+ 
+.btn-rnd {
+  background: transparent url(img/btn-rnd-sprt.png) no-repeat;
+}
+
+.btn-rnd a
+{
+  display:block;
+}
+
+.btn-rnd-title
+{
+  width: 60px;
+  position: absolute;
+  left: 50%;
+  top: 15px;
+  margin-left: -30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*
+.h3 hr
+{
+  border-color: #000000 -moz-use-text-color;
+  border-style: solid none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  margin: 0 auto;
+  top: 12px;
+  position: relative;
+  width: 200px;
+  z-index: 0;
+  
+  }
+  
+.h3 h3 {
+  display: inline;
+  position: relative;
+  font-family: "Didot Italic", Serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #fff;
+  z-index: 10;
+  padding: 0 10px;
+}
+*/
+
+.btn-rnd-wrap hr {
+	border-color: #000000 -moz-use-text-color;
+  border-style: solid none;
+  border-width: 1px 0 0 0;
+  height: 1px;
+  margin: 0 auto;
+  top: 12px;
+  position: relative;
+  width: 200px;
+  z-index: 0;
+}
+	
+.btn-rnd-wrap .btn-rnd {
+  position: relative;
+  z-index: 10;
+  padding: 0 10px;
+}
+
+.btn-rnd-top {
+  background-position: 0px 0px; 
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.btn-rnd-top:hover {
+	background-position: 0px -40px; 
+}
+
+.btn-rnd-fb {
+  background-position: -41px 0px; 
+  width: 40px;
+  height: 39px;
+}
+
+.btn-rnd-fb:hover {
+  background-position: 0px -39px; 
+}
+
+.btn-rnd-tw {
+  background-position: -81px 0px; 
+  width: 40px;
+  height: 39px;
+}
+
+.btn-rnd-tw:hover {
+  background-position: 0px -39px; 
+}
+
+.btn-rnd-vim {
+  background-position: -121px 0px; 
+  width: 40px;
+  height: 39px;
+}
+  
+.btn-rnd-vim:hover {
+  background-position: 0px -39px; 
+}

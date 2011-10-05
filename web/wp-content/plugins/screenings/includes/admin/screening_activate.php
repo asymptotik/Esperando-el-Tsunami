@@ -19,7 +19,7 @@ foreach ($events as $event) {
 
 if ($lastRecord->active == 1) {
 	$wpdb->update( 'wp_screenings_events', array( 'active' => 0), array( 'id' => $lastRecord->id));	
-	echo "<p>".$lastRecord->place.' has been deactivated'.'</p>';
+	echo "<p>".stripslashes($lastRecord->place).' has been deactivated'.'</p>';
 }
 else {
 	$wpdb->update( 'wp_screenings_events', array( 'active' => 1), array( 'id' => $lastRecord->id));	
