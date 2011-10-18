@@ -56,11 +56,13 @@ if(!empty($concert_id))
 {
 	check_admin_referer('update-concert_' . $concert_id); 
 	$wpdb->update($wpdb->prefix . 'concerts_events', $rows, array( 'id' => $concert_id));
+	$message = "The Concert has been updated.";
 }
 else
 {
 	check_admin_referer('add-concert'); 
 	$wpdb->insert($wpdb->prefix . 'concerts_events', $rows);
+	$message = "The Concert has been saved.";
 }
 
 if ($_POST['concert_password'] != '') {
@@ -69,5 +71,5 @@ if ($_POST['concert_password'] != '') {
 }
 
 ?>
-<p>The Concert has been saved.</p>
-<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
+<p><?php echo $message; ?></p>
+<a href="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" title='go back'>Go Back</a>

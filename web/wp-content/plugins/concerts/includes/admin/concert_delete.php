@@ -24,3 +24,5 @@ else
 	echo '<p>Could not delete concert. Item not found.</p>';
 }
 ?>
+
+<a href="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" title='go back'>Go Back</a>

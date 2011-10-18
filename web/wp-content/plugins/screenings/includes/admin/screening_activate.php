@@ -22,6 +22,7 @@ else {
 	$wpdb->update( $wpdb->prefix . 'screenings_events', array( 'active' => 1), array( 'id' => $screening_id));	
 	echo "<p>" . esc_html($screening->place) . ' has been activated'.'</p>';
 	
+	$home_rl = get_bloginfo('url', 'display');
 	// multiple recipients
 	$to  = $screening->email;
 	// subject
@@ -35,10 +36,10 @@ else {
 			<body>
 			
 			<p>Congratulations! Your <strong>Private-Public Screening</strong> has been approved.<br>
-The screening is now featured in the screening calendar at ' . bloginfo('url') . 'screenings/all/</p>
+The screening is now featured in the screening calendar at ' . $home_rl . 'screenings/all/</p>
 
-<p>As a host of a Private-Public Screening you can invite friends to your screening any way you prefer. In addition to this it will be possible for others to contact you via the <a href="' . bloginfo('url') . 'screenings/all">Attend a Concert</a> section on <a href="' . bloginfo('url') . '">' . bloginfo('url') . '</a>. Here people can request to be invited to your Private-Public Concert. We encourage you to reply to all the emails you might receive concerning your screening.</p>
-<p>If you need to change any details regarding your Private-Public Screening or <strong>mark the screening as fully booked </strong>you can login at <a href="' . bloginfo('url') . 'screenings/manage/" target="_blank">' . bloginfo('url') . 'screenings/manage/</a>.Please make sure you display the <strong>Time</strong> for the screening correct. We use the 24-hour clock on the site. I also suggest that you let your guests know who you are and how you will screen the film? And if they should bring something? etc You can do this in the <strong>Additional Info</strong> field.</p> 
+<p>As a host of a Private-Public Screening you can invite friends to your screening any way you prefer. In addition to this it will be possible for others to contact you via the <a href="' . $home_rl . 'screenings/all">Attend a Concert</a> section on <a href="' . $home_rl . '">' . $home_rl . '</a>. Here people can request to be invited to your Private-Public Concert. We encourage you to reply to all the emails you might receive concerning your screening.</p>
+<p>If you need to change any details regarding your Private-Public Screening or <strong>mark the screening as fully booked </strong>you can login at <a href="' . $home_rl . 'screenings/manage/" target="_blank">' . $home_rl . 'screenings/manage/</a>.Please make sure you display the <strong>Time</strong> for the screening correct. We use the 24-hour clock on the site. I also suggest that you let your guests know who you are and how you will screen the film? And if they should bring something? etc You can do this in the <strong>Additional Info</strong> field.</p> 
 
 <p>We encourage you to <strong>spread the word</strong> about your <strong>Private-Public Screening</strong>. A good idea is to create a Facebook event for your screening - then it is easy to invite friends.</p>
 
@@ -47,7 +48,7 @@ The screening is now featured in the screening calendar at ' . bloginfo('url') .
 <p>If you would like to use a DVD player to screen the films then you can burn a playable DVD using a DVD burner application.
 The easiest is to play the films via your computer. You can either connect it to a projector or one of those modern TVs, or simply screen it on your computer´s screen.</p>
 <p>Please remember that my films are music films. I encourage you to make sure that you can screen the film properly and with good and clear sound.</p>
-<p>For more info about the Private-Public Screenings please refer to <a href="' . bloginfo('url') . 'screenings/host-a-screening/">' . bloginfo('url') . 'screenings/host-a-screening/</a></p>
+<p>For more info about the Private-Public Screenings please refer to <a href="' . $home_rl . 'screenings/host-a-screening/">' . $home_rl . 'screenings/host-a-screening/</a></p>
 
 <p>Best Wishes and Good Luck!</p>
 
@@ -77,5 +78,4 @@ The easiest is to play the films via your computer. You can either connect it to
 }
 
 ?>
-<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
-<?
+<a href="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" title='go back'>Go Back</a>

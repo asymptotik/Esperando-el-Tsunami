@@ -167,10 +167,12 @@ function lc_concerts_get_var( $var ) {
 		$val = $_POST[$var];
 	}
 	
+	// negate magic quotes, if necessary
+	// magic quotes is evil since it assumes a data usage and a proper way and what to quote
   if ( get_magic_quotes_gpc() ) {
 			$val = stripslashes_deep($val);
 	}
-		
+	
 	return $val;
 }
 
@@ -193,8 +195,14 @@ function lc_concerts_get_vars( $vars ) {
 			$val = $_POST[$var];
 		}
 		
+		// negate magic quotes, if necessary
+		// magic quotes is evil since it assumes a data usage and a proper way and what to quote
 		if ( get_magic_quotes_gpc() ) {
 			$ret[$var] = stripslashes_deep($val);
+		}
+		else 
+		{
+			$ret[$var] = $val;
 		}
 	}
 	

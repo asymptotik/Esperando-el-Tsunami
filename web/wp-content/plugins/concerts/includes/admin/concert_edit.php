@@ -130,8 +130,6 @@ wp_nonce_field( $nonce_action ); echo "\n";
 				$concert_pass = '';
 				$concert_phone = '';
 			}
-		
-echo "concert_country_id: $concert_country_id <br>";
 
 			$regions = get_lc_regions('name', 'asc');
 			?>

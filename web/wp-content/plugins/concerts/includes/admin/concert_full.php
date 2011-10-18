@@ -23,4 +23,4 @@ else if ($lastRecord->status == true) {
 	echo "<p>".esc_html($concert->place).' has been opened for more attendants '.'</p>';
 }
 ?>
-<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
+<a href="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" title='go back'>Go Back</a>
