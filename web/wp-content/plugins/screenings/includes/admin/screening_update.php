@@ -7,7 +7,7 @@
 	* @package View
 	**/
 
-extract(lc_get_vars(array(
+extract(lc_screenings_get_vars(array(
 'screening_id', 
 'screening_place', 
 'screening_address', 

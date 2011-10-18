@@ -10,7 +10,7 @@
 <?php
 
 global $wpdb;
-extract(lc_get_vars(array('screening_id')));
+extract(lc_screenings_get_vars(array('screening_id')));
 check_admin_referer('delete-screening_' . $screening_id); 
 
 if(!empty($screening_id))

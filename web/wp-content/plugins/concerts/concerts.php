@@ -93,7 +93,7 @@ function lc_concerts_admin_func() {
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
 
-	extract(lc_get_vars(array('action')));
+	extract(lc_concerts_get_vars(array('action')));
 
 	switch($action)
 	{
@@ -209,7 +209,7 @@ function lc_concerts_region_func() {
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
 
-	$vars = lc_get_vars(array('action', 'sched_id', 'sched_region_id', 'sched_name', 'sched_desc', 'sched_startdate', 'sched_enddate', 'schedcheck[]'));
+	$vars = lc_concerts_get_vars(array('action', 'sched_id', 'sched_region_id', 'sched_name', 'sched_desc', 'sched_startdate', 'sched_enddate', 'schedcheck[]'));
 	extract($vars);
 	
 	switch ($action) {

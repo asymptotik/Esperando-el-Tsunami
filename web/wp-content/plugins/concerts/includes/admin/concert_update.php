@@ -7,7 +7,7 @@
 	* @package View
 	**/
 
-extract(lc_get_vars(array(
+extract(lc_concerts_get_vars(array(
 'concert_id', 
 'concert_place', 
 'concert_address', 
@@ -25,7 +25,7 @@ extract(lc_get_vars(array(
 'concert_password')));
 
 $concert_country_name = "concert_country_" . $concert_region_id;
-$concert_country_id = lc_get_var($concert_country_name);
+$concert_country_id = lc_concerts_get_var($concert_country_name);
 
 $concert_region_id = empty($concert_region_id) ? 0 : $concert_region_id;
 $concert_country_id = (empty($concert_region_id) || empty($concert_country_id)) ? 0 : $concert_country_id;

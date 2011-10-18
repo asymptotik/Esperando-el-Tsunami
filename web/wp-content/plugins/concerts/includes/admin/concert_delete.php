@@ -10,7 +10,7 @@
 <?php
 
 global $wpdb;
-extract(lc_get_vars(array('concert_id')));
+extract(lc_concerts_get_vars(array('concert_id')));
 check_admin_referer('delete-concert_' . $concert_id); 
 
 if(!empty($concert_id))

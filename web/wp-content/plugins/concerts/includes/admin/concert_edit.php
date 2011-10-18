@@ -7,7 +7,7 @@
 	* @package View
 **/
 
-extract(lc_get_vars(array('concert_id')));
+extract(lc_concerts_get_vars(array('concert_id')));
 $concert = get_lc_concert($concert_id);
 
 // don't load directly

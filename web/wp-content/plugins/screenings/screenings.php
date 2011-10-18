@@ -126,7 +126,7 @@ if (!current_user_can('manage_options'))
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
 
-	extract(lc_get_vars(array('action')));
+	extract(lc_screenings_get_vars(array('action')));
 
 	switch($action)
 	{
