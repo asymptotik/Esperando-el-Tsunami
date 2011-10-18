@@ -59,8 +59,8 @@ foreach ($events as $event) {
 	if ($event->show_address != 1){
 		$details .= '<b>Adress:</b> '.$event->address.'<br/>';
 	}
-	if ($event->zipcode != 'Zip Code'){
-		$details .= '<b>Zip Code:</b> '.$event->zipcode.'<br/>';
+	if ($event->postalcode != 'Postal Code'){
+		$details .= '<b>Postal Code:</b> '.$event->postalcode.'<br/>';
 	}
 	if ($event->additional != 'optional'){
 		$details .= '<b>Additional info:</b> '.$event->additional.'<br/>';

@@ -10,82 +10,86 @@
 
 <?php
 global $wpdb;
-$events = $wpdb->get_results( "SELECT * FROM wp_screenings_events ORDER BY active asc, id desc" );
+$events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "screenings_events ORDER BY active asc, id desc" );
 
 $sceeningsActive = 0;
 $sceeningsOpen = 0;
 $sceeningsAll = 0;
 
-
 ?>
 <div class="wrap">
-	<h2>Edit Screening</h2>
-	<table>
+	<h2>Screenings <a class="add-new-h2" href="admin.php?page=screenings&action=screening_new">Add New</a></h2>
+	<table class="wp-list-table widefat fixed bookmarks">
+	<thead>
+	  <tr>
+			<th class="lc-column">Place</th>
+			<th class="lc-column">Date</th>
+			<th class="lc-column">Max att.</th>
+			<th class="lc-column">Full</th>
+			<th class="lc-column">Active</th>
+	  </tr>
+	</thead>
+	<tfoot>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td style="width:250px;">Place</td>
-		<td style="width:170px;">Date</td>
-		<td style="width:70px;">Max att.</td>
-		<td>Full </td>
-		<td>Active </td>
+		<th class="manage-column lc-column" style="" scope="col">Place</th>
+		<th class="manage-column lc-column" style="" scope="col">Date</th>
+		<th class="manage-column lc-column" style="" scope="col">Max att.</th>
+		<th class="manage-column lc-column" style="" scope="col">Full</th>
+		<th class="manage-column lc-column" style="" scope="col">Active</th>
 	</tr>
-	<?php foreach ($events as $event) :?>
-		<?
+  </tfoot>
+		  
+	<?php if(count($events) > 0) {
+		foreach ($events as $event) {
+
 		if ($event->active == 1) $sceeningsActive++;
 		if ($event->status == 0) $sceeningsOpen++;
 		$sceeningsAll++;
+		$plugin_url = plugin_dir_url( __FILE__ ) . "../../";
 		?>
 		<tr>
-			<td>
-				<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-					<input type="hidden" name="screening_show" value="true">
-					<input type="hidden" name="screening_id" value="<?=$event->id?>">
-					<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/search_16.png" />
-				</form>
+
+			 <td class="column-name">
+				<strong>
+					<a class="row-title" title="Edit ÒDocumentationÓ" href="admin.php?page=screenings&action=screening_view&screening_id=<?php echo $event->id ?>"><?php echo stripslashes($event->place);?></a>
+				</strong>
+				<br>
+				<div class="row-actions">
+				  <span class="view">
+					  <a href="admin.php?page=screenings&action=screening_view&screening_id=<?php echo $event->id ?>">View</a> |
+					</span>
+					<span class="edit">
+					  <a href="admin.php?page=screenings&action=screening_edit&screening_id=<?php echo $event->id ?>">Edit</a> |
+					</span>
+					<span class="delete">
+					  <a class="submitdelete" onclick="if ( confirm( 'You are about to delete this Screening.\n \'Cancel\' to stop, \'OK\' to delete.' ) ) { return true;}return false;" href="<?php echo wp_nonce_url( "admin.php?page=screenings&amp;action=screening_delete&amp;screening_id=$event->id", 'delete-screening_' . $event->id )  ?>">Delete</a>
+					</span>
+				</div>
 			</td>
-			<td>
-				<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-					<input type="hidden" name="screening_edit" value="true">
-					<input type="hidden" name="screening_id" value="<?=$event->id?>">
-					<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/pencil_16.png" />
-				</form>
-			</td>
-			<td>
-				<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-					<input type="hidden" name="screening_delete" value="true">
-					<input type="hidden" name="screening_id" value="<?=$event->id?>">
-					<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/delete_16.png" />
-				</form>
-			</td>
-			<td><?php echo stripslashes($event->place);?></td>
 			<td><?php echo $event->dateandtime;?></td>
 			<td><?php echo $event->max;?></td>
 			<td>
-				<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-					<input type="hidden" name="screening_status" value="true">
-					<input type="hidden" name="screening_id" value="<?=$event->id?>">
 					<?php if($event->status == 0) :?>
-						<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/block_16_grey.png" />
+					  <a href="<?php echo wp_nonce_url( "admin.php?page=screenings&amp;action=screening_status&amp;screening_id=$event->id", 'update-screening_' . $event->id )  ?>"><img src="<?php echo $plugin_url . "images/block_16_grey.png" ?>"></a>
 					<?php else :?>
-						<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/block_16.png" />
+					  <a href="<?php echo wp_nonce_url( "admin.php?page=screenings&amp;action=screening_status&amp;screening_id=$event->id", 'update-screening_' . $event->id )  ?>"><img src="<?php echo $plugin_url . "images/block_16.png" ?>"></a>
 					<?php endif;?>
-				</form>
 			</td>
 			<td>
-				<form method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-					<input type="hidden" name="screening_activate" value="true">
-					<input type="hidden" name="screening_id" value="<?=$event->id?>">
 					<?php if($event->active == 0) :?>
-						<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/tick_16_grey.png" />
+					  <a href="<?php echo wp_nonce_url( "admin.php?page=screenings&amp;action=screening_activate&amp;screening_id=$event->id", 'update-screening_' . $event->id )  ?>"><img src="<?php echo $plugin_url . "images/tick_16_grey.png" ?>"></a>
 					<?php else :?>
-						<input type="image" src="http://anisland.cc/home/wp-content/plugins/screenings/images/tick_16.png" />
+					  <a href="<?php echo wp_nonce_url( "admin.php?page=screenings&amp;action=screening_activate&amp;screening_id=$event->id", 'update-screening_' . $event->id )  ?>"><img src="<?php echo $plugin_url . "images/tick_16.png" ?>"></a>
 					<?php endif;?>
-				</form>
 			</td>
 		</tr>
-	<?php endforeach?>
+	<?php   } // endforeach ?>
+	<?php } else { // endif ?>
+			<tr class="no-items">
+	    <td class="colspanchange" colspan="5">No Screenings found.</td>
+	  </tr>
+	<?php } ?>
+	
 </table>
 <p><b>Total:</b> <?php echo $sceeningsAll; ?></p>
 <p><b>Active:</b> <?php echo $sceeningsActive; ?></p>

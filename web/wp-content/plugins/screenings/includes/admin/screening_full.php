@@ -8,22 +8,19 @@
 **/
 ?>
 <?php
-$itemID = $_POST['screening_id'];	
-
 global $wpdb;
-$events = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE id = $itemID");
+extract(lc_get_vars(array('screening_id')));
+check_admin_referer('update-screening_' . $screening_id); 
 
-foreach ($events as $event) {
-	$lastRecord = $event;
-}
+$screening = get_lc_screening($screening_id);
 
-if ($lastRecord->status == false) {
-	$wpdb->update( 'wp_screenings_events', array( 'status' => 1), array( 'id' => $lastRecord->id));	
-	echo "<p>".$lastRecord->place.' has been set to full'.'</p>';
+if ($screening->status == false) {
+	$wpdb->update( $wpdb->prefix . 'screenings_events', array( 'status' => 1), array( 'id' => $screening_id));	
+	echo "<p>".esc_html($screening->place).' has been set to full'.'</p>';
 }
 else if ($lastRecord->status == true) {
-	$wpdb->update( 'wp_screenings_events', array( 'status' => 0), array( 'id' => $lastRecord->id));	
-	echo "<p>".$lastRecord->place.' has been opened for more attendants '.'</p>';
+	$wpdb->update( $wpdb->prefix . 'screenings_events', array( 'status' => 0), array( 'id' => $screening_id));	
+	echo "<p>".esc_html($screening->place).' has been opened for more attendants '.'</p>';
 }
 ?>
 <a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>

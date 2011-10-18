@@ -8,16 +8,16 @@
 	**/
 ?>
 
-<form name="editsettings" id="editsettings" method="post" action="admin.php?page=screenings-settings">
+<form name="editsettings" id="editsettings" method="post" action="admin.php?page=concerts-settings">
 
 <div class="wrap">
 	<div id="icon-themes" class="icon32"><br></div>
-	<h2>Screening Settings</h2>
+	<h2>Concert Settings</h2>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 	
 
 	  <input type="hidden" name="action" value="update" />
-    <input type="hidden" name="screenings_option" value="thehe" />
+    <input type="hidden" name="concerts_option" value="thehe" />
 
 		<div id="side-info-column" class="inner-sidebar">
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
@@ -47,26 +47,26 @@
 				<div id="post-body-content">
 					<div id="namediv" class="stuffbox">
 						<h3>
-							<label for="name"><?php _e('Screening') ?></label>
+							<label for="name"><?php _e('Concert') ?></label>
 						</h3>
 						<div class="inside">
-					    <table class="form-table edit-screening screening-form-table">
+					    <table class="form-table edit-concert concert-form-table">
 					    
 								<tr valign="top">
 									<td class="first">Notification email</td>
-									<td><input type="text" name="screenings_notify" value="<?php echo get_option('screenings_notify'); ?>" /></td>
+									<td><input type="text" name="concerts_notify" value="<?php echo get_option('concerts_notify'); ?>" /></td>
 								</tr>
 								<tr valign="top">
 									<td class="first">Send Notification from name</td>
-									<td><input type="text" name="screenings_notify_from_name" value="<?php echo get_option('screenings_notify_from_name'); ?>" /></td>
+									<td><input type="text" name="concerts_notify_from_name" value="<?php echo get_option('concerts_notify_from_name'); ?>" /></td>
 								</tr>
 								<tr valign="top">
 									<td class="first">Send Notification from email</td>
-									<td><input type="text" name="screenings_notify_from_email" value="<?php echo get_option('screenings_notify_from_email'); ?>" /></td>
+									<td><input type="text" name="concerts_notify_from_email" value="<?php echo get_option('concerts_notify_from_email'); ?>" /></td>
 								</tr>
 								<tr valign="top">
 									<td class="first">Account backup email</td>
-									<td><input type="text" name="screenings_accounts" value="<?php echo get_option('screenings_accounts'); ?>" /></td>
+									<td><input type="text" name="concerts_accounts" value="<?php echo get_option('concerts_accounts'); ?>" /></td>
 								</tr>
 							</table>
 					<br>

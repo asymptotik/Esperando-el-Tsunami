@@ -2,4 +2,4 @@
 .buildpath
 .settings
 .DS_Store
-project
+/project/

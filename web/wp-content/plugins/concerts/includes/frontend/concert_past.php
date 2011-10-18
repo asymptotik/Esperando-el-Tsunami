@@ -1,6 +1,6 @@
 <?php
 /**
-	* File: screenings
+	* File: concerts
 	* Type: 
 	* @author Victor L. Facius
 	* @version 1.0
@@ -10,7 +10,7 @@
 <?php
 
 global $wpdb;
-$events = $wpdb->get_results( "SELECT * FROM wp_screenings_events WHERE date(dateandtime) <= date(now()) AND active = 1 ORDER BY dateandtime desc" );
+$events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "concerts_events WHERE date(dateandtime) <= date(now()) AND active = 1 ORDER BY dateandtime desc" );
 
 $output = '';
 
@@ -18,7 +18,7 @@ $array = array();
 foreach ($events as $event) {
 	
 	$date = new DateTime($event->dateandtime);
-	$details = '<div class="hidden" id="screening'.$event->id.'"><hr>';
+	$details = '<div class="hidden" id="concert'.$event->id.'"><hr>';
 	$details .= '<p><b>Time:</b> '.$date->format('H:i').'<br/>';
 	$details .= '<b>Max attendants:</b> '.$event->max.' people<br/>';
 	if ($event->show_address != 1){
@@ -32,13 +32,13 @@ foreach ($events as $event) {
 	}
 	$details .= '<hr></div>';
 	
-	$slideID = '<a class="toggleID" href="#screening'.$event->id.'">more...</a>';
+	$slideID = '<a class="toggleID" href="#concert'.$event->id.'">more...</a>';
 	
 	if ($event->status == 1){
-		$status = ' <img title="This is screening is fully booked" src="http://petitesplanetes.cc/home/wp-content/plugins/screenings/images/btnfull.jpg"> ';
+		$status = ' <img title="This is concert is fully booked" src="http://petitesplanetes.cc/home/wp-content/plugins/concerts/images/btnfull.jpg"> ';
 	}
 	else {
-		$status = ' <img title="This is screening is fully booked" src="http://petitesplanetes.cc/home/wp-content/plugins/screenings/images/btnattend.jpg"> ';
+		$status = ' <img title="This is concert is fully booked" src="http://petitesplanetes.cc/home/wp-content/plugins/concerts/images/btnattend.jpg"> ';
 		}
 
 	$array[] = '<div class="allinline"><p>'.$date->format('d.m').' - <b>'.$event->city.', '.$event->country.'</b> / '.$event->place.' / '.$slideID.'</p></div>'.$details;
@@ -47,7 +47,7 @@ foreach ($events as $event) {
 
 $list = implode("\n", $array);
 
-$output = '<div class="screeninglistpast">'.$list.'</div>';
+$output = '<div class="concertlistpast">'.$list.'</div>';
 
 
 return $output;

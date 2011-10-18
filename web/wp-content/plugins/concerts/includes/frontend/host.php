@@ -22,7 +22,7 @@ $output = '
 			});
 		});
 				
-		$("#host_screening").submit(function() {
+		$("#host_concert").submit(function() {
 			
 			var error = false;
 			
@@ -37,7 +37,7 @@ $output = '
 			if(error) {
 				alert("Please fill in all fields marked as required");
 			}else{
-				$("#host_screening").submit();
+				$("#host_concert").submit();
 			}
 			
 			
@@ -45,69 +45,49 @@ $output = '
 		});
 	});
 </script>
-<div id="host_screenings">
+<div id="host_concerts">
   <p class="req"><span class="required">*</span> required fields</p>
   <p class="pub"><span class="public">*</span> fields that will be visible to the public on petitesplanetes.cc</p>
   <br />
-  <form action="'.str_replace("%7E", "~", $_SERVER["REQUEST_URI"]).'" method="post" name="host_screening" class="validate" id="host_screening">
-    <input type="hidden" name="host_screening_post" value="true" />
+  <form action="'.str_replace("%7E", "~", $_SERVER["REQUEST_URI"]).'" method="post" name="host_concert" class="validate" id="host_concert">
+    <input type="hidden" name="host_concert_post" value="true" />
     <table border="0">
       <tr>
         <td class="label"><label>Place</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" id="screening_place" name="screening_place" value="Mike\'s place / Caf&eacute; Luna / etc" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
+        <td><input class="required initialValue" type="text" id="concert_place" name="concert_place" value="Mike\'s place / Caf&eacute; Luna / etc" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
         <td class="label"><label>Additional Info</label>
         <span class="public">*</span></td>
-        <td rowspan="2"><textarea name="screening_additional" class="initialValue" id="screening_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
+        <td rowspan="2"><textarea name="concert_additional" class="initialValue" id="concert_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
       </tr>
-      
-      
-      
-      <tr>
-        <td class="label"><label>Film</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td>
-        	<input class="required initialValue" name="screening_film" id="screening_film" value="please describe what you are screening" />
-        	<!--<select class="required" name="screening_film" id="screening_film">
-        		<option value="">choose film</option>
-        		<option value="1">Tom Zé</option>
-        		<option value="2">Olof Arnalds</option>
-        	</select>-->
-        </td>
-        <td class="label"></td>
-        <td rowspan="2">&nbsp;</td>
-      </tr>
-      
-      
-      
       <tr>
         <td class="label"><label>Address</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="screening_address" id="screening_address" value="Street name &amp; number" alt="Street name &amp; number" />
+        <td><input class="required initialValue" type="text" name="concert_address" id="concert_address" value="Street name &amp; number" alt="Street name &amp; number" />
           <br/>
-          <input type="checkbox" name="screening_address_show" value="1" />
+          <input type="checkbox" name="concert_address_show" value="1" />
           <span class="sub">don\'t make this info visible!</span></td>
         <td class="label"></td>
       </tr>
       <tr>
         <td class="label"><label>City</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" name="screening_city" id="screening_city" type="text" alt="City" value="City" /></td>
+        <td><input class="required initialValue" name="concert_city" id="concert_city" type="text" alt="City" value="City" /></td>
         <td class="label">&nbsp;</td>
         <td><p class="notice"><em>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </em></p></td>
       </tr>
       <tr>
         <td class="label"><label>Postal Code</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="screening_postalcode" id="screening_postalcode" value="Postal Code" alt="Postal Code" /></td>
+        <td><input class="required initialValue" type="text" name="concert_postalcode" id="concert_postalcode" value="Postal Code" alt="Postal Code" /></td>
         <td class="label"><label>Your Name</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_name" id="screening_name" type="text" alt="Name" value="Name" /></td>
+        <td><input class="required initialValue" name="concert_name" id="concert_name" type="text" alt="Name" value="Name" /></td>
       </tr>
       <tr>
         <td class="label"><label>Country</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><select class="required" name="screening_country" id="screening_country">
+        <td><select class="required" name="concert_country" id="concert_country">
             <option selected="selected" value="">select your country</option>
             <option value="AF">AFGHANISTAN</option>
             <option value="AX">ALAND ISLANDS</option>
@@ -352,25 +332,25 @@ $output = '
           </select></td>
         <td class="label"><label>Your Email</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" value="your@e-mail.com" /></td>
+        <td><input class="required initialValue" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" value="your@e-mail.com" /></td>
       </tr>
       <tr>
         <td class="label"><label>Date &amp; Time</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required datepicker" type="text" name="screening_date" id="screening_date" value="28/02/2011" /> <input class="required timepicker" type="text" name="screening_time" id="screening_time" value="20:00" /></td>
+        <td><input class="required datepicker" type="text" name="concert_date" id="concert_date" value="28/02/2011" /> <input class="required timepicker" type="text" name="concert_time" id="concert_time" value="20:00" /></td>
         <td class="label"><label>Your Password</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_password" id="screening_password" type="password" alt="password" value="password" /></td>
+        <td><input class="required initialValue" name="concert_password" id="concert_password" type="password" alt="password" value="password" /></td>
       </tr>
       <tr>
         <td class="label"><label>Maximum attendants</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input id="screening_max" class="required number initialValue" type="text" name="screening_max" id="screening_max" value="Maximum Attendants" alt="Maximum Attendants" />
+        <td><input id="concert_max" class="required number initialValue" type="text" name="concert_max" id="concert_max" value="Maximum Attendants" alt="Maximum Attendants" />
           <br/>
-          <input type="checkbox" name="screening_status" value="1" />
+          <input type="checkbox" name="concert_status" value="1" />
           <span class="sub">Already fully booked</span></td>
         <td class="label"><label>Your Phone</label><span class="required">*</span></td>
-        <td><input class="required phone initialValue" name="screening_phone" id="screening_phone" type="text" alt="(countrycode) + number" value="(countrycode) + number" /></td>
+        <td><input class="required phone initialValue" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" value="(countrycode) + number" /></td>
       </tr>
     </table>
     <input type="submit" class="submit" id="submit" value="SEND" />

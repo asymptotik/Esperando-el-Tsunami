@@ -9,7 +9,7 @@
 	  `address` VARCHAR(255) NULL ,
 	  `show_address` VARCHAR(45) NULL ,
 	  `city` VARCHAR(128) NULL ,
-	  `zipcode` VARCHAR(18) NULL ,
+	  `postalcode` VARCHAR(18) NULL ,
 	  `country` VARCHAR(45) NULL ,
 	  `dateandtime` DATETIME NULL ,
 	  `max` INT NULL ,

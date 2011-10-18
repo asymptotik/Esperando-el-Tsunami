@@ -1,6 +1,6 @@
 <?php
 /**
-	* File: user_screening_add
+	* File: user_concert_add
 	* Type: 
 * @author Victor L. Facius
 	* @version 1.0
@@ -10,38 +10,35 @@
 <?php
 
 $post = new stdClass();
-$post->status = $_POST['screening_status'];
+$post->status = $_POST['concert_status'];
 $post->active = 0;
-$post->place = $_POST['screening_place'];
-$post->address = $_POST['screening_address'];
-$post->addressShow = $_POST['screening_address_show'];
-$post->city = $_POST['screening_city'];
-$post->postalcode = $_POST['screening_postalcode'];
-$post->country = $_POST['screening_country'];
-$collect = $_POST['screening_date'].' '.$_POST['screening_time'];
+$post->place = $_POST['concert_place'];
+$post->address = $_POST['concert_address'];
+$post->addressShow = $_POST['concert_address_show'];
+$post->city = $_POST['concert_city'];
+$post->postalcode = $_POST['concert_postalcode'];
+$post->country = $_POST['concert_country'];
+$collect = $_POST['concert_date'].' '.$_POST['concert_time'];
 
-$d = explode('/', $_POST['screening_date']);
-$dateParsed = $d[2].'-'.$d[1].'-'.$d[0].' '.$_POST['screening_time'];
+$d = explode('/', $_POST['concert_date']);
+$dateParsed = $d[2].'-'.$d[1].'-'.$d[0].' '.$_POST['concert_time'];
 
 // $datetime = new DateTime(str_replace("/","-",$collect));
 $datetime = new DateTime($dateParsed);
 $mysqldatetime = $datetime->format('Y-m-d H:i:s');
 
-$post->max = $_POST['screening_max'];
-$post->additional = $_POST['screening_additional'];
-$post->name = $_POST['screening_name'];
-$post->email = $_POST['screening_email'];
-$post->phone = $_POST['screening_phone'];
-$post->password = md5($_POST['screening_password']);
-$post->imageurl = $_POST['screening_imageurl'];
-$post->film = $_POST['screening_film'];
-
-//echo $post->film;exit;
+$post->max = $_POST['concert_max'];
+$post->additional = $_POST['concert_additional'];
+$post->name = $_POST['concert_name'];
+$post->email = $_POST['concert_email'];
+$post->phone = $_POST['concert_phone'];
+$post->password = md5($_POST['concert_password']);
+$post->imageurl = $_POST['concert_imageurl'];
 
 // IMPORT DB 
 global $wpdb;
 
-$check = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
+$check = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "concerts_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
 
 $count = 0;
 foreach ($check as $i) {
@@ -49,7 +46,7 @@ foreach ($check as $i) {
 }
 $rows_affected = 0;
 if ($count < 1) {
-	$rows_affected = $wpdb->insert('wp_screenings_events', array( 
+	$rows_affected = $wpdb->insert($wpdb->prefix . 'concerts_events', array( 
 		'status' => $post->status,
 		'active' => $post->active,
 		'place' => $post->place,
@@ -66,7 +63,6 @@ if ($count < 1) {
 		'phone' => $post->phone,
 		'password' => $post->password,
 		'imageurl' => $post->imageurl,
-		'film' => $post->film
 		));
 }
 
@@ -75,10 +71,10 @@ if ($count < 1) {
 
 // multiple recipients
 $to  = $post->email; // note the comma
-$backup = get_option('screenings_accounts');
+$backup = get_option('concerts_accounts');
 
 // subject
-$subject = 'Thanks for creating a Screening of Petites Planètes';
+$subject = 'Thanks for creating a Concert of Petites Planètes';
 // message
 /*
 $message = '
@@ -88,19 +84,19 @@ $message = '
 		</head>
 	<body>
 		<p>Hello '.$post->name.'</p>
-		<p>Thank you for creating a <strong>Private-Public Screening of An Island</strong>.</p>
-		<p>We will approve your screening as soon as possible and inform you by email once it has been approved. </p>
-	<p>Please add <a href="mailto:screenings@anisland.cc">screenings@anisland.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
-		<p>If you need to change any details regarding your Private-Public Screening or mark the screening as fully booked, you can log in at <a href="http://anisland.cc/home/host-a-screening/login/">http://anisland.cc/home/host-a-screening/login/</a> Please make sure you display the <strong>Time</strong> for the screening correct. We use the 24-hour clock on the site. We also suggest that you let your guests know who you are and how you will screen the film? And if they should bring something? etc You can do this in the <strong>Additional Info</strong> field. </p>
+		<p>Thank you for creating a <strong>Private-Public Concert of An Island</strong>.</p>
+		<p>We will approve your concert as soon as possible and inform you by email once it has been approved. </p>
+	<p>Please add <a href="mailto:concerts@anisland.cc">concerts@anisland.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
+		<p>If you need to change any details regarding your Private-Public Concert or mark the concert as fully booked, you can log in at <a href="http://anisland.cc/home/host-a-concert/login/">http://anisland.cc/home/host-a-concert/login/</a> Please make sure you display the <strong>Time</strong> for the concert correct. We use the 24-hour clock on the site. We also suggest that you let your guests know who you are and how you will screen the film? And if they should bring something? etc You can do this in the <strong>Additional Info</strong> field. </p>
 	<p>Username: '.$post->email.'<br />
-		Password: '.$_POST['screening_password'].'</p>
-		<p>For more info about the Private-Public Screenings please refer to www.anisland.cc/home/host-a-screening/</p>
+		Password: '.$_POST['concert_password'].'</p>
+		<p>For more info about the Private-Public Concerts please refer to www.anisland.cc/home/host-a-concert/</p>
 	<p>These are the details you have registered:<p><b>Place: </b>'.$post->place.'<br />
 		<b>Address: </b>'.$post->address.'<br />
 		<b>City: </b>'.$post->city.'<br />
 		<b>postalcode: </b>'.$post->postalcode.'<br />
 		<b>Country: </b>'.$post->country.'<br />
-		<b>Date And Time: </b>'.$_POST['screening_date'].'<br />
+		<b>Date And Time: </b>'.$_POST['concert_date'].'<br />
 		<b>Max Attendants: </b>'.$post->max.'<br />
 		<b>Additional: </b>'.$post->additional.'<br />
 		<b>Name: </b>'.$post->name.'<br />
@@ -130,7 +126,7 @@ You can download the films directly from the pages, you will find a link on the 
 
 <p>Some films though requires a password to be viewed. It's often because i dont have the right to offer them online. Most of them are feature length films, and are or were sold as dvds. If you want to screen them also, ask me the password, i will give it to you.</p>
 
-<p>The quality of each film on vimeo should be good enough for the screening. But be careful maybe with some older films, which are not that well compressed.</p>
+<p>The quality of each film on vimeo should be good enough for the concert. But be careful maybe with some older films, which are not that well compressed.</p>
 
 <p>Fill the informations on my website to let people know more or less what you are gonna screen, and how many people can join. Alright?</p>
 
@@ -154,7 +150,7 @@ v.";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .= 'From: Petites Planètes by Vincent Moon <screenings@petitesplanetes.cc>' . "\r\n";
+$headers .= 'From: Petites Planètes by Vincent Moon <concerts@petitesplanetes.cc>' . "\r\n";
 
 $message = stripslashes($message);
 if ($count < 1) {
@@ -175,8 +171,8 @@ if ($count < 1) {
 }
 
 // CREATE A SCREENING notice
-$notify = get_option('screenings_notify');
-$sub = "New screening";
+$notify = get_option('concerts_notify');
+$sub = "New concert";
 $msg = 'There is a new SCREENING awaiting your approval';
 $sender = "no-reply@petitesplanetes.cc";
 $head = "From: $sender";
@@ -190,9 +186,9 @@ if ($count < 1) {
 	}	
 }
 
-$msg = '<p class="dest upper">Thank you for creating a Screening of Petites Planètes!</p>
-<p>We will approve your screening as soon as possible and inform you by email once it has been approved.</p>
-<p>Please add <a href="screenings@petitesplanetes.cc">screenings@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
+$msg = '<p class="dest upper">Thank you for creating a Concert of Petites Planètes!</p>
+<p>We will approve your concert as soon as possible and inform you by email once it has been approved.</p>
+<p>Please add <a href="concerts@petitesplanetes.cc">concerts@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
 <p>Already now you should have received an email with the details you just registered and your log-in info for <a href="http://www.petitesplanetes.cc">www.petitesplanetes.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>
 <p>Thanks,<br />Vincent Moon</p>';
 
@@ -200,8 +196,8 @@ if ($count < 1) {
 	return $msg;
 }
 else {
-	return '<p class="dest upper">Thank you for creating a Screening!</p>
-	<p>Your screening has already been submitted, please check your email.</p>';
+	return '<p class="dest upper">Thank you for creating a Concert!</p>
+	<p>Your concert has already been submitted, please check your email.</p>';
 }
 
 ?>

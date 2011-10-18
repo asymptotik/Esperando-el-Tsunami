@@ -8,28 +8,19 @@
 **/
 ?>
 <?php
-$itemID = $_POST['screening_id'];	
 
 global $wpdb;
-$events = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE id = $itemID");
-foreach ($events as $event) {
-	$lastRecord = $event;
-}
+extract(lc_get_vars(array('screening_id')));
+check_admin_referer('delete-screening_' . $screening_id); 
 
-if (!$_POST['screening_delete_confirm'])
+if(!empty($screening_id))
 {
-	echo 'Are you sure you want to delete: '.stripslashes($lastRecord->place);
-	echo '<form method="post" action="'.str_replace( "%7E", "~", $_SERVER["REQUEST_URI"]).'">';
-		echo '<input type="hidden" name="screening_delete" value="true">';
-		echo '<input type="hidden" name="screening_delete_confirm" value="true">';
-		echo '<input type="hidden" name="screening_id" value="'.$event->id.'">';
-		echo '<input type="submit" value="Yes" />';
-		echo '</form>';
-		echo '<a href="'.str_replace( "%7E", "~", $_SERVER["REQUEST_URI"]).'" title="go back">NO! -Go Back</a>';
-	}
-	else {
-		$wpdb->query("DELETE FROM wp_screenings_events WHERE id = $itemID");
-		echo '<p>'.$lastRecord->place.' has been deleted from your database</p>';
-		echo '<a href="'.str_replace( "%7E", "~", $_SERVER["REQUEST_URI"]).'" title="go back">Go Back</a>';
-	}
+	$screening = get_lc_screening($screening_id);
+	$wpdb->query("DELETE FROM wp_screenings_events WHERE id = $screening_id");
+	echo '<p>'. esc_html($screening->place) .' has been deleted from your database</p>';
+}
+else 
+{
+	echo '<p>Could not delete screening. Item not found.</p>';
+}
 ?>
