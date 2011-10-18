@@ -39,7 +39,7 @@ class DateTime {
 }
 }
 
-function lc_concerts_get_var( $var ) {
+function lc_screenings_get_var( $var ) {
 	
 	$val = '';
 	
@@ -62,7 +62,7 @@ function lc_concerts_get_var( $var ) {
 	return $val;
 }
 
-function lc_concerts_get_vars( $vars ) {
+function lc_screenings_get_vars( $vars ) {
 	$ret = array();
 	
 	for ( $i=0; $i<count( $vars ); $i += 1 ) {
