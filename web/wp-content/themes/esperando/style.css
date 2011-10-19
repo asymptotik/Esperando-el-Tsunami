@@ -437,7 +437,7 @@ table.btn-wrapper-rnd hr
 	font-size: 18px;
 }
 	
-/* screenings */
+/* lc-host concerts and screenings */
 
 form input, form select, form textarea {
 
@@ -452,68 +452,58 @@ form input[type="checkbox"] {
 	width: 20px;
 }
 
-.scrn-col-left {
-	width: 460px;
-	float:left;
+.btn-text a {
+  background-color: #666;
+  padding: 6px 20px 5px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Didot";
+  font-style: normal;
+  color: #fff;
 }
 
-.scrn-col-right {
-  width: 460px;
-  float:left;
-  margin-left: 40px;
+.btn-text a:hover {
+  background-color: #aaa;
+  color: #000;
 }
 
-.scrn-screenings {
-	margin: 10px 0 0 0 ;
-}
-
-.screenings h2 {
+.lc-host h2 {
 	text-align: center;
 	text-transform: lowercase;
 }
 
-.screenings .required {
+.lc-host .label .required, .req .required {
 	color: #0f0;
 }
 
-.screenings .public {
+.lc-host .public {
 	color: #f00;
 	}
 	
-.btn-text a {
-	background-color: #666;
-	padding: 6px 20px 5px 20px;
-	text-decoration: none;
-	color: #fff;
-}
+.lc-host .watermark { color: #ccc; }
 
-.btn-text a:hover {
-	background-color: #aaa;
-	color: #000;
-}
-
-#host_screening td input, #host_screening td select, #host_screening td textarea {
+.lc-host-form td input, .lc-host-form td select, .lc-host-form td textarea {
     width: 294px;
     margin: 4px 0;
 }
 
-#host_screening td input[type="checkbox"] { 
+.lc-host-form td input[type="checkbox"] { 
   width: 20px;
 }
 
-#host_screening table td {
+.lc-host-form table td {
   width: 30%;
 }
   
-#host_screening table td.label {
+.lc-host-form table td.label {
   width: 20%;
 }
 
-#host_screening table td.label + td + td {
+.lc-host-form table td.label + td + td {
 	padding-left: 40px;
 }
   
-#host_screening #submit {
+.lc-host-form #submit {
 	float: right;
 	margin: 20px 2px 0 0;
 }

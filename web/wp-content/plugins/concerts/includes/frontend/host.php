@@ -2,87 +2,67 @@
 /**
 	* File: host
 	* Type: 
-* @author Victor L. Facius
+  * @author Victor L. Facius
 	* @version 1.0
 	* @package View
 	**/
+
+wp_enqueue_script('concerts-host');
 ?>
-<?php
-$output = '
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-		$(".initialValue").each(function() {
-			$(this).data("od",$(this).val());
-			$(this).click(function() {
-				if($(this).val() == $(this).data("od")) $(this).val("");
-			});
-			$(this).blur(function() {
-				if($(this).val() == "") $(this).val($(this).data("od"));
-			});
-		});
-				
-		$("#host_concert").submit(function() {
-			
-			var error = false;
-			
-			$("input.required,select.required").each(function() {
-				if($(this).val()=="" || ($(this).hasClass("initialValue")&&$(this).val()==$(this).data("od"))) {
-					//$(this).val("---ERROR---");
-					//alert($(this).attr("id"));
-					error = true;
-				}
-			});
-			
-			if(error) {
-				alert("Please fill in all fields marked as required");
-			}else{
-				$("#host_concert").submit();
-			}
-			
-			
-			return false;
-		});
-	});
-</script>
-<div id="host_concerts">
+<div id="host_concerts" class="lc-host-form">
   <p class="req"><span class="required">*</span> required fields</p>
   <p class="pub"><span class="public">*</span> fields that will be visible to the public on petitesplanetes.cc</p>
   <br />
-  <form action="'.str_replace("%7E", "~", $_SERVER["REQUEST_URI"]).'" method="post" name="host_concert" class="validate" id="host_concert">
+  <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_concert" class="validate" id="host_concert">
     <input type="hidden" name="host_concert_post" value="true" />
     <table border="0">
       <tr>
         <td class="label"><label>Place</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" id="concert_place" name="concert_place" value="Mike\'s place / Caf&eacute; Luna / etc" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
+        <td><input class="required initialValue" type="text" id="concert_place" name="concert_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
         <td class="label"><label>Additional Info</label>
         <span class="public">*</span></td>
         <td rowspan="2"><textarea name="concert_additional" class="initialValue" id="concert_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
       </tr>
+
+      <tr>
+        <td class="label"><label>Film</label>
+        <span class="required">*</span><span class="public">*</span></td>
+        <td>
+        	<input class="required initialValue" name="concert_film" id="concert_film" alt="please describe what you are concert" />
+        	<!--<select class="required" name="concert_film" id="concert_film">
+        		<option value="">choose film</option>
+        		<option value="1">Tom Zé</option>
+        		<option value="2">Olof Arnalds</option>
+        	</select>-->
+        </td>
+        <td class="label"></td>
+        <td rowspan="2">&nbsp;</td>
+      </tr>
+      
       <tr>
         <td class="label"><label>Address</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="concert_address" id="concert_address" value="Street name &amp; number" alt="Street name &amp; number" />
+        <td><input class="required initialValue" type="text" name="concert_address" id="concert_address" alt="Street name &amp; number" />
           <br/>
           <input type="checkbox" name="concert_address_show" value="1" />
-          <span class="sub">don\'t make this info visible!</span></td>
+          <span class="sub">don't make this info visible!</span></td>
         <td class="label"></td>
       </tr>
       <tr>
         <td class="label"><label>City</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" name="concert_city" id="concert_city" type="text" alt="City" value="City" /></td>
+        <td><input class="required initialValue" name="concert_city" id="concert_city" type="text" alt="City" /></td>
         <td class="label">&nbsp;</td>
         <td><p class="notice"><em>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </em></p></td>
       </tr>
       <tr>
         <td class="label"><label>Postal Code</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="concert_postalcode" id="concert_postalcode" value="Postal Code" alt="Postal Code" /></td>
+        <td><input class="required initialValue" type="text" name="concert_postalcode" id="concert_postalcode" alt="Postal Code" /></td>
         <td class="label"><label>Your Name</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_name" id="concert_name" type="text" alt="Name" value="Name" /></td>
+        <td><input class="required initialValue" name="concert_name" id="concert_name" type="text" alt="Name" /></td>
       </tr>
       <tr>
         <td class="label"><label>Country</label>
@@ -332,31 +312,29 @@ $output = '
           </select></td>
         <td class="label"><label>Your Email</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" value="your@e-mail.com" /></td>
+        <td><input class="required initialValue" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" /></td>
       </tr>
       <tr>
         <td class="label"><label>Date &amp; Time</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required datepicker" type="text" name="concert_date" id="concert_date" value="28/02/2011" /> <input class="required timepicker" type="text" name="concert_time" id="concert_time" value="20:00" /></td>
+        <td><input class="required datepicker initialValue" type="text" name="concert_date" id="concert_date" alt="MM/DD/YYYY" /> 
+        <input class="required timepicker initialValue" type="text" name="concert_time" id="concert_time" alt="HH:MM" /></td>
         <td class="label"><label>Your Password</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_password" id="concert_password" type="password" alt="password" value="password" /></td>
+        <td><input class="required initialValue" name="concert_password" id="concert_password" type="password" alt="password" /></td>
       </tr>
       <tr>
         <td class="label"><label>Maximum attendants</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input id="concert_max" class="required number initialValue" type="text" name="concert_max" id="concert_max" value="Maximum Attendants" alt="Maximum Attendants" />
+        <td><input id="concert_max" class="required number initialValue" type="text" name="concert_max" id="concert_max" alt="Maximum Attendants" />
           <br/>
           <input type="checkbox" name="concert_status" value="1" />
           <span class="sub">Already fully booked</span></td>
         <td class="label"><label>Your Phone</label><span class="required">*</span></td>
-        <td><input class="required phone initialValue" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" value="(countrycode) + number" /></td>
+        <td><input class="required phone initialValue" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" /></td>
       </tr>
     </table>
     <input type="submit" class="submit" id="submit" value="SEND" />
     <!--<input id="submit" type="image" src="http://petitesplanetes.cc/home/wp-content/themes/anisland/images/btnsubmit.jpg" />-->
   </form>
-</div>';
-
-return $output;
-?>
+</div>

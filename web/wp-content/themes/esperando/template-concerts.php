@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Screenings Template
+ * Template Name: Concerts Template
  *
  * A custom page template for a screenings page.
  *

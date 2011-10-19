@@ -55,6 +55,16 @@ function lc_concerts_install() {
 register_deactivation_hook( __FILE__, 'lc_concerts_deactivate' );
 function lc_concerts_deactivate() {}
 
+// ----------- SCRIPTS -------------//
+
+add_action('wp_footer', 'lc_concerts_print_scripts');
+function lc_concerts_print_scripts()
+{
+	wp_print_scripts();
+}
+
+wp_deregister_script('concerts-host');
+wp_register_script('concerts-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
 
 // ----------- ADMIN ------------ //
 
@@ -279,6 +289,12 @@ function lc_concerts_region_func() {
 
 // ----------- FRONTEND ------------ //
 
+function lc_concerts_contents($filename) {
+	ob_start();
+	include ($filename);
+	return ob_get_clean();
+}
+
 // SHORTCODE FOR SCREENINGS PAGE [concerts]
 add_shortcode('concerts', 'lc_concerts_show_func');
 function lc_concerts_show_func() {
@@ -294,19 +310,19 @@ function lc_concerts_show_past_func() {
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [host_concert]
-add_shortcode('host_concert', 'lc_concerts_host_func');
+add_shortcode('concerts_host', 'lc_concerts_host_func');
 function lc_concerts_host_func() {
 	if(isset($_POST['host_concert_post'])) {
 		$output = include('includes/frontend/user_concert_add.php'); 		
 	}
 	else {
-		$output = include('includes/frontend/host.php'); 
+		$output = lc_concerts_contents('includes/frontend/host.php'); 
 	}
 	return $output;
 }
 
 // SHORTCODE FOR LOGIN PAGE [concert_manage]
-add_shortcode('concert_manage', 'lc_concerts_manage_func');
+add_shortcode('concerts_manage', 'lc_concerts_manage_func');
 function lc_concerts_manage_func() {
 	
 	
@@ -331,7 +347,7 @@ function lc_concerts_manage_func() {
 			$output = include('includes/frontend/user_concert_update.php'); 	
 		}
 		if ($_POST['user_concert_edit']){
-			$output = include('includes/frontend/user_concert_edit.php');
+			$output = lc_concerts_contents('includes/frontend/user_concert_edit.php');
 			
 		}
 		else {
@@ -343,14 +359,14 @@ function lc_concerts_manage_func() {
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_concert]
-add_shortcode('attend_concert', 'lc_concerts_attend_func');
+add_shortcode('concerts_attend', 'lc_concerts_attend_func');
 function lc_concerts_attend_func() {
 	$output = include('includes/frontend/attend.php'); 
 	return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]
-add_shortcode('country_select', 'lc_country_select_func');
+add_shortcode('concerts_country_select', 'lc_country_select_func');
 function lc_country_select_func() {
 	$output = include('includes/frontend/country_select.php'); 
 	return $output;

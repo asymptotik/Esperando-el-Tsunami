@@ -110,6 +110,16 @@ function lc_screenings_install() {
 register_deactivation_hook( __FILE__, 'lc_screenings_deactivate' );
 function lc_screenings_deactivate() {}
 
+// ----------- SCRIPTS -------------//
+
+add_action('wp_footer', 'lc_screenings_print_scripts');
+function lc_screenings_print_scripts()
+{
+	wp_print_scripts();
+}
+
+wp_deregister_script('screenings-host');
+wp_register_script('screenings-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
 
 // ----------- ADMIN ------------ //
 
@@ -186,6 +196,12 @@ function lc_screenings_sub_func() {
 
 // ----------- FRONTEND ------------ //
 
+function lc_screenings_contents($filename) {
+	ob_start();
+	include ($filename);
+	return ob_get_clean();
+}
+
 // SHORTCODE FOR SCREENINGS PAGE [screenings]
 add_shortcode('screenings', 'lc_screenings_show_func');
 function lc_screenings_show_func() {
@@ -201,22 +217,21 @@ function lc_screenings_show_past_func() {
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [host_screening]
-add_shortcode('host_screening', 'lc_screenings_host_func');
+add_shortcode('screenings_host', 'lc_screenings_host_func');
 function lc_screenings_host_func() {
+
 	if(isset($_POST['host_screening_post'])) {
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {
-		$output = include('includes/frontend/host.php'); 
+		$output = lc_screenings_contents('includes/frontend/host.php'); 
 	}
 	return $output;
 }
 
 // SHORTCODE FOR LOGIN PAGE [screening_manage]
-add_shortcode('screening_manage', 'lc_screenings_manage_func');
+add_shortcode('screenings_manage', 'lc_screenings_manage_func');
 function lc_screenings_manage_func() {
-	
-	
 	
 	$logout = include('includes/frontend/user_logout.php');
 	$checklogin = include('includes/frontend/user_login.php');
@@ -250,14 +265,14 @@ function lc_screenings_manage_func() {
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_screening]
-add_shortcode('attend_screening', 'lc_screenings_attend_func');
+add_shortcode('screenings_attend', 'lc_screenings_attend_func');
 function lc_screenings_attend_func() {
 	$output = include('includes/frontend/attend.php'); 
 	return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]
-add_shortcode('country_select', 'country_select_func');
+add_shortcode('screenings_country_select', 'country_select_func');
 function country_select_func() {
 	$output = include('includes/frontend/country_select.php'); 
 	return $output;

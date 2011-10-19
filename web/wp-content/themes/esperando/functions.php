@@ -44,6 +44,9 @@
 	wp_deregister_script('jquery-colorbox');
 	wp_register_script('jquery-colorbox', get_template_directory_uri() . '/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.17.2', true);
 	
+	wp_deregister_script('jquery-watermark');
+	wp_register_script('jquery-watermark', get_template_directory_uri() . '/js/jquery.watermark-min.js', array( 'jquery' ), '3.1.3', true);
+	
 	 /*
    * lulacruza-icon shortcode
    * 
