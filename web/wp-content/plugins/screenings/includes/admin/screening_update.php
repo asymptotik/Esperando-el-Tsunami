@@ -44,19 +44,22 @@ $rows = array(
 if(!empty($screening_id))
 {
 	check_admin_referer('update-screening_' . $screening_id); 
-	$wpdb->update($wpdb->prefix . 'screenings_events', $rows, array( 'id' => $post->id));
+	$wpdb->update($wpdb->prefix . 'screenings_events', $rows, array( 'id' => $screening_id));
+	$message = "The Screening has been updated.";
+	
 }
 else
 {
 	check_admin_referer('add-screening'); 
 	$wpdb->insert($wpdb->prefix . 'screenings_events', $rows);
+	$message = "The Screening has been saved.";
 }
 
-if ($_POST['screening_password'] != '') {
-	$wpdb->update($wpdb->prefix . 'screenings_events', array('password' => md5($screening_password)), array( 'id' => $post->id));
+if ($screening_password != '') {
+	$wpdb->update($wpdb->prefix . 'screenings_events', array('password' => md5($screening_password)), array( 'id' => $screening_id));
 	echo "<p>The password has been changed.</p>";
 }
 
 ?>
-<p>The Screening has been saved.</p>
-<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
+<p><?php echo $message; ?></p>
+<a href="<?php echo esc_url(stripslashes(wp_get_referer())); ?>" title='go back'>Go Back</a>

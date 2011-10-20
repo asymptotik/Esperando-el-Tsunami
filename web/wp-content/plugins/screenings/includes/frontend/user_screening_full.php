@@ -9,24 +9,19 @@
 ?>
 <div class="screen-wrapper" style="margin-bottom:0;padding-bottom:0;">
 <?php
-$itemID = $_POST['screening_id'];	
 
-global $wpdb;
-$events = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE id = $itemID");
+extract(lc_screenings_get_vars(array('screening_id')));
+$screening = get_lc_screening($screening_id);
 
-foreach ($events as $event) {
-	$lastRecord = $event;
+if ($screening->status == 0) {
+	$wpdb->update($wpdb->prefix . 'screenings_events', array( 'status' => 1), array( 'id' => $screening->id));	
+	echo "<p>".$screening->place.' has been set to fully booked'.'</p>';
 }
-
-if ($lastRecord->status == 0) {
-	$wpdb->update('wp_screenings_events', array( 'status' => 1), array( 'id' => $lastRecord->id));	
-	echo "<p>".$lastRecord->place.' has been set to fully booked'.'</p>';
-}
-else if ($lastRecord->status == 1) {
-	$wpdb->update('wp_screenings_events', array( 'status' => 0), array( 'id' => $lastRecord->id));	
-	echo "<p>".$lastRecord->place.' has been opened for more attendants '.'</p>';
+else if ($screening->status == 1) {
+	$wpdb->update($wpdb->prefix . 'screenings_events', array( 'status' => 0), array( 'id' => $screening->id));	
+	echo "<p>".$screening->place.' has been opened for more attendants '.'</p>';
 }
 ?>
 
-<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a><br /><br /><br /><br />
+<a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
 </div>

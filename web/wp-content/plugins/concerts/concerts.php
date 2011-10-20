@@ -63,6 +63,11 @@ function lc_concerts_print_scripts()
 	wp_print_scripts();
 }
 
+function lc_concerts_plugin_uri($file)
+{
+	return plugins_url( $file, __FILE__ );
+}
+
 wp_deregister_script('concerts-host');
 wp_register_script('concerts-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
 
@@ -351,7 +356,7 @@ function lc_concerts_manage_func() {
 			
 		}
 		else {
-			$output = include('includes/frontend/user_concerts.php'); 
+			$output = lc_concerts_contents('includes/frontend/user_concerts.php'); 
 		}
 		return $output.$logout;
 	}

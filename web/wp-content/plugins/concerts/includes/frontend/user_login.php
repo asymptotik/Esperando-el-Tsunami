@@ -105,7 +105,7 @@ if(isset($_POST['concerts_username']) ) {
 	//add slashes to the username and md5() the password
 	$user = addslashes($_POST['concerts_username']);
 	$pass = md5($_POST['concerts_password']);
-
+	
 	$result = $wpdb->get_results( "SELECT * from " . $wpdb->prefix . "concerts_events WHERE email='$user' AND password='$pass'");
 
 	$rowCount = 0;

@@ -68,7 +68,7 @@ $newTime = $datetime->format('H:i');
         <td class="label"><label>
           Date &amp; Time:
         </label></td>
-        <td><input class="required datepicker" name="concert_date" type="text" value="'.$newdate.'" alt="date/month/year" /> <input class="required timepicker" type="text" name="concert_time" value="'.$newTime.'" /></td>
+        <td><input class="required datepicker" name="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /> <input class="required timepicker" type="text" name="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
         <td class="label"><label>

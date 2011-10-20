@@ -118,6 +118,11 @@ function lc_screenings_print_scripts()
 	wp_print_scripts();
 }
 
+function lc_screenings_plugin_uri($file)
+{
+	return plugins_url( $file, __FILE__ );
+}
+
 wp_deregister_script('screenings-host');
 wp_register_script('screenings-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
 

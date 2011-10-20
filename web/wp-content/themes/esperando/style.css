@@ -439,11 +439,11 @@ table.btn-wrapper-rnd hr
 	
 /* lc-host concerts and screenings */
 
-form input, form select, form textarea {
-
+form input[type="text"], form select, form textarea {
+           
     border: 1px solid #000;
     color: #000;
-    font: 11px "Arial";
+    font: 12px "Arial";
     padding: 4px;
     width: 200px;
 }

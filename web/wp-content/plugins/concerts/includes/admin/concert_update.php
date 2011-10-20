@@ -65,8 +65,8 @@ else
 	$message = "The Concert has been saved.";
 }
 
-if ($_POST['concert_password'] != '') {
-	$wpdb->update($wpdb->prefix . 'concerts_events', array('password' => md5($concert_password)), array( 'id' => $post->id));
+if ($concert_password != '') {
+	$wpdb->update($wpdb->prefix . 'concerts_events', array('password' => md5($concert_password)), array( 'id' => $concert_id));
 	echo "<p>The password has been changed.</p>";
 }
 
