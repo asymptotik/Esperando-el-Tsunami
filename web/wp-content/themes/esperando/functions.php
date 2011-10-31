@@ -39,6 +39,10 @@
 	   wp_deregister_script('jquery');
 	   wp_register_script('jquery', (mr_protocol() . "://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"), false);
 	   wp_enqueue_script('jquery');
+
+	   wp_deregister_script('jquery-ui');
+	   wp_register_script('jquery-ui', get_template_directory_uri() . '/js//jquery-ui-1.8.16.custom.min.js', array( 'jquery' ), '1.8.16', false);
+	   wp_enqueue_script('jquery-ui');
 	}
 	
 	wp_deregister_script('jquery-colorbox');
@@ -204,4 +208,6 @@
 	}
 	
   add_shortcode( 'lulacruza-btn-top', 'lc_btn_top_shortcode_handler' );
+
+
 ?>

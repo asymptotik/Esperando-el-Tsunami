@@ -69,31 +69,61 @@
 	</script>
 </div>
 
+<noscript>
+  <style>
+    .latest-news{
+      display:block;
+    }
+  </style>
+</noscript>
+
+
+
 <div class="best-things-wrapper">
-	<div class="best-things-bg"></div>
-	<ul class="best-things">
-	  <li class="thing-one">
-	    <div id="sec-film" class="content"><img src="<?php echo mr_image_url('01.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-two">
-	    <div id="sec-trailer" class="content"><img src="<?php echo mr_image_url('02.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-three">
-	    <div id="sec-album" class="content"><img src="<?php echo mr_image_url('03.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-four">
-	    <div id="sec-screenings-concerts" class="content"><img src="<?php echo mr_image_url('04.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-five">
-	    <div id="sec-out-takes" class="content"> <img src="<?php echo mr_image_url('05.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-six">
-	    <div id="sec-credits" class="content"> <img src="<?php echo mr_image_url('06.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	  <li class="thing-seven">
-	    <div id="sec-contact" class="content"><img src="<?php echo mr_image_url('07.png') ?>" width="1920" height="1200"></div>
-	  </li>
-	</ul>
+  <div class="best-things-bg"></div>
+
+  <ul class="best-things">
+
+  <?php 
+    while (have_posts())
+      {
+        the_post();
+        $post_slug = $post->post_name;
+
+        $innerQuery = new WP_Query();
+        $theId = $post->ID;
+        $innerArgs = array(
+  			 'post_type' => 'page',
+  			 'post_parent' => $theId,
+  			 'order_by' => 'order',
+  			 'order' => 'ASC'
+  			 );
+    
+        $innerQuery->query($innerArgs);
+        if($innerQuery->have_posts())
+  	{
+  		
+  	  while($innerQuery->have_posts()) 
+  	    {	
+  	      $innerQuery->the_post();
+
+  	      echo '  <li id="sec-' . $post->post_name . '"> ' . "\n";
+  		  
+  	      echo '    <div class="content">';
+
+  	      if($post->post_content != '') :
+  		the_content();
+  	      endif;
+
+  	      echo '</div>' . "\n";
+  	    }
+  	  
+  	  echo '  </li>' . "\n";
+  	}
+      }
+  ?>
+
+  </ul>
 </div>
 
 <script>
@@ -114,28 +144,39 @@ function mr_bg()
 }
 
 (function($) {
-	
     $(document).ready(function(){
-
-    	  $('.menu-main-item').click(function()
-    			  { 
-    		      var currentId = $(this).attr('id');
-    		      var section = currentId.replace('btn-', 'sec-');
-    		      $('html,body').animate({scrollTop: $("#"+section).offset().top},'slow');
-    		      return false;
-    			  });
+	$('.menu-main-item').click(function(){
+	    var currentId = $(this).attr('id');
+	    var section = currentId.replace('btn-', 'sec-');
+	    $('html,body').animate({scrollTop: $("#"+section).offset().top-100},'slow');
+	    return false;
+	  });
 		  
-				things_bg_height = $('.best-things-bg').height() - 10;
-				things_height = $('.best-things').height();
+	  things_bg_height = $('.best-things-bg').height() - 10;
+	  things_height = $('.best-things').height();
 				
-				$(window).resize(function(e){ mr_bg(); });
-      	$(window).scroll(function() { mr_bg(); });
-    });
+	  $(window).resize(function(e){ mr_bg(); });
+	  $(window).scroll(function() { mr_bg(); });
+
+	// bind 'read more' functionality to their buttons
+	$('.read-more').click(function(){
+	    $(this).parent().find('.latest-news').toggle(300);
+	  });
+
+	//bind scroll to top to its buttons
+	$('.btn-rnd-top').click(function(){
+	    $('html,body').animate({scrollTop: 0},'slow');
+	  });
+	
+      });
 
     $(window).load(function() {
     	$('.loading').animate({"top" : "100%"});
-    });
+      });
     
 })(jQuery);
+
+
+
 </script>
 <?php get_footer(); ?>
