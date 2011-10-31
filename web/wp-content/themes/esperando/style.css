@@ -52,7 +52,7 @@ table {border-collapse: collapse;border-spacing: 0;}
 /**End Reset*********************************/
 
 
-body { background: white; font: 16px/1.1 "Didot Italic", Serif; }
+body { background: white; font: 18px/1.1 "Didot Italic", Serif; }
 .screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
 .clear { clear: both; }
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
@@ -69,7 +69,7 @@ h3 { font-size: 14px; }
 h4 { font-size: 14px; }
 
 
-p { margin: 10px 0 10px 0; }
+p { margin: 22px 0; }
 p + h1, p + h2, p + h3, p + h4 { margin: 20px 0 10px 0; }
 a { }
 a:hover { } 
@@ -190,27 +190,34 @@ textarea { }
 .best-things-bg {
   width: 100%; 
   margin-bottom: 0; 
-  background: #BFD1D8 url(img/main-bg.jpg) no-repeat center top; 
+  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; 
   height: 4996px;
   position: fixed;
 }
 
 .best-things {
-	margin: 0 0;
+    margin: 0 0;
+    position:relative;
+    top:100px;
 }
 	
 .best-things li {
-	margin: 0 0;
-  height: 1200px;
-  position: relative;
+    margin: 0 0 125px 0;
 }
 
 .content {
-  position: absolute;
-  left: 50%;
-  margin-left: -960px;
+  /* position: absolute; 
+     left: 50%; 
+     margin-left: -960px; */
   z-index: 1;
 }
+
+.latest-news{
+    /* shown in the main template via noscript */
+    display:none;
+}
+
+
 
 /* Fun Misc Shit 
 -------------------------------------------- */
@@ -399,7 +406,7 @@ table.btn-wrapper-rnd hr
   
 .latest-news-excerpt
 {
-	font-size: 12px;
+	font-size: 16px;
 	margin-top: 4px;
 }
 
@@ -416,10 +423,21 @@ table.btn-wrapper-rnd hr
 }
 
 .giant-title {
-	font-family: "Didot", sans-serif;
+	font-family: "Georgia", serif;
 	font-size: 80px;
 	line-height: 65px;
 	margin: 10px 0;
+	}
+
+.capitalized{
+    text-transform:uppercase;
+}
+
+.small-title {
+	font-family: "Didot", sans-serif;
+	font-size: 25px;
+	line-height: 22px;
+	margin: 25px 0;
 	}
 	
 .sans
@@ -434,7 +452,7 @@ table.btn-wrapper-rnd hr
 	}
 	
 .bigger {
-	font-size: 18px;
+	font-size: 110%;
 }
 	
 /* lc-host concerts and screenings */
@@ -586,36 +604,41 @@ form input[type="checkbox"] {
 
 .btn-rect {
   background: transparent url(img/btn-rect-sprt.png) no-repeat;
+  color:#FFF;
+  font-size:15px;
+  margin:30px auto;
+  padding-top:8px;
+  cursor: pointer;
 }
 
 .btn-rect-sm {
 	background-position: 0px 0px; 
   width: 134px;
-  height: 33px;
+  height: 25px;
 }
 	
 .btn-rect-sm:hover {
-	background-position: 0px -33px; 
+	background-position: 0px -33px;
 }
 
 .btn-rect-md {
-	background-position: -135px 0px; 
-  width: 183px;
-  height: 33px;
+    background-position: -135px 0px; 
+    width: 183px;
+    height: 25px;
 }
 
 .btn-rect-md:hover {
-  background-position: 0px -33px; 
+    background-position: -135px -33px; 
 }
 
-.btn-rect-sm-lg {
-	background-position: -319px 0px; 
-  width: 223px;
-  height: 33px;
+.btn-rect-lg {
+    background-position: -319px 0px; 
+    width: 232px;
+    height: 25px;
 }
 
 .btn-rect-lg:hover {
-  background-position: 0px -33px; 
+    background-position: -319px -33px; 
 }
 
  /* round buttons */
@@ -705,7 +728,7 @@ form input[type="checkbox"] {
 }
 
 .btn-rnd-fb:hover {
-  background-position: 0px -39px; 
+  background-position: -41px -39px; 
 }
 
 .btn-rnd-tw {
@@ -715,7 +738,7 @@ form input[type="checkbox"] {
 }
 
 .btn-rnd-tw:hover {
-  background-position: 0px -39px; 
+  background-position: -81px -39px; 
 }
 
 .btn-rnd-vim {
@@ -725,5 +748,151 @@ form input[type="checkbox"] {
 }
   
 .btn-rnd-vim:hover {
-  background-position: 0px -39px; 
+  background-position: -121px -39px; 
+}
+
+.divider-lg{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    height:5px;
+    width:45%;
+    margin:15px auto;
+}
+
+.divider-top-sm{
+    border-top:2px solid #000;
+    border-bottom:1px solid #000;
+    height:5px;
+    width:8%;
+    margin:15px auto;
+}
+
+.divider-sm{
+    background:#000;
+    height:1px;
+    width:8%;
+    margin:15px auto;
+}
+
+.divider-dotted-sm{
+    border-top:2px dotted #000;
+    height:3px;
+    width:10%;
+    margin:35px auto;
+}
+
+.divider-dotted-tiny{
+    border-top:2px dotted #000;
+    height:3px;
+    width:5%;
+    margin:35px auto;
+}
+
+#trailer-container{
+    margin:0 auto;
+    width:800px;
+    height:280px;
+}
+
+#trailer-container .trailer{
+    width:245px;
+    height:245px;
+    background:#000;
+    float:left;
+    margin:20px 10px;
+}
+
+#album-container{
+    margin:0 auto;
+    width:535px;
+    height:280px;    
+}
+
+#album-container .album{
+    width:245px;
+    height:245px;
+    background:#000;
+    float:left;
+    margin:20px 10px;   
+}
+
+#concert-action-container, #screening-action-container{
+    margin:0 auto;
+    width:420px;
+    height:35px;
+}
+
+#outtakes-container-main{
+    width:870px;
+    height:330px;
+    margin:10px auto;
+    overflow:hidden;
+}
+
+#outtakes-container-main #outtakes{
+    list-style-type:none;
+}
+
+#outtakes .outtake{
+    float:left;
+    height:315px;
+    width:210px;
+}
+
+.outtake p{
+    font-size:17px;
+    margin:0 auto;
+}
+
+#outtakes .outtakes-thumb{
+    width:180px;
+    height:180px;
+    background-color:#FFF;
+    padding:3px;
+    border:2px dotted #BBB;
+    margin:10px auto;
+    margin-bottom:15px;
+}
+
+#outtakes .btn-rect-sm{
+    margin:20px auto;
+}
+
+.seq{
+    font-size:30px;
+}
+
+.seq-total{
+    font-size:15px;
+}
+
+
+#credits-container{
+    width:820px;
+    margin:0 auto;
+}
+
+#credits-container .credits-column{
+    width:250px;
+    margin:0 10px;
+    float:left;
+}
+
+#credits-container .middle{
+    border-left:2px dotted #BBB;
+    border-right:2px dotted #BBB;
+}
+
+.container{
+    margin:0 auto;
+}
+
+#social-container{
+    width:150px;
+    height:45px;
+}
+
+#social-container a{
+    float:left;
+    margin:0 5px;
 }
