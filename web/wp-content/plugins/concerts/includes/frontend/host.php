@@ -7,14 +7,14 @@
 	* @package View
 	**/
 
-wp_enqueue_script('concerts-host');
+wp_enqueue_script('lc-concerts');
 ?>
 <div id="host_concerts" class="lc-host-form">
   <p class="req"><span class="required">*</span> required fields</p>
   <p class="pub"><span class="public">*</span> fields that will be visible to the public on petitesplanetes.cc</p>
   <br />
   <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_concert" class="validate" id="host_concert">
-    <input type="hidden" name="host_concert_post" value="true" />
+    <input type="hidden" name="action" value="concerts_host_add" />
     <table border="0">
       <tr>
         <td class="label"><label>Place</label>

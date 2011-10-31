@@ -7,14 +7,14 @@
 	* @package View
 	**/
 
-wp_enqueue_script('screenings-host');
+wp_enqueue_script('lc-screenings');
 ?>
 <div id="host_screenings" class="lc-host-form">
   <p class="req"><span class="required">*</span> required fields</p>
   <p class="pub"><span class="public">*</span> fields that will be visible to the public on petitesplanetes.cc</p>
   <br />
   <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_screening" class="validate" id="host_screening">
-    <input type="hidden" name="host_screening_post" value="true" />
+    <input type="hidden" name="action" value="screenings_host_add" />
     <table border="0">
       <tr>
         <td class="label"><label>Place</label>

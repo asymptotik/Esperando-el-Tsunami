@@ -34,14 +34,11 @@ $post->email = $_POST['screening_email'];
 $post->phone = $_POST['screening_phone'];
 $post->password = md5($_POST['screening_password']);
 $post->imageurl = $_POST['screening_imageurl'];
-$post->film = $_POST['screening_film'];
-
-//echo $post->film;exit;
 
 // IMPORT DB 
 global $wpdb;
 
-$check = $wpdb->get_results("SELECT * FROM wp_screenings_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
+$check = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "screenings_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
 
 $count = 0;
 foreach ($check as $i) {
@@ -49,7 +46,7 @@ foreach ($check as $i) {
 }
 $rows_affected = 0;
 if ($count < 1) {
-	$rows_affected = $wpdb->insert('wp_screenings_events', array( 
+	$rows_affected = $wpdb->insert($wpdb->prefix . 'screenings_events', array( 
 		'status' => $post->status,
 		'active' => $post->active,
 		'place' => $post->place,
@@ -66,7 +63,6 @@ if ($count < 1) {
 		'phone' => $post->phone,
 		'password' => $post->password,
 		'imageurl' => $post->imageurl,
-		'film' => $post->film
 		));
 }
 

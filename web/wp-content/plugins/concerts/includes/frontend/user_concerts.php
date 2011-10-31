@@ -41,19 +41,19 @@ $events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "concerts_event
 	?>
 	
 		<tr>
-		<td><form method="post" action="'<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
-			<input type="hidden" name="user_concert_delete" value="true"/>
+		<td><form method="post" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
+			<input type="hidden" name="action" value="concerts_user_delete"/>
 			<input type="hidden" name="concert_id" value="<?php echo $items->id ?>"/>
-			<input type="image" src="<?php echo lc_concerts_plugin_uri( 'images/btndelete.png' )?>" title="Click here to delete your concert" />
+			<input type="image" src="<?php echo lc_concerts_plugin_uri( 'images/btndelete.png' )?>" title="Click here to delete your concert" onclick="if ( confirm( 'You are about to delete this Concert.\n \'Cancel\' to stop, \'OK\' to delete.' ) ) { return true;}return false;"/>
 		</form></td>
 		<td><form method="post" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
-			<input type="hidden" name="user_concert_edit" value="true"/>
+			<input type="hidden" name="action" value="concerts_user_edit"/>
 			<input type="hidden" name="concert_id" value="<?php echo $items->id ?>"/>
 			<input type="image" src="<?php echo lc_concerts_plugin_uri( 'images/btnedit.png' )?>" />
 		</form></td>
 			<td><?php echo esc_html($items->place) ?></td>
 		<td><form method="post" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
-			<input type="hidden" name="user_concert_status" value="true"/>
+			<input type="hidden" name="action" value="concerts_user_status"/>
 			<input type="hidden" name="concert_id" value="<?php echo $items->id ?>"/>
 			<?php echo $activate ?>
 			</form></td>
@@ -62,5 +62,5 @@ $events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "concerts_event
 		}
 		?>
 
-	</table><br/><br/>
+	</table>
 

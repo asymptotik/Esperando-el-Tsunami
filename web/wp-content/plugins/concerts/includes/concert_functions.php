@@ -1,4 +1,117 @@
 <?php
+
+function lc_concerts_get_var( $var ) {
+	
+	$val = '';
+	
+	if ( empty( $_POST[$var] ) ) 
+	{
+			if ( !empty( $_GET[$var] ) )
+			{
+				$val = $_GET[$var];
+			}
+	}
+	else 
+	{
+		$val = $_POST[$var];
+	}
+	
+	// negate magic quotes, if necessary
+	// magic quotes is evil since it assumes a data usage and a proper way and what to quote
+  if ( get_magic_quotes_gpc() ) {
+			$val = stripslashes_deep($val);
+	}
+	
+	return $val;
+}
+
+function lc_concerts_get_vars( $vars ) {
+	$ret = array();
+	
+	for ( $i=0; $i<count( $vars ); $i += 1 ) {
+		$var = $vars[$i];
+
+		if ( empty( $_POST[$var] ) ) {
+			if ( empty( $_GET[$var] ) )
+			{
+				$val = '';
+			}
+			else
+			{
+				$val = $_GET[$var];
+			}
+		} else {
+			$val = $_POST[$var];
+		}
+		
+		// negate magic quotes, if necessary
+		// magic quotes is evil since it assumes a data usage and a proper way and what to quote
+		if ( get_magic_quotes_gpc() ) {
+			$ret[$var] = stripslashes_deep($val);
+		}
+		else 
+		{
+			$ret[$var] = $val;
+		}
+	}
+	
+	return $ret;
+}
+
+// Checks the users logged in status
+// Returns 0 if not logged in
+// Returns 1 if logged in and has data
+// Returns -1 if error
+function lc_concerts_check_logged_in()
+{
+  global $wpdb;
+  $output = 0;
+  
+	extract(lc_concerts_get_vars(array('concerts_username', 'concerts_password')));
+	
+  $sessionEmail = $_SESSION['concerts_email'];
+
+	if(!empty($concerts_username) ) 
+	{
+		//add slashes to the username and md5() the password
+		$user = $concerts_username;
+		$pass = md5($concerts_password);
+		
+		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE email='%s' AND password='%s'", $user, $pass ));
+		
+		if ($user_count >= 1)
+		{
+			$_SESSION['concerts_email'] = $user;
+			$_SESSION['concerts_password'] = $pass;
+			$output = 1;
+		}
+		else 
+		{
+			$output = -1;
+		}
+	} 
+	else if ($sessionEmail != false) 
+	{
+		//add slashes to the username and md5() the password
+		$user = $_SESSION['concerts_email'];
+		$pass = $_SESSION['concerts_password'];
+  
+		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE email='%s' AND password='%s'", $user, $pass ));
+
+		if ($user_count >= 1){
+			$_SESSION['concerts_email'] = $user;
+			$_SESSION['concerts_password'] = $pass;
+			$output = 1; 	
+		}
+		else 
+		{
+			$output = -1;
+		}
+	}
+	
+	return $output;
+}
+
 function get_lc_region_schedule($schedule, $output = OBJECT, $filter = 'raw') {
 	global $wpdb;
 

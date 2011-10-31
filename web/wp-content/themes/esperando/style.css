@@ -439,7 +439,7 @@ table.btn-wrapper-rnd hr
 	
 /* lc-host concerts and screenings */
 
-form input[type="text"], form select, form textarea {
+form input[type="text"], form input[type="password"], form select, form textarea {
            
     border: 1px solid #000;
     color: #000;
@@ -507,7 +507,22 @@ form input[type="checkbox"] {
 	float: right;
 	margin: 20px 2px 0 0;
 }
+
+.scrn-col-left {
+ width: 460px;
+ float:left;
+}
+
+.scrn-col-right {
+  width: 460px;
+  float:left;
+  margin-left: 40px;
+}
 	
+.scrn-screenings {
+ margin: 10px 0 0 0 ;
+}
+ 
 /* Icons and Buttons
  *--------------------------------------------------------------
  */

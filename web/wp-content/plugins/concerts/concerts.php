@@ -55,6 +55,15 @@ function lc_concerts_install() {
 register_deactivation_hook( __FILE__, 'lc_concerts_deactivate' );
 function lc_concerts_deactivate() {}
 
+// ----------- FUNCTIONS -------------//
+
+function lc_concerts_plugin_uri($file)
+{
+	return plugins_url( $file, __FILE__ );
+}
+
+
+
 // ----------- SCRIPTS -------------//
 
 add_action('wp_footer', 'lc_concerts_print_scripts');
@@ -63,13 +72,11 @@ function lc_concerts_print_scripts()
 	wp_print_scripts();
 }
 
-function lc_concerts_plugin_uri($file)
-{
-	return plugins_url( $file, __FILE__ );
-}
+wp_deregister_script('jquery-validate');
+wp_register_script('jquery-validate', plugins_url( 'js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), false, true);
+wp_deregister_script('lc-concerts');
+wp_register_script('lc-concerts', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark', 'jquery-validate' ), false, true);
 
-wp_deregister_script('concerts-host');
-wp_register_script('concerts-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
 
 // ----------- ADMIN ------------ //
 
@@ -93,10 +100,10 @@ function lc_concerts_plugin_menu()
 
 function lc_concerts_admin_head() 
 {
-	$css_file = plugin_dir_url( __FILE__ ) . "css/lc_concerts_admin.css";
+	$css_file = plugin_dir_url( __FILE__ ) . "css/concerts_admin.css";
   echo "<link rel='stylesheet' id='lc-custom_-css'  href='" . $css_file . "' type='text/css' media='all' />\n";
   
-  $js_file = plugin_dir_url( __FILE__ ) . "js/lc_concerts.js";
+  $js_file = plugin_dir_url( __FILE__ ) . "js/concerts_admin.js";
   wp_enqueue_script('myscript', $js_file, array('jquery') );
 }
 
@@ -164,64 +171,6 @@ function lc_concerts_sub_func() {
 function lc_delete_region_schedule($itemID) {
 	
 	
-}
-
-function lc_concerts_get_var( $var ) {
-	
-	$val = '';
-	
-	if ( empty( $_POST[$var] ) ) 
-	{
-			if ( !empty( $_GET[$var] ) )
-			{
-				$val = $_GET[$var];
-			}
-	}
-	else 
-	{
-		$val = $_POST[$var];
-	}
-	
-	// negate magic quotes, if necessary
-	// magic quotes is evil since it assumes a data usage and a proper way and what to quote
-  if ( get_magic_quotes_gpc() ) {
-			$val = stripslashes_deep($val);
-	}
-	
-	return $val;
-}
-
-function lc_concerts_get_vars( $vars ) {
-	$ret = array();
-	
-	for ( $i=0; $i<count( $vars ); $i += 1 ) {
-		$var = $vars[$i];
-
-		if ( empty( $_POST[$var] ) ) {
-			if ( empty( $_GET[$var] ) )
-			{
-				$val = '';
-			}
-			else
-			{
-				$val = $_GET[$var];
-			}
-		} else {
-			$val = $_POST[$var];
-		}
-		
-		// negate magic quotes, if necessary
-		// magic quotes is evil since it assumes a data usage and a proper way and what to quote
-		if ( get_magic_quotes_gpc() ) {
-			$ret[$var] = stripslashes_deep($val);
-		}
-		else 
-		{
-			$ret[$var] = $val;
-		}
-	}
-	
-	return $ret;
 }
 
 function lc_concerts_region_func() {
@@ -294,7 +243,13 @@ function lc_concerts_region_func() {
 
 // ----------- FRONTEND ------------ //
 
-function lc_concerts_contents($filename) {
+function lc_concerts_contents($filename, $values = 0) {
+	
+	if($values)
+	{
+		extract($values);
+	}
+	
 	ob_start();
 	include ($filename);
 	return ob_get_clean();
@@ -303,7 +258,7 @@ function lc_concerts_contents($filename) {
 // SHORTCODE FOR SCREENINGS PAGE [concerts]
 add_shortcode('concerts', 'lc_concerts_show_func');
 function lc_concerts_show_func() {
-	$output = include('includes/frontend/concerts.php'); 
+	$output = lc_concerts_contents('includes/frontend/concerts.php'); 
 	return $output;
 }
 
@@ -317,7 +272,10 @@ function lc_concerts_show_past_func() {
 // SHORTCODE FOR HOST A SCREENINGS PAGE [host_concert]
 add_shortcode('concerts_host', 'lc_concerts_host_func');
 function lc_concerts_host_func() {
-	if(isset($_POST['host_concert_post'])) {
+	
+	extract(lc_concerts_get_vars(array('action')));
+	
+	if(action == "concerts_host_add") {
 		$output = include('includes/frontend/user_concert_add.php'); 		
 	}
 	else {
@@ -328,52 +286,65 @@ function lc_concerts_host_func() {
 
 // SHORTCODE FOR LOGIN PAGE [concert_manage]
 add_shortcode('concerts_manage', 'lc_concerts_manage_func');
-function lc_concerts_manage_func() {
+function lc_concerts_manage_func() 
+{	
+	$logged_in_check = lc_concerts_check_logged_in();
 	
-	
-	
-	$logout = include('includes/frontend/user_logout.php');
-	$checklogin = include('includes/frontend/user_login.php');
-	
-	//echo "post::".$checklogin.":::".$_POST['user_concert_status'];
-	
-	if ($checklogin != 'loggedin'){
-		return $checklogin;
+	if ($logged_in_check != 1)
+	{
+		$values = 0;
+		if($logged_in_check == -1)
+		{
+			$values = array('lc_message' => 'No Concerts were found for the username and password. Please try again.');
+		}
+		
+		return lc_concerts_contents('includes/frontend/user_login.php', $values);
 	}
 	else {
-		if ($_POST['user_concert_delete']){
-			$output = include('includes/frontend/user_concert_delete.php'); 	
-		}
-		if ($_POST['user_concert_status']){
-			$output = include('includes/frontend/user_concert_full.php'); 	
-		}
-		if ($_POST['user_concert_update']){
 		
-			$output = include('includes/frontend/user_concert_update.php'); 	
+		extract(lc_concerts_get_vars(array('action')));
+		echo "action $action <br/>";
+		
+		if ($action == "concerts_user_delete")
+		{
+			$output = lc_concerts_contents('includes/frontend/user_concert_delete.php'); 	
 		}
-		if ($_POST['user_concert_edit']){
+		else if ($action == "concerts_user_status")
+		{
+			$output = lc_concerts_contents('includes/frontend/user_concert_full.php'); 	
+		}
+		else if ($action == "concerts_user_update")
+		{
+			$output = lc_concerts_contents('includes/frontend/user_concert_update.php'); 	
+		}
+		else if ($action == "concerts_user_edit")
+		{
 			$output = lc_concerts_contents('includes/frontend/user_concert_edit.php');
-			
+		}
+		else if($action == "concerts_user_logout")
+		{
+			$output = lc_concerts_contents('includes/frontend/user_logout.php') . " " . lc_concerts_contents('includes/frontend/user_login.php');
 		}
 		else {
 			$output = lc_concerts_contents('includes/frontend/user_concerts.php'); 
 		}
-		return $output.$logout;
+		
+		$logout_button = lc_concerts_contents('includes/frontend/user_logout_button.php');
+		return $output.$logout_button;
 	}
-
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_concert]
 add_shortcode('concerts_attend', 'lc_concerts_attend_func');
 function lc_concerts_attend_func() {
-	$output = include('includes/frontend/attend.php'); 
+	$output = lc_concerts_contents('includes/frontend/attend.php'); 
 	return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]
 add_shortcode('concerts_country_select', 'lc_country_select_func');
 function lc_country_select_func() {
-	$output = include('includes/frontend/country_select.php'); 
+	$output = lc_concerts_contents('includes/frontend/country_select.php'); 
 	return $output;
 		
 }

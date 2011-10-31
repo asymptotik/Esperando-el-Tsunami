@@ -7,36 +7,32 @@
 	* @package View
 	**/
 
-$post = new stdClass();
-$post->id = $_POST['screening_id'];
-$post->place = $_POST['screening_place'];
-$post->address = $_POST['screening_address'];
-$post->addressShow = $_POST['screening_address_show'];
+extract(lc_screenings_get_vars(array('screening_id',
+'screening_place',
+'screening_address',
+'screening_address_show',
+'screening_date',
+'screening_time',
+'screening_max',
+'screening_additional',
+'screening_phone')));
 
-$collect = $_POST['screening_date'].' '.$_POST['screening_time'];
-$datetime = new DateTime($collect);
-$post->datetime = $datetime->format('Y-m-d H:i:s');
-
-$post->max = $_POST['screening_max'];
-$post->additional = $_POST['screening_additional'];
-$post->phone = $_POST['screening_phone'];
-$post->film = $_POST['screening_film'];
-
+$datetime = new DateTime($screening_date.' '.$screening_time);
+$sqldatetime = $datetime->format('Y-m-d H:i:s');
 
 global $wpdb;
 
 $rows = array( 
-	'place' => $post->place,
-	'address' => $post->address,
-	'show_address' => $post->addressShow,
-	'dateandtime' => $post->datetime,
-	'max' => $post->max,
-	'additional' => $post->additional,
-	'phone' => $post->phone,
-	'film' => $post->film
+	'place' => $screening_place,
+	'address' => $screening_address,
+	'show_address' => $screening_address_show,
+	'dateandtime' => $sqldatetime,
+	'max' => $screening_max,
+	'additional' => $screening_additional,
+	'phone' => $screening_phone
 	);
 
-$wpdb->update('wp_screenings_events', $rows, array( 'id' => $post->id));
-
-echo '<div class="screen-wrapper" style="margin-bottom:0;padding-bottom:0"><p>'.$post->place.' - has ben updated!</p></div>';
+$wpdb->update($wpdb->prefix . 'screenings_events', $rows, array( 'id' => $screening_id));
 ?>
+
+<div class="screen-wrapper" "><p><?php esc_html($screening_place) ?> - has been updated!</p></div>

@@ -10,7 +10,7 @@
 <?php
 
 global $wpdb;
-$events = $wpdb->get_results( "SELECT * FROM wp_screenings_events WHERE date(dateandtime) <= date(now()) AND active = 1 ORDER BY dateandtime desc" );
+$events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "screenings_events WHERE date(dateandtime) <= date(now()) AND active = 1 ORDER BY dateandtime desc" );
 
 $output = '';
 
