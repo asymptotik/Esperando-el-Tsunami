@@ -35,4 +35,4 @@ $rows = array(
 $wpdb->update($wpdb->prefix . 'screenings_events', $rows, array( 'id' => $screening_id));
 ?>
 
-<div class="screen-wrapper" "><p><?php esc_html($screening_place) ?> - has been updated!</p></div>
+<div class="lc-host-form-narrow screen-wrapper" "><p><?php echo esc_html($screening_place) ?> - has been updated!</p></div>

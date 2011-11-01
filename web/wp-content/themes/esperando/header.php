@@ -44,11 +44,43 @@
 	
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(array('single-page')); ?>>
 	
 	<div id="page-wrap">
 
+<?php 
+			while (have_posts())
+			{
+				the_post();
+				$post_slug = $post->post_name;
 
+				$innerQuery = new WP_Query();
+				$innerArgs = array(
+				  'post_type' => 'page',
+				  'post_parent' => 2,
+				  'order_by' => 'order',
+				  'order' => 'ASC'
+				  );
+			  
+			  $innerQuery->query($innerArgs);
+			  if($innerQuery->have_posts())
+			  {
+			  	echo '<div id="menu-main">' . "\n";
+					
+				  while($innerQuery->have_posts()) 
+				  {	
+				  	  $innerQuery->the_post();
+				  	  echo '    <a id="btn-' . $post->post_name . '" class="menu-main-item" href="' . get_bloginfo('url', 'display') .'#' . $post->post_name . '">'.  strtoupper (the_title('', '', false)) . '</a>';
+				  	  if ( $innerQuery->current_post + 1 < $innerQuery->post_count )
+			  			{
+					  		echo '<img class="menu-main-sep" src="' . mr_image_url("menu-sep.gif") . '"/>';
+			  			}
+				  }
+				  
+				  echo '</div>' . "\n";
+			  }
+			}
+?>
 		<!--  
 		<div id="header">
 			<h1><a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a></h1>

@@ -41,9 +41,9 @@ wp_enqueue_script('lc-screenings');
 		});
 	});
 </script>
-<div class="">
+<div class="lc-host-form-narrow">
 <p> 
-  <form class="validate" action="'<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_update" id="screening_update">
+  <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_update" id="screening_update">
     <a href="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" title="go back" >&lt; Go back to Events list</a></p><br /><br />
     
     <input type="hidden" name="action" value="screenings_user_update" />

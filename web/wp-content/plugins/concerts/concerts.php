@@ -275,7 +275,7 @@ function lc_concerts_host_func() {
 	
 	extract(lc_concerts_get_vars(array('action')));
 	
-	if(action == "concerts_host_add") {
+	if($action == "concerts_host_add") {
 		$output = include('includes/frontend/user_concert_add.php'); 		
 	}
 	else {
@@ -303,7 +303,7 @@ function lc_concerts_manage_func()
 	else {
 		
 		extract(lc_concerts_get_vars(array('action')));
-		echo "action $action <br/>";
+		//echo "action $action <br/>";
 		
 		if ($action == "concerts_user_delete")
 		{

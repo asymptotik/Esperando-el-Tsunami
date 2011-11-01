@@ -15,59 +15,44 @@ wp_enqueue_script('lc-screenings');
   <br />
   <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_screening" class="validate" id="host_screening">
     <input type="hidden" name="action" value="screenings_host_add" />
-    <table border="0">
+    <table>
       <tr>
         <td class="label"><label>Place</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" id="screening_place" name="screening_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
+        <td><input class="required initialValue" tabindex="1" type="text" id="screening_place" name="screening_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
         <td class="label"><label>Additional Info</label>
         <span class="public">*</span></td>
-        <td rowspan="2"><textarea name="screening_additional" class="initialValue" id="screening_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
-      </tr>
-
-      <tr>
-        <td class="label"><label>Film</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td>
-        	<input class="required initialValue" name="screening_film" id="screening_film" alt="please describe what you are screening" />
-        	<!--<select class="required" name="screening_film" id="screening_film">
-        		<option value="">choose film</option>
-        		<option value="1">Tom Zé</option>
-        		<option value="2">Olof Arnalds</option>
-        	</select>-->
-        </td>
-        <td class="label"></td>
-        <td rowspan="2">&nbsp;</td>
+        <td valign="bottom" rowspan="2"><textarea name="screening_additional" tabindex="20" class="initialValue" id="screening_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
       </tr>
       
       <tr>
         <td class="label"><label>Address</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="screening_address" id="screening_address" alt="Street name &amp; number" />
+        <td><input class="required initialValue" tabindex="2" type="text" name="screening_address" id="screening_address" alt="Street name &amp; number" />
           <br/>
-          <input type="checkbox" name="screening_address_show" value="1" />
+          <input type="checkbox" tabindex="3" name="screening_address_show" value="1" />
           <span class="sub">don't make this info visible!</span></td>
         <td class="label"></td>
       </tr>
       <tr>
         <td class="label"><label>City</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" name="screening_city" id="screening_city" type="text" alt="City" /></td>
+        <td><input class="required initialValue" tabindex="4" name="screening_city" id="screening_city" type="text" alt="City" /></td>
         <td class="label">&nbsp;</td>
         <td><p class="notice"><em>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </em></p></td>
       </tr>
       <tr>
         <td class="label"><label>Postal Code</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="screening_postalcode" id="screening_postalcode" alt="Postal Code" /></td>
+        <td><input class="required initialValue" tabindex="5" type="text" name="screening_postalcode" id="screening_postalcode" alt="Postal Code" /></td>
         <td class="label"><label>Your Name</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_name" id="screening_name" type="text" alt="Name" /></td>
+        <td><input class="required initialValue" tabindex="22" name="screening_name" id="screening_name" type="text" alt="Name" /></td>
       </tr>
       <tr>
         <td class="label"><label>Country</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><select class="required" name="screening_country" id="screening_country">
+        <td><select class="required" tabindex="6" name="screening_country" id="screening_country">
             <option selected="selected" value="">select your country</option>
             <option value="AF">AFGHANISTAN</option>
             <option value="AX">ALAND ISLANDS</option>
@@ -312,26 +297,26 @@ wp_enqueue_script('lc-screenings');
           </select></td>
         <td class="label"><label>Your Email</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" /></td>
+        <td><input class="required initialValue" tabindex="23" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" /></td>
       </tr>
       <tr>
         <td class="label"><label>Date &amp; Time</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required datepicker initialValue" type="text" name="screening_date" id="screening_date" alt="MM/DD/YYYY" /> 
-        <input class="required timepicker initialValue" type="text" name="screening_time" id="screening_time" alt="HH:MM" /></td>
+        <td><input class="required datepicker initialValue" tabindex="7" type="text" name="screening_date" id="screening_date" alt="MM/DD/YYYY" /> 
+        <input class="required timepicker initialValue" tabindex="8" type="text" name="screening_time" id="screening_time" alt="HH:MM" /></td>
         <td class="label"><label>Your Password</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="screening_password" id="screening_password" type="password" alt="password" /></td>
+        <td><input class="required initialValue" tabindex="24" name="screening_password" id="screening_password" type="password" alt="password" /></td>
       </tr>
       <tr>
         <td class="label"><label>Maximum attendants</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input id="screening_max" class="required number initialValue" type="text" name="screening_max" id="screening_max" alt="Maximum Attendants" />
+        <td><input id="screening_max" class="required number initialValue" tabindex="9" type="text" name="screening_max" id="screening_max" alt="Maximum Attendants" />
           <br/>
-          <input type="checkbox" name="screening_status" value="1" />
+          <input type="checkbox" tabindex="10" name="screening_status" value="1" />
           <span class="sub">Already fully booked</span></td>
         <td class="label"><label>Your Phone</label><span class="required">*</span></td>
-        <td><input class="required phone initialValue" name="screening_phone" id="screening_phone" type="text" alt="(countrycode) + number" /></td>
+        <td><input class="required phone initialValue" tabindex="25" name="screening_phone" id="screening_phone" type="text" alt="(countrycode) + number" /></td>
       </tr>
     </table>
     <input type="submit" class="submit" id="submit" value="SEND" />

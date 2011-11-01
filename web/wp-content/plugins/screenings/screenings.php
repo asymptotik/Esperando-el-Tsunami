@@ -173,7 +173,10 @@ function lc_screenings_host_func() {
 
 	extract(lc_concerts_get_vars(array('action')));
 	
-	if(action == "screenings_host_add") {
+	echo "action: " . $action;
+	
+	if($action == "screenings_host_add") {
+		echo "screenings_host_add action: " . $action;
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {
@@ -201,7 +204,7 @@ function lc_screenings_manage_func()
 	else {
 		
 		extract(lc_screenings_get_vars(array('action')));
-		echo "action $action <br/>";
+		//echo "action $action <br/>";
 		
 		if ($action == "screenings_user_delete")
 		{
@@ -222,6 +225,7 @@ function lc_screenings_manage_func()
 		else if($action == "screenings_user_logout")
 		{
 			$output = lc_screenings_contents('includes/frontend/user_logout.php') . " " . lc_screenings_contents('includes/frontend/user_login.php');
+			return $output;
 		}
 		else {
 			$output = lc_screenings_contents('includes/frontend/user_screenings.php'); 

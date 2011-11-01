@@ -53,12 +53,13 @@ table {border-collapse: collapse;border-spacing: 0;}
 
 
 body { background: white; font: 18px/1.1 "Didot Italic", Serif; }
+body.single-page { background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; }
 .screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
 .clear { clear: both; }
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 * html .group, *:first-child+html .group { zoom: 1; } /* First selector = IE6, Second Selector = IE 7 */
 
-#page-wrap { width: 960px; margin: 20px auto; } 
+#page-wrap {  } 
 #page-wrap-main {  }
 
 h1, h2, h3, h4 { font-weight: normal; margin: 10px 0 10px 0; }
@@ -485,6 +486,17 @@ form input[type="checkbox"] {
   color: #000;
 }
 
+
+/*-------- SCreening and Concerts -----------*/
+
+.lc-host {
+	
+	width: 960px; 
+	margin: 100px auto;
+  margin-bottom: 0; 
+
+}
+
 .lc-host h2 {
 	text-align: center;
 	text-transform: lowercase;
@@ -500,7 +512,7 @@ form input[type="checkbox"] {
 	
 .lc-host .watermark { color: #ccc; }
 
-.lc-host-form td input, .lc-host-form td select, .lc-host-form td textarea {
+.lc-host-form td input[type="text"], .lc-host-form td input[type="password"], .lc-host-form td select, .lc-host-form td textarea {
     width: 294px;
     margin: 4px 0;
 }
@@ -525,6 +537,39 @@ form input[type="checkbox"] {
 	float: right;
 	margin: 20px 2px 0 0;
 }
+
+.lc-host-form-narrow 
+{
+	width: 550px;
+	margin: 0 auto;
+}
+
+.lc-host-form-narrow td input[type="text"], .lc-host-form-narrow td input[type="password"], .lc-host-form-narrow td select, .lc-host-form-narrow td textarea {
+    width: 95%;
+    margin: 4px 0;
+}
+
+.lc-host-form-narrow td input[type="checkbox"] { 
+  width: 20px;
+}
+
+.lc-host-form-narrow table { width: 100% }
+
+.lc-host-form-narrow table td {
+  width: 45%;
+}
+  
+.lc-host-form-narrow table td.label {
+  width: 30%;
+}
+
+.lc-host-form-narrow #submit {
+  float: right;
+  margin: 20px 2px 0 0;
+}
+
+.usereventlist td { width: 20%; }
+.usereventlist .glyph-btn { width: 20px; valign: middle; }
 
 .scrn-col-left {
  width: 460px;

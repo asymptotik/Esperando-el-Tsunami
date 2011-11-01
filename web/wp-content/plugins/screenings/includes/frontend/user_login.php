@@ -9,7 +9,7 @@
 	
 ?>
 
-<div>
+<div class="lc-host-form-narrow">
   <form id="userlogin" name="form1" method="post" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
 	  <table>
 		  <tr>

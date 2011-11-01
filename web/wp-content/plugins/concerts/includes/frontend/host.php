@@ -15,59 +15,44 @@ wp_enqueue_script('lc-concerts');
   <br />
   <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_concert" class="validate" id="host_concert">
     <input type="hidden" name="action" value="concerts_host_add" />
-    <table border="0">
+    <table>
       <tr>
         <td class="label"><label>Place</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" id="concert_place" name="concert_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
+        <td><input class="required initialValue" tabindex="1" type="text" id="concert_place" name="concert_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
         <td class="label"><label>Additional Info</label>
         <span class="public">*</span></td>
-        <td rowspan="2"><textarea name="concert_additional" class="initialValue" id="concert_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
-      </tr>
-
-      <tr>
-        <td class="label"><label>Film</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td>
-        	<input class="required initialValue" name="concert_film" id="concert_film" alt="please describe what you are concert" />
-        	<!--<select class="required" name="concert_film" id="concert_film">
-        		<option value="">choose film</option>
-        		<option value="1">Tom Zé</option>
-        		<option value="2">Olof Arnalds</option>
-        	</select>-->
-        </td>
-        <td class="label"></td>
-        <td rowspan="2">&nbsp;</td>
+        <td valign="bottom" rowspan="2"><textarea name="concert_additional" tabindex="20" class="initialValue" id="concert_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
       </tr>
       
       <tr>
         <td class="label"><label>Address</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="concert_address" id="concert_address" alt="Street name &amp; number" />
+        <td><input class="required initialValue" tabindex="2" type="text" name="concert_address" id="concert_address" alt="Street name &amp; number" />
           <br/>
-          <input type="checkbox" name="concert_address_show" value="1" />
+          <input type="checkbox" tabindex="3" name="concert_address_show" value="1" />
           <span class="sub">don't make this info visible!</span></td>
         <td class="label"></td>
       </tr>
       <tr>
         <td class="label"><label>City</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" name="concert_city" id="concert_city" type="text" alt="City" /></td>
+        <td><input class="required initialValue" tabindex="4" name="concert_city" id="concert_city" type="text" alt="City" /></td>
         <td class="label">&nbsp;</td>
         <td><p class="notice"><em>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </em></p></td>
       </tr>
       <tr>
         <td class="label"><label>Postal Code</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" type="text" name="concert_postalcode" id="concert_postalcode" alt="Postal Code" /></td>
+        <td><input class="required initialValue" tabindex="5" type="text" name="concert_postalcode" id="concert_postalcode" alt="Postal Code" /></td>
         <td class="label"><label>Your Name</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_name" id="concert_name" type="text" alt="Name" /></td>
+        <td><input class="required initialValue" tabindex="22" name="concert_name" id="concert_name" type="text" alt="Name" /></td>
       </tr>
       <tr>
         <td class="label"><label>Country</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><select class="required" name="concert_country" id="concert_country">
+        <td><select class="required" tabindex="6" name="concert_country" id="concert_country">
             <option selected="selected" value="">select your country</option>
             <option value="AF">AFGHANISTAN</option>
             <option value="AX">ALAND ISLANDS</option>
@@ -312,26 +297,26 @@ wp_enqueue_script('lc-concerts');
           </select></td>
         <td class="label"><label>Your Email</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" /></td>
+        <td><input class="required initialValue" tabindex="23" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" /></td>
       </tr>
       <tr>
         <td class="label"><label>Date &amp; Time</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required datepicker initialValue" type="text" name="concert_date" id="concert_date" alt="MM/DD/YYYY" /> 
-        <input class="required timepicker initialValue" type="text" name="concert_time" id="concert_time" alt="HH:MM" /></td>
+        <td><input class="required datepicker initialValue" tabindex="7" type="text" name="concert_date" id="concert_date" alt="MM/DD/YYYY" /> 
+        <input class="required timepicker initialValue" tabindex="8" type="text" name="concert_time" id="concert_time" alt="HH:MM" /></td>
         <td class="label"><label>Your Password</label>
         <span class="required">*</span></td>
-        <td><input class="required initialValue" name="concert_password" id="concert_password" type="password" alt="password" /></td>
+        <td><input class="required initialValue" tabindex="24" name="concert_password" id="concert_password" type="password" alt="password" /></td>
       </tr>
       <tr>
         <td class="label"><label>Maximum attendants</label>
         <span class="required">*</span><span class="public">*</span></td>
-        <td><input id="concert_max" class="required number initialValue" type="text" name="concert_max" id="concert_max" alt="Maximum Attendants" />
+        <td><input id="concert_max" class="required number initialValue" tabindex="9" type="text" name="concert_max" id="concert_max" alt="Maximum Attendants" />
           <br/>
-          <input type="checkbox" name="concert_status" value="1" />
+          <input type="checkbox" tabindex="10" name="concert_status" value="1" />
           <span class="sub">Already fully booked</span></td>
         <td class="label"><label>Your Phone</label><span class="required">*</span></td>
-        <td><input class="required phone initialValue" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" /></td>
+        <td><input class="required phone initialValue" tabindex="25" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" /></td>
       </tr>
     </table>
     <input type="submit" class="submit" id="submit" value="SEND" />

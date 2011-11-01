@@ -12,6 +12,7 @@
 session_unset();
 session_destroy(); 
 ?>
- 
-<p>You have been logged out!</p> 
+<div class="lc-host-form-narrow">
+<p>You have been logged out!</p>
+</div>
 

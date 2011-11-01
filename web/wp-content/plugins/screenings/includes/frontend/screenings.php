@@ -32,7 +32,7 @@ $event_count = count($events);
 if(count($events) > 0)
 {
 ?>
-<div class="screeninglist">
+<div class="lc-host-form-narrow screeninglist">
 	<?php 
 
 	foreach ($events as $event) 

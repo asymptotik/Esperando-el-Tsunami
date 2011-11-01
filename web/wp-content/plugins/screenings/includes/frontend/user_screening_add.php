@@ -9,60 +9,54 @@
 ?>
 <?php
 
-$post = new stdClass();
-$post->status = $_POST['screening_status'];
-$post->active = 0;
-$post->place = $_POST['screening_place'];
-$post->address = $_POST['screening_address'];
-$post->addressShow = $_POST['screening_address_show'];
-$post->city = $_POST['screening_city'];
-$post->postalcode = $_POST['screening_postalcode'];
-$post->country = $_POST['screening_country'];
-$collect = $_POST['screening_date'].' '.$_POST['screening_time'];
+extract(lc_screenings_get_vars(array(
+'screening_status',
+'screening_place',
+'screening_address',
+'screening_address_show',
+'screening_city',
+'screening_postalcode',
+'screening_country',
+'screening_date',
+'screening_time',
+'screening_max',
+'screening_additional',
+'screening_name',
+'screening_email',
+'screening_phone',
+'screening_password',
+'screening_imageurl'
+)));
 
-$d = explode('/', $_POST['screening_date']);
-$dateParsed = $d[2].'-'.$d[1].'-'.$d[0].' '.$_POST['screening_time'];
-
-// $datetime = new DateTime(str_replace("/","-",$collect));
-$datetime = new DateTime($dateParsed);
+$datetime = DateTime::createFromFormat('n/j/Y G:i', $screening_date .' '. $screening_time);
 $mysqldatetime = $datetime->format('Y-m-d H:i:s');
 
-$post->max = $_POST['screening_max'];
-$post->additional = $_POST['screening_additional'];
-$post->name = $_POST['screening_name'];
-$post->email = $_POST['screening_email'];
-$post->phone = $_POST['screening_phone'];
-$post->password = md5($_POST['screening_password']);
-$post->imageurl = $_POST['screening_imageurl'];
+echo "Date Parsed: " . $mysqldatetime;
 
 // IMPORT DB 
 global $wpdb;
 
-$check = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "screenings_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
+$count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "screenings_events WHERE place='%s' AND dateandtime='%s' AND email='%s'", $screening_place, $mysqldatetime, $screening_email));
 
-$count = 0;
-foreach ($check as $i) {
-	$count++;
-}
 $rows_affected = 0;
 if ($count < 1) {
 	$rows_affected = $wpdb->insert($wpdb->prefix . 'screenings_events', array( 
-		'status' => $post->status,
-		'active' => $post->active,
-		'place' => $post->place,
-		'address' => $post->address,
-		'show_address' => $post->addressShow,
-		'city' => $post->city,
-		'postalcode' => $post->postalcode,
-		'country' => $post->country,
+		'status' => $screening_status,
+		'active' => 0,
+		'place' => $screening_place,
+		'address' => $screening_address,
+		'show_address' => $screening_address_show,
+		'city' => $screening_city,
+		'postalcode' => $screening_postalcode,
+		'country' => $screening_country,
 		'dateandtime' => $mysqldatetime,
-		'max' => $post->max,
-		'additional' => $post->additional,
-		'name' => $post->name,
-		'email' => $post->email,
-		'phone' => $post->phone,
-		'password' => $post->password,
-		'imageurl' => $post->imageurl,
+		'max' => $screening_max,
+		'additional' => $screening_additional,
+		'name' => $screening_name,
+		'email' => $screening_email,
+		'phone' => $screening_phone,
+		'password' => md5($screening_password),
+		'imageurl' => $screening_imageurl,
 		));
 }
 
