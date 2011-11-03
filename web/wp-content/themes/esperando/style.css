@@ -9,11 +9,20 @@ Version: 1
 
 @font-face {
   font-family: 'Didot';
-  src: url('font/Didot-Regular.eot');
-  src: local('Didot Regular'), local('Didot'),
-    url("font/Didot-Regular.woff") format("woff"),
-    url("font/Didot-Regular.otf") format("opentype"),
-    url("font/Didot-Regular.svg#didot") format("svg");
+  src: url('font/Didot.eot');
+  src: local('Didot'), local('Didot'),
+    url("font/Didot.woff") format("woff"),
+    url("font/Didot.otf") format("opentype"),
+    url("font/Didot.svg#didot") format("svg");
+}
+
+@font-face {
+  font-family: 'Didot Bold';
+  src: url('font/Didot-Bold.eot');
+  src: local('Didot-Bold'), local('Didot-Bold'),
+    url("font/Didot-Bold.woff") format("woff"),
+    url("font/Didot-Bold.otf") format("opentype"),
+    url("font/Didot-Bold.svg#didot") format("svg");
 }
 
 @font-face {
@@ -190,7 +199,7 @@ textarea { }
 .best-things-bg {
   width: 100%; 
   margin-bottom: 0; 
-  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; 
+  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top;
   height: 4996px;
   position: fixed;
 }
@@ -214,8 +223,9 @@ textarea { }
 
 .latest-news{
     /* shown in the main template via noscript */
-    display:none;
 }
+
+
 
 
 
@@ -398,7 +408,7 @@ table.btn-wrapper-rnd hr
 {
   border-color: #000000 -moz-use-text-color;
   border-style: dotted none;
-  border-width: 1px 0 0 0;
+  border-width: 2px 0 0 0;
   height: 1px;
   width: 100px;
   margin-bottom: 10px;
@@ -423,7 +433,7 @@ table.btn-wrapper-rnd hr
 }
 
 .giant-title {
-	font-family: "Georgia", serif;
+	font-family: "Didot Bold", serif;
 	font-size: 80px;
 	line-height: 65px;
 	margin: 10px 0;
@@ -773,18 +783,35 @@ form input[type="checkbox"] {
     margin:35px auto;
 }
 
-#trailer-container{
+#trailer-thumb-container{
     margin:0 auto;
     width:800px;
     height:280px;
+    list-style-type:none;
+    padding:0;
 }
 
-#trailer-container .trailer{
+#trailer-thumb-container .trailer-thumb{
     width:245px;
     height:245px;
     background:#000;
     float:left;
     margin:20px 10px;
+}
+
+#trailer-container{
+    width:800px;
+    height:580px;
+    margin:0 auto;
+    display:none;
+
+}
+
+/* needed for top nav with jquery cycle  */
+#trailers{
+    width:800px;
+    height:500px;
+    z-index:1;
 }
 
 #album-container{
@@ -872,6 +899,7 @@ form input[type="checkbox"] {
     margin:0 auto;
 }
 
+
 #social-container{
     width:150px;
     height:45px;
@@ -881,3 +909,40 @@ form input[type="checkbox"] {
     float:left;
     margin:0 5px;
 }
+
+#welcome_content{
+    width:850px;
+    margin:0 auto;
+    display:none;
+}
+
+#welcome_content .welcome-column{
+    float:left;
+    width:250px;
+    margin:0 10px;
+    padding-bottom:20px;
+    border-bottom:1px dotted #000;
+}
+
+#welcome_content .text{
+    font-family:"Times New Roman", serif;
+    font-size:13px;
+}
+
+
+#trailer-container .heading, #welcome_content .heading{
+    width:100%;
+    text-align:center;
+    font-family: "Didot Italic", Serif;
+}
+
+/* styles for the content social links */
+.social_bar{
+    
+}
+
+.close-button:hover{
+    /* TODO add bg top arrow */
+   cursor: pointer;   
+}
+
