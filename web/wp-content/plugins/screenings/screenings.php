@@ -13,88 +13,30 @@ include('includes/screening_functions.php');
 // ----------- INSTALL ------------ //
 
 if (!class_exists('DateTime')) {
-class DateTime {
-    var $date;
-    
-    function DateTime($date) {
-        $this->date = strtotime($date);
-		
-    }
-    
-    function setTimeZone($timezone) {
-        return;
-    }
-    
-    function __getDate() {
-        return date(DATE_ATOM, $this->date);    
-    }
-    
-    function modify($multiplier) {
-        $this->date = strtotime($this->__getDate() . ' ' . $multiplier);
-    }
-    
-    function format($format) {
-        return date($format, $this->date);
-    }
-}
-}
-
-function lc_screenings_get_var( $var ) {
-	
-	$val = '';
-	
-	if ( empty( $_POST[$var] ) ) 
-	{
-			if ( !empty( $_GET[$var] ) )
-			{
-				$val = $_GET[$var];
-			}
+	class DateTime {
+	    var $date;
+	    
+	    function DateTime($date) {
+	        $this->date = strtotime($date);
+			
+	    }
+	    
+	    function setTimeZone($timezone) {
+	        return;
+	    }
+	    
+	    function __getDate() {
+	        return date(DATE_ATOM, $this->date);    
+	    }
+	    
+	    function modify($multiplier) {
+	        $this->date = strtotime($this->__getDate() . ' ' . $multiplier);
+	    }
+	    
+	    function format($format) {
+	        return date($format, $this->date);
+	    }
 	}
-	else 
-	{
-		$val = $_POST[$var];
-	}
-	
-	// negate magic quotes, if necessary
-	// magic quotes is evil since it assumes a data usage and a proper way and what to quote
-  if ( get_magic_quotes_gpc() ) {
-			$val = stripslashes_deep($val);
-	}
-	
-	return $val;
-}
-
-function lc_screenings_get_vars( $vars ) {
-	$ret = array();
-	
-	for ( $i=0; $i<count( $vars ); $i += 1 ) {
-		$var = $vars[$i];
-
-		if ( empty( $_POST[$var] ) ) {
-			if ( empty( $_GET[$var] ) )
-			{
-				$val = '';
-			}
-			else
-			{
-				$val = $_GET[$var];
-			}
-		} else {
-			$val = $_POST[$var];
-		}
-		
-		// negate magic quotes, if necessary
-		// magic quotes is evil since it assumes a data usage and a proper way and what to quote
-		if ( get_magic_quotes_gpc() ) {
-			$ret[$var] = stripslashes_deep($val);
-		}
-		else 
-		{
-			$ret[$var] = $val;
-		}
-	}
-	
-	return $ret;
 }
 
 // Runs when plugin is activated
@@ -110,6 +52,13 @@ function lc_screenings_install() {
 register_deactivation_hook( __FILE__, 'lc_screenings_deactivate' );
 function lc_screenings_deactivate() {}
 
+// ----------- FUNCTIONS -------------//
+
+function lc_screenings_plugin_uri($file)
+{
+	return plugins_url( $file, __FILE__ );
+}
+
 // ----------- SCRIPTS -------------//
 
 add_action('wp_footer', 'lc_screenings_print_scripts');
@@ -118,13 +67,10 @@ function lc_screenings_print_scripts()
 	wp_print_scripts();
 }
 
-function lc_screenings_plugin_uri($file)
-{
-	return plugins_url( $file, __FILE__ );
-}
-
-wp_deregister_script('screenings-host');
-wp_register_script('screenings-host', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark' ), false, true);
+wp_deregister_script('jquery-validate');
+wp_register_script('jquery-validate', plugins_url( 'js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), false, true);
+wp_deregister_script('lc-screenings');
+wp_register_script('lc-screenings', plugins_url( 'js/screenings.js', __FILE__ ), array( 'jquery', 'jquery-watermark', 'jquery-validate' ), false, true);
 
 // ----------- ADMIN ------------ //
 
@@ -210,14 +156,14 @@ function lc_screenings_contents($filename) {
 // SHORTCODE FOR SCREENINGS PAGE [screenings]
 add_shortcode('screenings', 'lc_screenings_show_func');
 function lc_screenings_show_func() {
-	$output = include('includes/frontend/screenings.php'); 
+	$output = lc_screenings_contents('includes/frontend/screenings.php'); 
 	return $output;
 }
 
 // SHORTCODE FOR SCREENINGS PAGE [screenings_past]
 add_shortcode('screenings_past', 'lc_screenings_show_past_func');
 function lc_screenings_show_past_func() {
-	$output = include('includes/frontend/screening_past.php'); 
+	$output = lc_screenings_contents('includes/frontend/screening_past.php'); 
 	return $output;
 }
 
@@ -225,7 +171,12 @@ function lc_screenings_show_past_func() {
 add_shortcode('screenings_host', 'lc_screenings_host_func');
 function lc_screenings_host_func() {
 
-	if(isset($_POST['host_screening_post'])) {
+	extract(lc_concerts_get_vars(array('action')));
+	
+	echo "action: " . $action . "<br/>";
+	
+	if($action == "screenings_host_add") {
+		echo "screenings_host_add action: " . $action;
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {
@@ -234,52 +185,68 @@ function lc_screenings_host_func() {
 	return $output;
 }
 
-// SHORTCODE FOR LOGIN PAGE [screening_manage]
+// SHORTCODE FOR LOGIN PAGE [screenings_manage]
 add_shortcode('screenings_manage', 'lc_screenings_manage_func');
-function lc_screenings_manage_func() {
+function lc_screenings_manage_func() 
+{	
+	$logged_in_check = lc_screenings_check_logged_in();
 	
-	$logout = include('includes/frontend/user_logout.php');
-	$checklogin = include('includes/frontend/user_login.php');
-	
-	//echo "post::".$checklogin.":::".$_POST['user_screening_status'];
-	
-	if ($checklogin != 'loggedin'){
-		return $checklogin;
+	if ($logged_in_check != 1)
+	{
+		$values = 0;
+		if($logged_in_check == -1)
+		{
+			$values = array('lc_message' => 'No Concerts were found for the username and password. Please try again.');
+		}
+		
+		return lc_screenings_contents('includes/frontend/user_login.php', $values);
 	}
 	else {
-		if ($_POST['user_screening_delete']){
-			$output = include('includes/frontend/user_screening_delete.php'); 	
-		}
-		if ($_POST['user_screening_status']){
-			$output = include('includes/frontend/user_screening_full.php'); 	
-		}
-		if ($_POST['user_screening_update']){
 		
-			$output = include('includes/frontend/user_screening_update.php'); 	
+		extract(lc_screenings_get_vars(array('action')));
+		//echo "action $action <br/>";
+		
+		if ($action == "screenings_user_delete")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_delete.php'); 	
 		}
-		if ($_POST['user_screening_edit']){
-			$output = include('includes/frontend/user_screening_edit.php');
-			
+		else if ($action == "screenings_user_status")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_full.php'); 	
+		}
+		else if ($action == "screenings_user_update")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_update.php'); 	
+		}
+		else if ($action == "screenings_user_edit")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_edit.php');
+		}
+		else if($action == "screenings_user_logout")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_logout.php') . " " . lc_screenings_contents('includes/frontend/user_login.php');
+			return $output;
 		}
 		else {
-			$output = include('includes/frontend/user_screenings.php'); 
+			$output = lc_screenings_contents('includes/frontend/user_screenings.php'); 
 		}
-		return $output.$logout;
+		
+		$logout_button = lc_screenings_contents('includes/frontend/user_logout_button.php');
+		return $output.$logout_button;
 	}
-
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_screening]
 add_shortcode('screenings_attend', 'lc_screenings_attend_func');
 function lc_screenings_attend_func() {
-	$output = include('includes/frontend/attend.php'); 
+	$output = lc_screenings_contents('includes/frontend/attend.php'); 
 	return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]
 add_shortcode('screenings_country_select', 'country_select_func');
 function country_select_func() {
-	$output = include('includes/frontend/country_select.php'); 
+	$output = lc_screenings_contents('includes/frontend/country_select.php'); 
 	return $output;
 		
 }
@@ -287,7 +254,7 @@ function country_select_func() {
 // SHORTCODE FOR HOST A SCREENINGS PAGE [screenings_user]
 add_shortcode('screenings_user', 'lc_screenings_user');
 function lc_screenings_user() {
-  $output = include('includes/frontend/user_login.php'); 
+  $output = lc_screenings_contents('includes/frontend/user_login.php'); 
 	return $output;
 }
 ?>

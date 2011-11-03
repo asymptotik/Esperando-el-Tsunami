@@ -21,10 +21,9 @@
 				$post_slug = $post->post_name;
 
 				$innerQuery = new WP_Query();
-				$theId = $post->ID;
 				$innerArgs = array(
 				  'post_type' => 'page',
-				  'post_parent' => $theId,
+				  'post_parent' => 2,
 				  'order_by' => 'order',
 				  'order' => 'ASC'
 				  );
@@ -107,8 +106,9 @@
   	    {	
   	      $innerQuery->the_post();
 
+  	      
   	      echo '  <li id="sec-' . $post->post_name . '"> ' . "\n";
-  		  
+  		    echo '    <a name="'. $post->post_name . '"></a>' . "\n";
   	      echo '    <div class="content">';
 
   	      if($post->post_content != '') :
@@ -116,9 +116,10 @@
   	      endif;
 
   	      echo '</div>' . "\n";
+  	       echo '  </li>' . "\n";
   	    }
   	  
-  	  echo '  </li>' . "\n";
+  	 
   	}
       }
   ?>
@@ -152,7 +153,7 @@ function mr_bg()
 	    return false;
 	  });
 		  
-	  things_bg_height = $('.best-things-bg').height() - 10;
+	  things_bg_height = $('.best-things-bg').height() - 100;
 	  things_height = $('.best-things').height();
 				
 	  $(window).resize(function(e){ mr_bg(); });

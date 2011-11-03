@@ -9,60 +9,54 @@
 ?>
 <?php
 
-$post = new stdClass();
-$post->status = $_POST['concert_status'];
-$post->active = 0;
-$post->place = $_POST['concert_place'];
-$post->address = $_POST['concert_address'];
-$post->addressShow = $_POST['concert_address_show'];
-$post->city = $_POST['concert_city'];
-$post->postalcode = $_POST['concert_postalcode'];
-$post->country = $_POST['concert_country'];
-$collect = $_POST['concert_date'].' '.$_POST['concert_time'];
+extract(lc_concerts_get_vars(array(
+'concert_status',
+'concert_place',
+'concert_address',
+'concert_address_show',
+'concert_city',
+'concert_postalcode',
+'concert_country',
+'concert_date',
+'concert_time',
+'concert_max',
+'concert_additional',
+'concert_name',
+'concert_email',
+'concert_phone',
+'concert_password',
+'concert_imageurl'
+)));
 
-$d = explode('/', $_POST['concert_date']);
-$dateParsed = $d[2].'-'.$d[1].'-'.$d[0].' '.$_POST['concert_time'];
-
-// $datetime = new DateTime(str_replace("/","-",$collect));
-$datetime = new DateTime($dateParsed);
+$datetime = DateTime::createFromFormat('n/j/Y G:i', $concert_date .' '. $concert_time);
 $mysqldatetime = $datetime->format('Y-m-d H:i:s');
 
-$post->max = $_POST['concert_max'];
-$post->additional = $_POST['concert_additional'];
-$post->name = $_POST['concert_name'];
-$post->email = $_POST['concert_email'];
-$post->phone = $_POST['concert_phone'];
-$post->password = md5($_POST['concert_password']);
-$post->imageurl = $_POST['concert_imageurl'];
+echo "Date Parsed: " . $mysqldatetime;
 
 // IMPORT DB 
 global $wpdb;
 
-$check = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "concerts_events WHERE place='$post->place' AND dateandtime='$mysqldatetime' AND email='$post->email'");
+$count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE place='%s' AND dateandtime='%s' AND email='%s'", $concert_place, $mysqldatetime, $concert_email));
 
-$count = 0;
-foreach ($check as $i) {
-	$count++;
-}
 $rows_affected = 0;
 if ($count < 1) {
 	$rows_affected = $wpdb->insert($wpdb->prefix . 'concerts_events', array( 
-		'status' => $post->status,
-		'active' => $post->active,
-		'place' => $post->place,
-		'address' => $post->address,
-		'show_address' => $post->addressShow,
-		'city' => $post->city,
-		'postalcode' => $post->postalcode,
-		'country' => $post->country,
+		'status' => $concert_status,
+		'active' => 0,
+		'place' => $concert_place,
+		'address' => $concert_address,
+		'show_address' => $concert_address_show,
+		'city' => $concert_city,
+		'postalcode' => $concert_postalcode,
+		'country' => $concert_country,
 		'dateandtime' => $mysqldatetime,
-		'max' => $post->max,
-		'additional' => $post->additional,
-		'name' => $post->name,
-		'email' => $post->email,
-		'phone' => $post->phone,
-		'password' => $post->password,
-		'imageurl' => $post->imageurl,
+		'max' => $concert_max,
+		'additional' => $concert_additional,
+		'name' => $concert_name,
+		'email' => $concert_email,
+		'phone' => $concert_phone,
+		'password' => md5($concert_password),
+		'imageurl' => $concert_imageurl,
 		));
 }
 

@@ -7,34 +7,32 @@
 	* @package View
 	**/
 
-$post = new stdClass();
-$post->id = $_POST['concert_id'];
-$post->place = $_POST['concert_place'];
-$post->address = $_POST['concert_address'];
-$post->addressShow = $_POST['concert_address_show'];
+extract(lc_concerts_get_vars(array('concert_id',
+'concert_place',
+'concert_address',
+'concert_address_show',
+'concert_date',
+'concert_time',
+'concert_max',
+'concert_additional',
+'concert_phone')));
 
-$collect = $_POST['concert_date'].' '.$_POST['concert_time'];
-$datetime = new DateTime($collect);
-$post->datetime = $datetime->format('Y-m-d H:i:s');
-
-$post->max = $_POST['concert_max'];
-$post->additional = $_POST['concert_additional'];
-$post->phone = $_POST['concert_phone'];
-
+$datetime = new DateTime($concert_date.' '.$concert_time);
+$sqldatetime = $datetime->format('Y-m-d H:i:s');
 
 global $wpdb;
 
 $rows = array( 
-	'place' => $post->place,
-	'address' => $post->address,
-	'show_address' => $post->addressShow,
-	'dateandtime' => $post->datetime,
-	'max' => $post->max,
-	'additional' => $post->additional,
-	'phone' => $post->phone
+	'place' => $concert_place,
+	'address' => $concert_address,
+	'show_address' => $concert_address_show,
+	'dateandtime' => $sqldatetime,
+	'max' => $concert_max,
+	'additional' => $concert_additional,
+	'phone' => $concert_phone
 	);
 
-$wpdb->update($wpdb->prefix . 'concerts_events', $rows, array( 'id' => $post->id));
-
-echo '<div class="screen-wrapper" style="margin-bottom:0;padding-bottom:0"><p>'.$post->place.' - has ben updated!</p></div>';
+$wpdb->update($wpdb->prefix . 'concerts_events', $rows, array( 'id' => $concert_id));
 ?>
+
+<div class="screen-wrapper" "><p><?php esc_html($concert_place) ?> - has been updated!</p></div>

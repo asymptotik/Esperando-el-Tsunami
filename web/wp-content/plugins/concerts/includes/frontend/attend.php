@@ -7,41 +7,28 @@
 	* @package View
 	**/
 
-$itemID = $_POST['concert_id'];	
-global $wpdb;
+extract(lc_concerts_get_vars(array('concert_id')));
+$concert = get_lc_concert($concert_id);
 
-$events = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "concerts_events WHERE id = '$itemID'");
-foreach ($events as $event) { 
-	$concert = $event; 
-	}
-	
-	
 if (isset($_POST['attend_form'])) {
 
-	$email = $_POST['attend_email'];
-	$name = $_POST['attend_name'];
-	$number = $_POST['attend_number'];
-	$msg =	$_POST['attent_msg'];
+extract(lc_concerts_get_vars(array(
+'attend_email',
+'attend_name',
+'attend_number',
+'attent_msg'
+)));
 
-	$events = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "concerts_events WHERE id = '$itemID'");
-	foreach ($events as $event) {
-		$lastRecord = $event;
-	}
+	$count = $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_attending WHERE email='%s' AND message='%s' LIMIT 1", $attend_email, $attent_msg));
 
-	$check = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "concerts_attending WHERE email='$email' AND message='$msg'");
-
-	$count = 0;
-	foreach ($check as $i) {
-		$count++;
-	}
 	if ($count < 1) {
 
 		$rows_affected = $wpdb->insert($wpdb->prefix . 'concerts_attending', array( 
-			'events_id' => $itemID,
-			'email' => $email,
-			'name' => $name,
-			'message' => $msg,
-			'attendants' => $number
+			'events_id' => $concert_id,
+			'email' => $attend_email,
+			'name' => $attend_name,
+			'message' => $attent_msg,
+			'attendants' => $attend_number
 			));
 	}
 	// multiple recipients
@@ -91,48 +78,11 @@ if (isset($_POST['attend_form'])) {
 		return '<p><b>Your request has already been sent, please don\'t refresh this page.</b></p>';
 	}
 }
-else {
-	$output = '	
+else {?>
 	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		
-		$(".initialValue").each(function() {
-			$(this).data("od",$(this).val());
-			$(this).click(function() {
-				if($(this).val() == $(this).data("od")) $(this).val("");
-			});
-			$(this).blur(function() {
-				if($(this).val() == "") $(this).val($(this).data("od"));
-			});
-		});
-				
-		$("#attent_concert").submit(function() {
-			
-			var error = false;
-			
-			$("input.required,select.required").each(function() {
-				if($(this).val()=="" || ($(this).hasClass("initialValue")&&$(this).val()==$(this).data("od"))) {
-					//$(this).val("---ERROR---");
-					//alert($(this).attr("id"));
-					error = true;
-				}
-			});
-			
-			if(error) {
-				alert("Please fill in all fields marked as required");
-			}else{
-				$("#attent_concert").submit();
-			}
-			
-			
-			return false;
-		});
-	});
-</script>
-	<div id="attent_concert">
-		<p>This message will be sent to the host of the Concert at <b>'.$concert->place.'</b> in '.$concert->city.'.<br /></p>
-	<form class="validate" id="attent_concert" name="attent_concert" method="post"action="'.str_replace("%7E", "~", $_SERVER["REQUEST_URI"]).'">
+<div id="attent_concert">
+	<p>This message will be sent to the host of the Concert at <b><?php echo esc_html($concert->place) ?></b> in <?php echo esc_html($concert->city) ?><br /></p>
+	<form class="validate" id="attent_concert" name="attent_concert" method="post"action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
 	<p>
 		<input type="hidden"name="attend_form"value="true">
 		<input type="hidden" name="concert_id" value="'.$itemID.'">
@@ -177,12 +127,9 @@ else {
 		<textarea class="required" rows="9"name="attent_msg"></textarea><div class="clr"></div></div>
 		<div class="clr"></div>
 		</div>
-		
-		
+
 		<div class="fff1" style="clear:both;"> <input type="submit" class="submit" id="submit" value="REQUEST INVITE" /></div>
-		<!--<input id="submit" type="image"src="http://anisland.cc/home/wp-content/themes/anisland/images/btnsubmit.jpg"/>-->
 	</form>
-		</div>';
-	return $output;
-}
-?>
+</div>
+		
+<?php } ?>

@@ -35,6 +35,15 @@ Version: 1
 }
 
 @font-face {
+  font-family: 'Didot Bold';
+  src: url('font/Didot-Bold.eot');
+  src: local('Didot Bold'),
+    url("font/Didot-Bold.woff") format("woff"),
+    url("font/Didot-Bold.otf") format("opentype"),
+    url("font/Didot-Bold.svg#didot") format("svg");
+}
+
+@font-face {
   font-family: 'GillSans Light';
   src: url('font/GillSans-Light.eot');
   src: local('GillSans Light'),
@@ -61,13 +70,14 @@ table {border-collapse: collapse;border-spacing: 0;}
 /**End Reset*********************************/
 
 
-body { background: white; font: 18px/1.1 "Didot Italic", Serif; }
+body { background: white; font: 16px/1.1 "Didot Italic", Serif; }
+body.single-page { background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; }
 .screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
 .clear { clear: both; }
 .group:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 * html .group, *:first-child+html .group { zoom: 1; } /* First selector = IE6, Second Selector = IE 7 */
 
-#page-wrap { width: 960px; margin: 20px auto; } 
+#page-wrap {  } 
 #page-wrap-main {  }
 
 h1, h2, h3, h4 { font-weight: normal; margin: 10px 0 10px 0; }
@@ -199,8 +209,8 @@ textarea { }
 .best-things-bg {
   width: 100%; 
   margin-bottom: 0; 
-  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top;
-  height: 4996px;
+  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; 
+  height: 5549px;
   position: fixed;
 }
 
@@ -467,9 +477,10 @@ table.btn-wrapper-rnd hr
 	
 /* lc-host concerts and screenings */
 
-form input[type="text"], form select, form textarea {
+form input[type="text"], form input[type="password"], form select, form textarea {
            
     border: 1px solid #000;
+    background-color: Transparent;
     color: #000;
     font: 12px "Arial";
     padding: 4px;
@@ -495,47 +506,132 @@ form input[type="checkbox"] {
   color: #000;
 }
 
+
+/*-------- Screening and Concerts -----------*/
+
+.lc-host {
+	
+	width: 550px; 
+	margin: 100px auto;
+  margin-bottom: 0; 
+
+}
+
 .lc-host h2 {
 	text-align: center;
-	text-transform: lowercase;
+	font: 18px/1.1 "Didot", Sans-Serif;
 }
 
-.lc-host .label .required, .req .required {
-	color: #0f0;
+.lc-host .watermark { color: #666; }
+
+.lc-host-form-narrow 
+{
+	font-family:"Georgia", Times, serif;
+	font-size: 12px;
 }
 
-.lc-host .public {
-	color: #f00;
+.lc-host-form-narrow label
+{
+  font-weight: bold;
+}
+
+label.error { 
+	color: red;
+	font-size: 10px;
+	}
+
+.lc-host-form-narrow td input[type="text"], .lc-host-form-narrow td input[type="password"], .lc-host-form-narrow td select, .lc-host-form-narrow td textarea {
+    width: 100%;
+    margin: 4px 0;
+    padding: 6px 3px;
+}
+
+.lc-host-form-narrow td input[type="checkbox"] { 
+  width: 15px;
+}
+
+.lc-host-form-narrow table { width: 100% }
+
+.lc-host-form-2col td
+{
+  width: 45%;
+  padding: 0 0 10px 0;
+}
+
+.lc-host-form-2col td.lc-host-form-empty-col
+{
+  width: 10%;
+}
+
+.lc-host-form-narrow #submit {
+  float: right;
+  margin: 20px 2px 0 0;
+}
+
+.lc-host-key
+{
+	font-weight: bold;
+}
+
+.usereventlist td { width: 20%; }
+.usereventlist .glyph-btn { width: 20px; valign: middle; }
+
+.event-col-left {
+ width: 460px;
+ float:left;
+}
+
+.event-col-right {
+  width: 460px;
+  float:left;
+  margin-left: 40px;
+}
+	
+.event-col-right, .event-col-left
+{
+	font: 14px/1.1 "Didot", Sans-Serif;
 	}
 	
-.lc-host .watermark { color: #ccc; }
-
-.lc-host-form td input, .lc-host-form td select, .lc-host-form td textarea {
-    width: 294px;
-    margin: 4px 0;
-}
-
-.lc-host-form td input[type="checkbox"] { 
-  width: 20px;
-}
-
-.lc-host-form table td {
-  width: 30%;
-}
-  
-.lc-host-form table td.label {
-  width: 20%;
-}
-
-.lc-host-form table td.label + td + td {
-	padding-left: 40px;
-}
-  
-.lc-host-form #submit {
-	float: right;
-	margin: 20px 2px 0 0;
+.event-col-right h3, .event-col-left h3 {
+	font: 15px/1.1 "Didot Bold", Sans-Serif;
+	text-align: center;
+	margin: 20px 0 20px 0;
 }
 	
+.event-events {
+ margin: 10px 0 0 0 ;
+}
+ 
+.event-group ul {
+	list-style: none;
+	margin: 0;
+}
+
+.event-divider {
+    border-bottom: 1px dotted #000000;
+    height: 1px;
+    margin: 15px 0;
+    width: 60%;
+}
+
+.event-month {
+	font: 14px/1.1 "Didot Bold", Sans-Serif;
+	margin: 10px 0 10px 0;
+	}
+
+.event-date {
+	font: 12px/1.1 "Didot", Sans-Serif;
+	}
+
+.event-location {
+	font: 14px/1.1 "Didot Bold", Sans-Serif;
+	}
+	
+.hidden {
+	display: none;
+	}
+	
+
 /* Icons and Buttons
  *--------------------------------------------------------------
  */
@@ -604,6 +700,7 @@ form input[type="checkbox"] {
   margin:30px auto;
   padding-top:8px;
   cursor: pointer;
+  display: block;
 }
 
 .btn-rect-sm {
@@ -634,6 +731,12 @@ form input[type="checkbox"] {
 
 .btn-rect-lg:hover {
     background-position: -319px -33px; 
+}
+
+.btn-rect-text {
+	font: 16px/1.1 "Didot Italic", Serif;
+	margin: 0px auto 6px auto;
+	text-align: center;
 }
 
  /* round buttons */
@@ -783,12 +886,27 @@ form input[type="checkbox"] {
     margin:35px auto;
 }
 
-#trailer-thumb-container{
+.divider-dotted-full{
+    border-top:1px dotted #000;
+    height:1px;
+    width:100%;
+    margin:5px auto;
+}
+
+#trailer-container{
     margin:0 auto;
     width:800px;
     height:280px;
     list-style-type:none;
     padding:0;
+}
+
+
+#trailer-thumb-container{
+    list-style-type:none;
+    height:275px;
+    margin:0 auto;
+    width:800px;
 }
 
 #trailer-thumb-container .trailer-thumb{
@@ -945,4 +1063,3 @@ form input[type="checkbox"] {
     /* TODO add bg top arrow */
    cursor: pointer;   
 }
-

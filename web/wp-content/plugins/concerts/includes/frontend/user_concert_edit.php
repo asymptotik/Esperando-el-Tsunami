@@ -13,6 +13,8 @@ $datetime = new DateTime($concert->dateandtime);
 $newdate = $datetime->format('m/d/Y');
 $newTime = $datetime->format('H:i');
 
+wp_enqueue_script('lc-concerts');
+
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -44,57 +46,44 @@ $newTime = $datetime->format('H:i');
   <form class="validate" action="'<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="concert_update" id="concert_update">
     <a href="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" title="go back" >&lt; Go back to Events list</a></p><br /><br />
     
-    <input type="hidden" name="user_concert_update" value="true" />
+    <input type="hidden" name="action" value="concerts_user_update" />
     <input type="hidden" name="concert_id" value="<?php echo esc_attr($concert->id) ?>" />
     <table  border="0" class="cacona">
       <tr>
-        <td class="label"><label>
-          Place
-        </label></td>
+        <td><label>Place</label></td>
         <td><input class="required" name="concert_place" type="text" value="<?php echo esc_attr($concert->place) ?>"/></td>
       </tr>
       <tr>
-        <td class="label"><label>
-          Address
-        </label></td>
-        <td><p>
+        <td><label>Address</label></td>
+        <td>
           <input class="required" name="concert_address" type="text" value="<?php echo esc_attr($concert->address) ?>" alt="Street name &amp; number" />
           <br/>
           <input type="checkbox" name="concert_address_show" value="1" <?php if($concert->show_address != 1) echo "checked";?> />
           hide this field!
-          <span class="sub"></span></p></td>
+        </td>
       </tr>
       <tr>
-        <td class="label"><label>
-          Date &amp; Time:
-        </label></td>
+        <td><label>Date &amp; Time:</label></td>
         <td><input class="required datepicker" name="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /> <input class="required timepicker" type="text" name="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
-        <td class="label"><label>
-          Maximum attendants:
-        </label></td>
+        <td><label>Maximum attendants:</label></td>
         <td><input class="required" name="concert_max" type="text" id="concert_max" value="<?php echo esc_attr($concert->max) ?>" alt="Maximum Attendants" /></td>
       </tr>
       <tr>
-        <td class="label"><label>
-          Additional Info:
-        </label></td>
-        <td rowspan="2"><textarea class="required" name="concert_additional" rows="6" alt="optional"><?php echo esc_html($concert->additional) ?></textarea></td>
+        <td><label>Additional Info:</label></td>
+        <td rowspan="2"><textarea class="required" name="concert_additional" rows="6" alt="additional information"><?php echo esc_html($concert->additional) ?></textarea></td>
       </tr>
       <tr>
         <td><div align="right"></div></td>
       </tr>
       <tr>
-        <td class="label"><label>
-          Phone:
-        </label></td>
+        <td><label>Phone:</label></td>
         <td><input class="required" name="concert_phone" type="text" value="<?php echo esc_attr($concert->phone) ?>" /></td>
       </tr>
       <tr>
-        <td class="label"> </td>
-        <td><p class="submit">
-			  <input type="submit" class="submit" id="submit" value="SAVE" /></p></td>
+        <td> </td>
+        <td><input type="submit" class="submit" id="submit" value="SAVE" /></td>
       </tr>
     </table>
     
