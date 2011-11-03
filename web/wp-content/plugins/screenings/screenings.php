@@ -163,7 +163,7 @@ function lc_screenings_show_func() {
 // SHORTCODE FOR SCREENINGS PAGE [screenings_past]
 add_shortcode('screenings_past', 'lc_screenings_show_past_func');
 function lc_screenings_show_past_func() {
-	$output = include('includes/frontend/screening_past.php'); 
+	$output = lc_screenings_contents('includes/frontend/screening_past.php'); 
 	return $output;
 }
 
@@ -173,7 +173,7 @@ function lc_screenings_host_func() {
 
 	extract(lc_concerts_get_vars(array('action')));
 	
-	echo "action: " . $action;
+	echo "action: " . $action . "<br/>";
 	
 	if($action == "screenings_host_add") {
 		echo "screenings_host_add action: " . $action;
