@@ -159,15 +159,42 @@ function mr_bg()
 	  $(window).resize(function(e){ mr_bg(); });
 	  $(window).scroll(function() { mr_bg(); });
 
-	// bind 'read more' functionality to their buttons
+	// bind 'read more' functionality to its button
 	$('.read-more').click(function(){
-	    $(this).parent().find('.latest-news').toggle(300);
+	    $('#welcome_content').toggle(300);
 	  });
+
+	// bind 'close' functionality to its button
+	$('.close-button').click(function(){
+	    $(this).parent().toggle(300);
+	  });
+
+	// bind 'play' to show appropriate container
+	// jQuery cycle (see below) handles the paging
+	$('.trailer-thumb').click(function(){
+	    $('#trailer-container').show(300);
+	  });
+
 
 	//bind scroll to top to its buttons
 	$('.btn-rnd-top').click(function(){
 	    $('html,body').animate({scrollTop: 0},'slow');
 	  });
+
+
+    $('#trailers').cycle({
+      fx: 'slideX',
+      next:  '#next',
+      prev: '#prev',
+	  pager:'#trailer-thumb-container',
+	  pagerAnchorBuilder: function(idx, slide) { 
+	  // return selector string for existing anchor 
+	  return '#trailer-thumb-container li:eq(' + idx + ') a'; 
+	}
+    });
+
+    $('#trailers').cycle('pause');
+
 	
       });
 

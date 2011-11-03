@@ -43,6 +43,10 @@
 	   wp_deregister_script('jquery-ui');
 	   wp_register_script('jquery-ui', get_template_directory_uri() . '/js//jquery-ui-1.8.16.custom.min.js', array( 'jquery' ), '1.8.16', false);
 	   wp_enqueue_script('jquery-ui');
+
+	   wp_deregister_script('jquery-cycle');
+	   wp_register_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.all.js', array( 'jquery' ), '2.9993', false);
+	   wp_enqueue_script('jquery-cycle');
 	}
 	
 	wp_deregister_script('jquery-colorbox');
