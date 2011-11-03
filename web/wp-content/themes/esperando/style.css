@@ -212,7 +212,7 @@ textarea { }
 }
 	
 .best-things li {
-    margin: 0 0 125px 0;
+    margin: 0;
 }
 
 .content {
@@ -500,9 +500,19 @@ form input[type="checkbox"] {
 /*-------- Screening and Concerts -----------*/
 
 .lc-host {
-	
+	font-family:"Georgia", Times, serif;
+	font-size: 13px;
+	line-height:1.2em;
 	width: 550px; 
 	margin: 100px auto;
+  margin-bottom: 0; 
+
+}
+
+.lc-host.wide {
+  
+  width: 960px; 
+  margin: 100px auto;
   margin-bottom: 0; 
 
 }
@@ -577,17 +587,23 @@ label.error {
   margin-left: 40px;
 }
 	
-.event-col-right, .event-col-left
-{
-	font: 14px/1.1 "Didot", Sans-Serif;
-	}
-	
+.event-col-right .btn-var-wrapper {
+  text-align: center;
+}
+
+.event-col-right a.btn-var {
+  margin: 0 auto;
+  display: inline-block;
+}
+
 .event-col-right h3, .event-col-left h3 {
-	font: 15px/1.1 "Didot Bold", Sans-Serif;
 	text-align: center;
+	font-weight:bold;
+	font-style: italic;
+	text-transform:lowercase;
 	margin: 20px 0 20px 0;
 }
-	
+
 .event-events {
  margin: 10px 0 0 0 ;
 }
@@ -724,12 +740,65 @@ label.error {
 }
 
 .btn-rect-text {
-	font: 16px/1.1 "Didot Italic", Serif;
+	font: 14px/1.1 Georgia, Serif;
+	font-style: italic;
 	margin: 0px auto 6px auto;
 	text-align: center;
 }
 
- /* round buttons */
+/* variable width button */
+
+a.btn-var {
+	display: block;
+	clear:all;
+	cursor: pointer;
+}
+	
+.btn-var-left
+{
+	background: Transparent url(img/btn-rect-var.png) no-repeat left top;
+	width: 18px;
+	height: 33px;
+	background-position: 0px 0px; 
+	float: left;
+}
+
+a.btn-var:hover .btn-var-left
+{
+  background-position: 0px -33px; 
+}
+
+.btn-var-text
+{
+	float:left;
+	background-color: #221d1a;
+	padding: 0 10px;
+	color: #ccc;
+	height: 25px;
+	padding-top: 8px;
+	font-style:italic;
+}
+
+a.btn-var:hover .btn-var-text
+{
+	background-color: #333;
+}
+
+.btn-var-right
+{
+  background: Transparent url(img/btn-rect-var.png) no-repeat left top;
+  width: 18px;
+  height: 33px;
+  background-position: -18px 0px; 
+  float:left;
+}
+
+a.btn-var:hover .btn-var-right
+{
+	background-position: -18px -33px; 
+}
+
+/* round buttons */
  
 .btn-rnd {
   background: transparent url(img/btn-rnd-sprt.png) no-repeat;

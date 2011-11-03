@@ -173,10 +173,10 @@ function lc_screenings_host_func() {
 
 	extract(lc_concerts_get_vars(array('action')));
 	
-	echo "action: " . $action . "<br/>";
+	//echo "action: " . $action . "<br/>";
 	
 	if($action == "screenings_host_add") {
-		echo "screenings_host_add action: " . $action;
+		//echo "screenings_host_add action: " . $action;
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {

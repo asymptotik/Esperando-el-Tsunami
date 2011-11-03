@@ -164,6 +164,17 @@
   	return apply_filters('the_time', get_the_time( $d ), $d);
   }
   
+  function lc_button_shortcode_handler( $atts, $content = null ) {
+   extract( shortcode_atts( array(
+   		'href' => __(''),
+      'text' => __('press me')
+      ), $atts ) );
+      
+      return '<div class="btn-var-wrapper"><a class="btn-var" href="'. $href .'"><div class="btn-var-left"></div><div class="btn-var-text">' . $text . '</div><div class="btn-var-right"></div><div class="clear"></div></a></div>';
+  }
+  
+  add_shortcode( 'lulacruza-button', 'lc_button_shortcode_handler' );
+  
   /*
    * lulacruza-h3
    * 
