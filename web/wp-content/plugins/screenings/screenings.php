@@ -173,10 +173,10 @@ function lc_screenings_host_func() {
 
 	extract(lc_concerts_get_vars(array('action')));
 	
-	echo "action: " . $action . "<br/>";
+	//echo "action: " . $action . "<br/>";
 	
 	if($action == "screenings_host_add") {
-		echo "screenings_host_add action: " . $action;
+		//echo "screenings_host_add action: " . $action;
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {
@@ -239,8 +239,19 @@ function lc_screenings_manage_func()
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_screening]
 add_shortcode('screenings_attend', 'lc_screenings_attend_func');
 function lc_screenings_attend_func() {
-	$output = lc_screenings_contents('includes/frontend/attend.php'); 
-	return $output;	
+	
+		extract(lc_screenings_get_vars(array('action')));
+		
+		if ($action == "screenings_user_request_invite")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_request_invite.php'); 
+		}
+		else if ($action == "screenings_user_request_invite_send")
+		{
+			$output = lc_screenings_contents('includes/frontend/user_screening_request_invite_send.php'); 	
+		}
+
+	  return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]

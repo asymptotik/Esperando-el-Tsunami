@@ -1,18 +1,23 @@
-var lc_screeings = 
+var lc_screenings = 
 {
 	lc_validate:null,
 	submit_host_form: function()
 	{
-		$.watermark.hideAll();
+		jQuery.watermark.hideAll();
 		if(!this.lc_validate.form())
 		{
-			$.watermark.showAll();
+			jQuery.watermark.showAll();
 			alert("Please fix the invalid fields in red.");
 		}
 		else
 		{
-			$("#host_screening").submit();
+			jQuery("#screening_form").submit();
 		}
+	},
+	submit_form: function(form)
+	{
+		jQuery("#" + form).submit();
+		return false;
 	}
 };
 
@@ -32,7 +37,7 @@ var lc_screeings =
 		});
 	
 		
-		lc_screeings.lc_validate = $("#host_screening").validate({ 
+		lc_screenings.lc_validate = $("#screening_form").validate({ 
 			errorPlacement: function(error, element) {
 				var id = element.attr('id');
 			    error.appendTo( element.parent("td").children("label[for=" + id + "]").append(" ") );

@@ -12,7 +12,7 @@ wp_enqueue_script('lc-screenings');
 ?>
 <div id="host_screenings" class="lc-host-form-narrow lc-host-form-2col">
   
-  <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_screening" class="validate" id="host_screening">
+  <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_form" class="validate" id="screening_form">
     <input type="hidden" name="action" value="screenings_host_add" />
     <table>
       <tr>
@@ -364,6 +364,6 @@ wp_enqueue_script('lc-screenings');
       </tr>
 
     </table>
-    <a class="btn-rect btn-rect-lg" onclick="javascript:lc_screeings.submit_host_form()"><div class="btn-rect-text">submit</div></a>
+    <a class="btn-rect btn-rect-lg" onclick="javascript:lc_screenings.submit_host_form()"><div class="btn-rect-text">submit</div></a>
   </form>
 </div>

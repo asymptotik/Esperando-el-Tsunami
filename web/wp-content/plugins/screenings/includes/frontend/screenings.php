@@ -61,9 +61,11 @@ if($event_count > 0)
 				<?php } ?>
 				<b>Postal Code:</b> <?php echo esc_html($event->postalcode) ?><br/>
 				<b>Additional info:</b> <?php echo esc_html($event->additional) ?><br/>
-				<form style="padding-left:0" method="post" action="/screenings/request-invitation/">
+				<form style="padding-left:0" method="post" id="form_<?php echo esc_attr($event->id) ?>" action="<?php echo site_url(); ?>/screenings/request-screening-invitation/">
+					<input type="hidden"name="action" value="screenings_user_request_invite">
 					<input type="hidden" name="screening_id" value="<?php echo esc_attr($event->id) ?>">
-					<input type="image" class="screenbt" src="<?php echo lc_screenings_plugin_uri( 'images/btnattend.jpg' )?>" />
+					<br/>
+					<a class="" onclick="lc_screenings.submit_form('form_<?php echo esc_attr($event->id) ?>');" href="javascript:void(0);">attend...</a>
 			  </form>
 				
 				<?php  }  ?>

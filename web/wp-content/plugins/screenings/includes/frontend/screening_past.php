@@ -50,23 +50,13 @@ if($event_count > 0)
 		
 	  <div class="event-details hidden" id="event-<?php echo esc_attr($event->id) ?>">
 	  		<div class="event-divider">&nbsp;</div>
-				<?php  if ($event->status == 1){ ?>
-					<div>This is screening is fully booked</div>
-				<?php } else { ?>
 
 				<b>Time:</b> <?php echo esc_html($date->format('H:i')) ?><br/>
 				<b>Max attendants:</b><?php echo esc_html($event->max) ?> people<br/>
-				<?php  if ($event->show_address == 1){ ?>
-					<b>Adress:</b> <?php echo esc_html($event->address) ?><br/>
-				<?php } ?>
+				<?php  if ($event->show_address == 1){ ?><b>Adress:</b> <?php echo esc_html($event->address) ?><br/><?php } ?>
 				<b>Postal Code:</b> <?php echo esc_html($event->postalcode) ?><br/>
 				<b>Additional info:</b> <?php echo esc_html($event->additional) ?><br/>
-				<form style="padding-left:0" method="post" action="/screenings/request-invitation/">
-					<input type="hidden" name="screening_id" value="<?php echo esc_attr($event->id) ?>">
-					<input type="image" class="screenbt" src="<?php echo lc_screenings_plugin_uri( 'images/btnattend.jpg' )?>" />
-			  </form>
-				
-				<?php  }  ?>
+
 				<div class="event-divider">&nbsp;</div>
 	   </div>
 	   </li>
