@@ -24,16 +24,15 @@
 	
 	$sql[] = "CREATE TABLE IF NOT EXISTS wp_screenings_attending (
 	  `id` INT NOT NULL AUTO_INCREMENT ,
-	  `wp_screenings_events_id` INT NOT NULL ,
+	  `events_id` INT NOT NULL ,
 	  `email` VARCHAR(255) NULL ,
 	  `name` VARCHAR(255) NULL ,
 	  `message` TEXT NULL ,
 	  `attendants` INT NULL ,
-	  PRIMARY KEY (`id`, `wp_screenings_events_id`) ,
-	  INDEX `fk_wp_screenings_attending_wp_screenings_events` (`wp_screenings_events_id` ASC) ,
-	  UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
-	  CONSTRAINT `fk_wp_screenings_attending_wp_screenings_events`
-	    FOREIGN KEY (`wp_screenings_events_id` )
+	  PRIMARY KEY (`id`) ,
+	  INDEX `fk_wp_screenings_attending_screenings_events_id` (`events_id` ASC) ,
+	  CONSTRAINT `fk_wp_screenings_attending_screenings_events`
+	    FOREIGN KEY (`events_id` )
 	    REFERENCES `wp_screenings_events` (`id` )
 	    ON DELETE NO ACTION
 	    ON UPDATE NO ACTION);";

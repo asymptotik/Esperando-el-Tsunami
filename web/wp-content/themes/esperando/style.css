@@ -173,6 +173,9 @@ form { }
 input[type=text] { }
 textarea { }
 
+a { color: #000; font-weight: bold; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 /* Structural Setup 
 -------------------------------------------- */
 
@@ -586,13 +589,18 @@ label.error {
 .usereventlist td { width: 20%; }
 .usereventlist .glyph-btn { width: 20px; valign: middle; }
 
-.event-col-left {
- width: 460px;
+.event-2-col {
+	width: 760px;
+	margin: 0 auto;
+	}
+	
+.event-2-col .event-col-left {
+ width: 360px;
  float:left;
 }
 
-.event-col-right {
-  width: 460px;
+.event-2-col .event-col-right {
+  width: 360px;
   float:left;
   margin-left: 40px;
 }
@@ -717,6 +725,11 @@ label.error {
   padding-top:8px;
   cursor: pointer;
   display: block;
+}
+
+a.btn-rect
+{
+	text-decoration:none;
 }
 
 .btn-rect-sm {
