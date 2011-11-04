@@ -590,20 +590,37 @@ label.error {
 .usereventlist .glyph-btn { width: 20px; valign: middle; }
 
 .event-2-col {
-	width: 760px;
+	width: 860px;
 	margin: 0 auto;
 	}
 	
 .event-2-col .event-col-left {
- width: 360px;
+ width: 410px;
  float:left;
 }
 
 .event-2-col .event-col-right {
-  width: 360px;
+  width: 410px;
   float:left;
   margin-left: 40px;
 }
+
+.event-2-col-wide {
+  width: 960px;
+  margin: 0 auto;
+  }
+  
+.event-2-col-wide .event-col-left {
+ width: 460px;
+ float:left;
+}
+
+.event-2-col-wide .event-col-right {
+  width: 460px;
+  float:left;
+  margin-left: 40px;
+}
+  
 	
 .event-col-right .btn-var-wrapper {
   text-align: center;
@@ -730,6 +747,7 @@ label.error {
 a.btn-rect
 {
 	text-decoration:none;
+	font-weight:normal;
 }
 
 .btn-rect-sm {

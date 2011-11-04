@@ -28,12 +28,8 @@ extract(lc_screenings_get_vars(array(
 'screening_imageurl'
 )));
 
-echo "screening date: " . $screening_date .' '. $screening_time;
-
-$datetime = DateTime::createFromFormat('n/j/Y G:i', $screening_date .' '. $screening_time);
-$mysqldatetime = $datetime->format('Y-m-d H:i:s');
-
-echo "Date Parsed: " . $mysqldatetime;
+$timestamp = strtotime($screening_date . ' ' . $screening_time);
+$mysqldatetime = date('Y-m-d H:i:s', $timestamp);
 
 // IMPORT DB 
 global $wpdb;

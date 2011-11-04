@@ -180,7 +180,7 @@ function lc_screenings_host_func() {
 		$output = include('includes/frontend/user_screening_add.php'); 		
 	}
 	else {
-		$output = lc_screenings_contents('includes/frontend/host.php'); 
+		$output = lc_screenings_contents('includes/frontend/user_screening_host.php'); 
 	}
 	return $output;
 }
