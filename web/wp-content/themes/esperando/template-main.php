@@ -50,7 +50,7 @@
 
 <div class="loading"><span> <img src="<?php echo mr_image_url('loading.png') ?>" width="510" height="510"></span> </div>
 <div id="counters">
-	<a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="ottonassar">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	<a href="http://twitter.com/share" class="twitter-share-button" data-countZX="vertical" data-via="lulacruza">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 	<div class="spacer-share"></div>
 	<iframe src="http://www.facebook.com/plugins/like.php?app_id=143465975739444&amp;href=http%3A%2F%2Fesperando.cc&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:60px; margin-left:2px;" allowTransparency="true"></iframe>
 	<div class="spacer-share"></div>
