@@ -739,6 +739,11 @@ label.error {
 	text-align: center;
 }
 
+.btn-rect a{
+    text-decoration:none;
+    color:#FFF;
+}
+
  /* round buttons */
  
 .btn-rnd {
@@ -872,6 +877,13 @@ label.error {
     margin:15px auto;
 }
 
+.divider-dotted-md{
+    border-top:2px dotted #000;
+    height:3px;
+    width:50%;
+    margin:25px auto;
+}
+
 .divider-dotted-sm{
     border-top:2px dotted #000;
     height:3px;
@@ -917,12 +929,29 @@ label.error {
     margin:20px 10px;
 }
 
+#trailer-thumb-container .trailer-thumb-content{
+    margin:10px;
+    border:1px dotted #CCC;
+    position:relative;
+    top:-245px;
+    width:225px;
+    height:225px;
+}
+
 #trailer-container{
     width:800px;
     height:580px;
     margin:0 auto;
     display:none;
 
+}
+
+.transparency-overlay{
+    width:100%;
+    height:100%;
+    background-color:#FFF;
+    opacity:0.4;
+    filter:alpha(opacity=40); /* For IE8 and earlier */
 }
 
 /* needed for top nav with jquery cycle  */
@@ -1029,7 +1058,7 @@ label.error {
 }
 
 #welcome_content{
-    width:850px;
+    width:815px;
     margin:0 auto;
     display:none;
 }
