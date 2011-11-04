@@ -1069,6 +1069,7 @@ a.btn-var:hover .btn-var-right
     height:330px;
     margin:10px auto;
     overflow:hidden;
+    display:none;
 }
 
 #outtakes-container-main #outtakes{
