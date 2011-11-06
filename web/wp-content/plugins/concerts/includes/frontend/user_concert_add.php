@@ -83,7 +83,7 @@ if ($count < 1) {
 // EMAIL /////
 
 // multiple recipients
-$to  = $post->host_email; // note the comma
+$to  = $concert_host_email;
 $backup = get_option('concerts_accounts');
 
 // subject
@@ -131,19 +131,17 @@ v.";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .=  'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
+$headers .=  'From: ' . lc_concerts_get_email(get_option('concerts_notify_from_name'), get_option('concerts_notify_from_email')). "\r\n";
+
+if(!empty($backup))
+{
+	$headers .= 'Cc: ' . $backup . "\r\n";
+}
 
 $message = stripslashes($message);
 if ($count < 1) {
 	// Mail it
 	if (mail($to, $subject, $message, $headers)){
-		// success
-	} 
-	else {
-		// fail
-	}
-	// Mail it
-	if (mail($backup, $subject, $message, $headers)){
 		// success
 	} 
 	else {
@@ -155,7 +153,7 @@ if ($count < 1) {
 $notify = get_option('concerts_notify');
 $sub = "New concert";
 $msg = 'There is a new SCREENING awaiting your approval';
-$head = 'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
+$head = 'From: ' . lc_concerts_get_email(get_option('concerts_notify_from_name'), get_option('concerts_notify_from_email')). "\r\n";
 
 if ($count < 1) {
 	if (mail($notify,$sub,$msg,$head)) {

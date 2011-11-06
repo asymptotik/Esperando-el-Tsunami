@@ -35,7 +35,7 @@ function lc_install_concert_database()
 	  `id` INT NOT NULL,
 	  `region_id` INT NOT NULL,
 	  `name` VARCHAR(45) NULL,
-	  PRIMARY KEY (`id`)
+	  PRIMARY KEY (`id`),
 	  INDEX `" . $wpdb->prefix . "idx_concerts_countries_region_id` (`region_id` ASC));";
 		
 		$the_id = 1;

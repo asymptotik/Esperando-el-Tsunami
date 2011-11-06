@@ -71,23 +71,23 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
       </tr>
       <tr>
 	      <td>
-	        <label>Region:</label><br/>
+	        <label>Venue Region:</label><br/>
 		      <?php echo esc_html($concert_venue_region_name) ?>
 	      </td>
 	      <td class="lc-host-form-empty-col">&nbsp;</td>
 				<td>
-				  <label>Country:</label><br/>
+				  <label>Venue Country:</label><br/>
 				  <?php echo esc_html($concert_venue_country_name) ?>
 				</td>
 			</tr>
       <tr>
 	      <td>
-	        <label>City:</label><br/>
+	        <label>Venue City:</label><br/>
 		      <?php echo esc_html($concert_venue_city) ?>
 	      </td>
 	      <td class="lc-host-form-empty-col">&nbsp;</td>
 				<td>
-				  <label>Postal Code:</label><br/>
+				  <label>Venue Postal Code:</label><br/>
 				  <?php echo esc_html($concert_venue_postalcode) ?>
 				</td>
 			</tr>
@@ -111,7 +111,7 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
       <tr id="concert_date_wrapper" style="display:none;">
         <td>
           <label for="concert_date">Suggest a Date mm/dd/yyyy (r)(v)</label><br/>
-          <input class="datepicker required initialValue" tabindex="2" type="text" name="concert_date" id="concert_date" alt="mm/dd/yyyy" /> 
+          <input class="date datepicker required initialValue" tabindex="2" type="text" name="concert_date" id="concert_date" alt="mm/dd/yyyy" /> 
         </td>
       </tr>
       
@@ -141,13 +141,13 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
       <tr>
         <td>
           <label for="concert_venue_capacity">Venue Maximum Attendants (r)(v)</label><br/>
-          <input class="required number initialValue" tabindex="7" type="text" name="concert_venue_capacity" id="concert_venue_capacity" alt="Maximum Attendants" /><br/>
+          <input class="required digits initialValue" tabindex="7" type="text" name="concert_venue_capacity" id="concert_venue_capacity" alt="Maximum Attendants" /><br/>
           <input type="checkbox" tabindex="8" name="concert_status" value="1" /><span class="sub">Already fully booked</span>
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>
 				<td>
           <label for="concert_date">Concert Time hh:mm (r)(v)</label><br/>
-          <input class="required timepicker initialValue" tabindex="9" type="text" name="concert_time" id="concert_time" alt="hh:mm" />
+          <input class="required time timepicker initialValue" tabindex="9" type="text" name="concert_time" id="concert_time" alt="hh:mm" />
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>
       </tr>
@@ -177,7 +177,7 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
         <td class="lc-host-form-empty-col">&nbsp;</td>
         <td>
           <label for="concert_host_email">Your Email (r)</label><br/>
-          <input class="required initialValue" tabindex="23" name="concert_host_email" id="concert_host_email" type="text" alt="your@e-mail.com" />
+          <input class="required email initialValue" tabindex="23" name="concert_host_email" id="concert_host_email" type="text" alt="your@e-mail.com" />
         </td>
       </tr>
       
@@ -212,6 +212,6 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
         </td>
       </tr>
     </table>
-    <a class="btn-rect btn-rect-lg" onclick="javascript:lc_concerts.submit_host_form()"><div class="btn-rect-text">submit</div></a>
+    <a class="btn-rect btn-rect-lg" href="javascript:void(0)" tabindex="29" onclick="javascript:lc_concerts.submit_host_form()"><div class="btn-rect-text">submit</div></a>
   </form>
 </div>

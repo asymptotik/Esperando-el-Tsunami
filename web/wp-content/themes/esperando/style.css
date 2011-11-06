@@ -173,8 +173,8 @@ form { }
 input[type=text] { }
 textarea { }
 
-a { color: #000; font-weight: bold; text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: #000; font-weight: bold; text-decoration: underline; }
+a:hover { color: #444; text-decoration: underline; }
 
 /* Structural Setup 
 -------------------------------------------- */

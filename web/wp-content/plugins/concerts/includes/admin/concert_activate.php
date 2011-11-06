@@ -24,7 +24,7 @@ else {
 	
 	$home_rl = get_bloginfo('url', 'display');
 	// multiple recipients
-	$to  = $concert->email;
+	$to  = $concert->host_email;
 	// subject
 	$subject = 'Approval of your Private-Public Concert of Lulacruza';
 	// message
@@ -63,7 +63,7 @@ The easiest is to play the films via your computer. You can either connect it to
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 	// Additional headers
-	$headers .= 'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
+	$headers .= 'From: ' . lc_concerts_get_email(get_option('concerts_notify_from_name'), get_option('concerts_notify_from_email')). "\r\n";
 	
 	$message = stripslashes($message);
 

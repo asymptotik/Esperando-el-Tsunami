@@ -13,8 +13,6 @@
 extract(lc_concerts_get_vars(array('concert_id')));
 $concert = get_lc_concert($concert_id);
 
-echo "concert->status: $concert->status";
-
 if ($concert->status == 0) {
 	//$wpdb->update($wpdb->prefix . 'concerts_events', array( 'status' => 1), array( 'id' => $concert->id));	
 	$message = "has been set to fully booked.";
@@ -24,6 +22,6 @@ else if ($concert->status == 1) {
 	$message = "has been opened for more attendants.";
 }
 ?>
-<p><?php echo esc_html($concert->place) . " " . $message; ?></p>
+<p><?php echo esc_html($concert->venue_name) . " " . $message; ?></p>
 <a href="<?=str_replace( '%7E', '~', $_SERVER['REQUEST_URI']);?>" title='go back'>Go Back</a>
 </div>

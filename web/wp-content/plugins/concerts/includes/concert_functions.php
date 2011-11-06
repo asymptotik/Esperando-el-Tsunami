@@ -309,4 +309,16 @@ function get_lc_country($country, $output = OBJECT, $filter = 'raw') {
 		return $_country;
 	}
 }
+
+function lc_concerts_get_email($name, $address)
+{
+	if(!empty($name))
+	{
+		return "\"" . $name. "\" <" . $address . ">";
+	}
+	else 
+	{
+		return $address;
+	}
+}
 ?>

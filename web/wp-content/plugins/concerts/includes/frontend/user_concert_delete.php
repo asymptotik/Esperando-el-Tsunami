@@ -15,5 +15,5 @@ $concert = get_lc_concert($concert_id);
 $wpdb->query( $wpdb->prepare("DELETE FROM " . $wpdb->prefix . "concerts_events WHERE id = '%s'", $concert_id));
 ?>
 
-<p><?php echo esc_html($concert->place) ?> has been deleted from your database</p>
+<p><?php echo esc_html($concert->venue_name) ?> has been deleted from your database</p>
 <a href="<?php echo str_replace( "%7E", "~", $_SERVER["REQUEST_URI"])?>" title="go back">Go Back</a>

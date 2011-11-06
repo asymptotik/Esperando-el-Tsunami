@@ -14,7 +14,7 @@ $concert = get_lc_concert($concert_id);
 
 ?>	
 <div id="attent_concert" class="lc-host-form-narrow">
-	<p>This message will be sent to the host of the Concert at <b><?php echo esc_html($concert->place) ?></b> in <b><?php echo esc_html($concert->city) ?></b><br /></p>
+	<p>This message will be sent to the host of the Concert at <b><?php echo esc_html($concert->venue_name) ?></b> in <b><?php echo esc_html($concert->venue_city) ?></b><br /></p>
 	<form class="validate" id="concert_form" name="concert_form" method="post"action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>">
 	<input type="hidden"name="action" value="concerts_user_request_invite_send">
 	<input type="hidden"name="attend_form"value="true">
@@ -45,7 +45,7 @@ $concert = get_lc_concert($concert_id);
 		<tr>
 			<td>
 				<label for="attend_number">Number of invitation requested (r)</label><br/>
-				<input class="required number initialValue" type="text" id="attend_number" name="attend_number" value="1" alt="Number"/>
+				<input class="required digits initialValue" type="text" id="attend_number" name="attend_number" value="1" alt="Number"/>
 			</td>
 		</tr>
 		<tr>

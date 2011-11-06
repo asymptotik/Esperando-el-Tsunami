@@ -64,7 +64,7 @@
 									<td><input type="text" name="screenings_notify_from_email" value="<?php echo esc_attr(get_option('screenings_notify_from_email')); ?>" /></td>
 								</tr>
 								<tr valign="top">
-									<td class="first">Account backup email. <br/>Email sent to the user will be sent here as well.</td>
+									<td class="first">Account backup email. <br/>Email sent to the host will be sent here as well.</td>
 									<td><input type="text" name="screenings_accounts" value="<?php echo esc_attr(get_option('screenings_accounts')); ?>" /></td>
 								</tr>
 							</table>

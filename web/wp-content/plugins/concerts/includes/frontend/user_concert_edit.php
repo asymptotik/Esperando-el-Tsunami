@@ -9,38 +9,14 @@
 extract(lc_concerts_get_vars(array('concert_id')));
 $concert = get_lc_concert($concert_id);
 
-$datetime = new DateTime($concert->dateandtime);
-$newdate = $datetime->format('m/d/Y');
-$newTime = $datetime->format('H:i');
+$datetime = strtotime($concert->dateandtime);
+$newdate = date('m/d/Y', $datetime);
+$newTime = date('H:i', $datetime);
 
 wp_enqueue_script('lc-concerts');
 
 ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-						
-		$("#concert_update").submit(function() {
-			
-			var error = false;
-			
-			$("input.required,select.required").each(function() {
-				if($(this).val()=="" || ($(this).hasClass("initialValue")&&$(this).val()==$(this).data("od"))) {
-					error = true;
-				}
-			});
-			
-			if(error) {
-				alert("Please fill in all fields marked as required");
-			}else{
-				$("#concert_update").submit();
-			}
-			
-			
-			return false;
-		});
-	});
-</script>
+
 <div class="lc-host-form-narrow">
 <p> 
   <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="concert_form" id="concert_form">
@@ -63,20 +39,20 @@ wp_enqueue_script('lc-concerts');
         </td>
       </tr>
       <tr>
-        <td><label for="concert_date">Date:</label></td>
-        <td><input class="required datepicker" name="concert_date" id="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
+        <td><label for="concert_date">Date (mm/dd/yyyy):</label></td>
+        <td><input class="required date datepicker" name="concert_date" id="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
       </tr>
       <tr>
-        <td><label for="concert_time">Time:</label></td>
-        <td><input class="required timepicker" type="text" name="concert_time" id="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
+        <td><label for="concert_time">Time (hh:mm 24 hour):</label></td>
+        <td><input class="required time timepicker" type="text" name="concert_time" id="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
         <td><label for="concert_venue_capacity">Maximum attendants:</label></td>
-        <td><input class="required" type="text" name="concert_venue_capacity" id="concert_venue_capacity" value="<?php echo esc_attr($concert->venue_capacity) ?>" alt="Maximum Attendants" /></td>
+        <td><input class="required digits" type="text" name="concert_venue_capacity" id="concert_venue_capacity" value="<?php echo esc_attr($concert->venue_capacity) ?>" alt="Maximum Attendants" /></td>
       </tr>
       <tr>
         <td valign="top" style="vertical-align: middle;"><label for="concert_additional_info">Additional Info:</label></td>
-        <td rowspan="2"><textarea class="required" name="concert_additional_info" id="concert_additional_info" rows="6" alt="additional information"><?php echo esc_html($concert->additional_info) ?></textarea></td>
+        <td rowspan="2"><textarea class="" name="concert_additional_info" id="concert_additional_info" rows="6" alt="additional information"><?php echo esc_html($concert->additional_info) ?></textarea></td>
       </tr>
       <tr>
         <td><div align="right"></div></td>
@@ -84,7 +60,7 @@ wp_enqueue_script('lc-concerts');
       
       <tr>
         <td><label for="concert_host_phone">Concert Host Email:</label></td>
-        <td><input class="required" name="concert_host_email" id="concert_host_email" type="text" value="<?php echo esc_attr($concert->host_email) ?>" /></td>
+        <td><input class="required email" name="concert_host_email" id="concert_host_email" type="text" value="<?php echo esc_attr($concert->host_email) ?>" /></td>
       </tr>
       <tr>
         <td><label for="concert_host_phone">Concert Host Address:</label></td>
@@ -100,7 +76,7 @@ wp_enqueue_script('lc-concerts');
       </tr>
       <tr>
         <td> </td>
-        <td><input type="submit" class="submit" id="submit" value="SAVE" /></td>
+        <td><a class="btn-rect btn-rect-lg" tabindex="5" onclick="javascript:lc_concerts.submit_host_form()"><div class="btn-rect-text">save</div></a></td>
       </tr>
     </table>
     

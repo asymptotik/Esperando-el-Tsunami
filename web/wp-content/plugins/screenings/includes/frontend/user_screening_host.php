@@ -37,7 +37,7 @@ wp_enqueue_script('lc-screenings');
         
         <td>
           <label for="screening_max">Maximum Attendants (r)(v)</label><br/>
-          <input id="screening_max" class="required number initialValue" tabindex="2" type="text" name="screening_max" id="screening_max" alt="Maximum Attendants" /><br/>
+          <input id="screening_max" class="required digits initialValue" tabindex="2" type="text" name="screening_max" id="screening_max" alt="Maximum Attendants" /><br/>
           <input type="checkbox" tabindex="3" name="screening_status" value="1" /><span class="sub">Already fully booked</span>
         </td>
       </tr>
@@ -312,13 +312,13 @@ wp_enqueue_script('lc-screenings');
       <tr>
         <td>
           <label for="screening_date">Date mm/dd/yyyy (r)(v)</label><br/>
-          <input class="required datepicker initialValue" tabindex="9" type="text" name="screening_date" id="screening_date" alt="mm/dd/yyyy" /> 
+          <input class="required date datepicker initialValue" tabindex="9" type="text" name="screening_date" id="screening_date" alt="mm/dd/yyyy" /> 
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>
 
 				<td>
           <label for="screening_date">Time hh:mm (r)(v)</label><br/>
-          <input class="required timepicker initialValue" tabindex="10" type="text" name="screening_time" id="screening_time" alt="hh:mm" />
+          <input class="required time timepicker initialValue" tabindex="10" type="text" name="screening_time" id="screening_time" alt="hh:mm" />
         </td>
       </tr>
       
@@ -347,7 +347,7 @@ wp_enqueue_script('lc-screenings');
         <td class="lc-host-form-empty-col">&nbsp;</td>
         <td>
           <label for="screening_email">Your Email (r)</label><br/>
-          <input class="required initialValue" tabindex="23" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" />
+          <input class="required email initialValue" tabindex="23" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" />
         </td>
       </tr>
       

@@ -9,38 +9,14 @@
 extract(lc_screenings_get_vars(array('screening_id')));
 $screening = get_lc_screening($screening_id);
 
-$datetime = new DateTime($screening->dateandtime);
-$newdate = $datetime->format('m/d/Y');
-$newTime = $datetime->format('H:i');
+$datetime = strtotime($screening->dateandtime);
+$newdate = date('m/d/Y', $datetime);
+$newTime = date('H:i', $datetime);
 
 wp_enqueue_script('lc-screenings');
 
 ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-						
-		$("#screening_update").submit(function() {
-			
-			var error = false;
-			
-			$("input.required,select.required").each(function() {
-				if($(this).val()=="" || ($(this).hasClass("initialValue")&&$(this).val()==$(this).data("od"))) {
-					error = true;
-				}
-			});
-			
-			if(error) {
-				alert("Please fill in all fields marked as required");
-			}else{
-				$("#screening_update").submit();
-			}
-			
-			
-			return false;
-		});
-	});
-</script>
+
 <div class="lc-host-form-narrow">
 <p> 
   <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_form" id="screening_form">
@@ -63,16 +39,16 @@ wp_enqueue_script('lc-screenings');
         </td>
       </tr>
       <tr>
-        <td><label for="screening_date">Date:</label></td>
-        <td><input class="required datepicker" name="screening_date" id="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
+        <td><label for="screening_date">Date (mm/dd/yyyy):</label></td>
+        <td><input class="required date datepicker" name="screening_date" id="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
       </tr>
       <tr>
-        <td><label for="screening_date">Time:</label></td>
-        <td><input class="required timepicker" type="text" name="screening_time" value="<?php echo esc_attr($newTime) ?>" /></td>
+        <td><label for="screening_time">Time (hh:mm 24 hour):</label></td>
+        <td><input class="required time timepicker" type="text" name="screening_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
         <td><label for="screening_max">Maximum attendants:</label></td>
-        <td><input class="required number" name="screening_max" id="screening_max" type="text" id="screening_max" value="<?php echo esc_attr($screening->max) ?>" alt="Maximum Attendants" /></td>
+        <td><input class="required digits" name="screening_max" id="screening_max" type="text" id="screening_max" value="<?php echo esc_attr($screening->max) ?>" alt="Maximum Attendants" /></td>
       </tr>
       <tr>
         <td><label for="screening_additional">Additional Info:</label></td>
@@ -87,7 +63,7 @@ wp_enqueue_script('lc-screenings');
       </tr>
       <tr>
         <td> </td>
-        <td><input type="submit" class="submit" id="submit" value="SAVE" /></td>
+        <td><a class="btn-rect btn-rect-lg" tabindex="5" onclick="javascript:lc_screenings.submit_host_form()"><div class="btn-rect-text">submit</div></a></td>
       </tr>
     </table>
     

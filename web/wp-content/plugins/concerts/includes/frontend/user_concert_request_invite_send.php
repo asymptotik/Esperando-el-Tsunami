@@ -26,7 +26,7 @@ if ($count < 1) {
 }
 
 // multiple recipients
-$to  = $concert->email;
+$to  = $concert->host_email;
 // subject
 $subject = 'Someone has requested an invitation for your Concert';
 // message
@@ -55,7 +55,7 @@ $message = '
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .= 'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
+$headers .= 'From: ' . lc_concerts_get_email(get_option('concerts_notify_from_name'), get_option('concerts_notify_from_email')). "\r\n";
 $headers .= 'Reply-To: '.$attend_email."\r\n";
 
 if ($count < 1) {

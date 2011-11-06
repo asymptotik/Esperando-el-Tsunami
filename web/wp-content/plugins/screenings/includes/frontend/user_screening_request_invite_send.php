@@ -27,6 +27,7 @@ if ($count < 1) {
 
 // multiple recipients
 $to  = $screening->email;
+
 // subject
 $subject = 'Someone has requested an invitation for your Screening';
 // message
@@ -55,7 +56,7 @@ $message = '
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .= 'From: ' . get_option('screenings_notify_from_name') . ' ' . get_option('screenings_notify_from_email') . "\r\n";
+$headers .= 'From: ' . lc_screenings_get_email(get_option('screenings_notify_from_name'), get_option('screenings_notify_from_email')). "\r\n";
 $headers .= 'Reply-To: '.$attend_email."\r\n";
 
 if ($count < 1) {

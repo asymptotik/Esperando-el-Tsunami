@@ -63,7 +63,7 @@ The easiest is to play the films via your computer. You can either connect it to
 	$headers  = 'MIME-Version: 1.0' . "\r\n";
 	$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 	// Additional headers
-	$headers .= 'From: ' . get_option('screenings_notify_from_name') . ' ' . get_option('screenings_notify_from_email') . "\r\n";
+	$headers .= 'From: ' . lc_screenings_get_email(get_option('screenings_notify_from_name'), get_option('screenings_notify_from_email')). "\r\n";
 	
 	$message = stripslashes($message);
 

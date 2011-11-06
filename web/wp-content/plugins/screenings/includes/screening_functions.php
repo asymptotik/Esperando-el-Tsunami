@@ -144,4 +144,15 @@ function get_lc_screening($screening, $output = OBJECT, $filter = 'raw') {
 	}
 }
 
+function lc_screenings_get_email($name, $address)
+{
+	if(!empty($name))
+	{
+		return "\"" . $name. "\" <" . $address . ">";
+	}
+	else 
+	{
+		return $address;
+	}
+}
 ?>

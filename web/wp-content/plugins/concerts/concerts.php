@@ -320,7 +320,9 @@ function lc_concerts_manage_func()
 		}
 		else if ($action == "concerts_user_update")
 		{
-			$output = lc_concerts_contents('includes/frontend/user_concert_update.php'); 	
+			$output = lc_concerts_contents('includes/frontend/user_concert_update.php') . "<br/>" .
+			lc_concerts_contents('includes/frontend/user_concerts.php');
+			
 		}
 		else if ($action == "concerts_user_edit")
 		{
@@ -341,9 +343,20 @@ function lc_concerts_manage_func()
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [attend_concert]
 add_shortcode('concerts_attend', 'lc_concerts_attend_func');
-function lc_concerts_attend_func() {
-	$output = lc_concerts_contents('includes/frontend/attend.php'); 
-	return $output;	
+function lc_concerts_attend_func() 
+{	
+	extract(lc_screenings_get_vars(array('action')));
+
+	if ($action == "concerts_user_request_invite")
+	{
+		$output = lc_concerts_contents('includes/frontend/user_concert_request_invite.php'); 
+	}
+	else if ($action == "concerts_user_request_invite_send")
+	{
+		$output = lc_concerts_contents('includes/frontend/user_concert_request_invite_send.php'); 	
+	}
+
+  return $output;	
 }
 
 // SHORTCODE FOR HOST A SCREENINGS PAGE [country_select]

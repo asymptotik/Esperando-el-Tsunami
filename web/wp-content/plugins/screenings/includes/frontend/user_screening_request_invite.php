@@ -45,7 +45,7 @@ $screening = get_lc_screening($screening_id);
 		<tr>
 			<td>
 				<label for="attend_number">Number of invitation requested (r)</label><br/>
-				<input class="required number initialValue" type="text" id="attend_number" name="attend_number" value="1" alt="Number"/>
+				<input class="required digits initialValue" type="text" id="attend_number" name="attend_number" value="1" alt="Number"/>
 			</td>
 		</tr>
 		<tr>
