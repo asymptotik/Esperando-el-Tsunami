@@ -46,7 +46,7 @@ $message = '
 	</p>
 	<p>If your Screening is fully booked please login and change status on <a href="'. site_url() .'/screenings/manage/">'. site_url() .'/screenings/manage/</a></p>
 <p>Best Wishes,</p>
-<p>Vincent Moon<br />
+<p>Vincent Moon & Lulacruza<br />
 	<a href="'. site_url() .'">'. site_url() .'</a></p>
 </body>
 	</html>

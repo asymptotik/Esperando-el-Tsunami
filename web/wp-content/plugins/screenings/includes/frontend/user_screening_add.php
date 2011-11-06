@@ -74,13 +74,18 @@ $message = "
 <html>
 	<head>
 		<title>'.$subject.'</title>
-		</head>
+	</head>
 	<body>
 	
 <p>Hello, and thanks for wishing to screen <b>Esperando el Tsunami</b>.</p>
 <p>It is really exciting for us to share with you this film in such a unique way. We encourage you to make the screenings open to strangers, it's part of what we envision. These screenings are moments to come together. And we hope that they become rewarding experiences.</b>
 <p>We will approve your screening as soon as possible and inform you by email once it is approved. More information regarding technical questions will be included in the following email.</b>
-<p>Here is your login information so you can edit the information for the screening once it is approved.</p>";
+<p>Here is your login information so you can edit the information for the screening once it is approved.</p>
+<p>Login at <a href=\"http://esperando.cc/esperando/screenings/manage-screenings\">http://esperando.cc/esperando/screenings/manage-screenings</a>.</p>
+<p>Thanks,<br/>
+Vincent Moon & Lulacruza</p>
+</body>
+</html>";
 
 // To send HTML mail, the Content-type header must be set
 $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -123,7 +128,7 @@ if ($count < 1) {
 $msg = "<p>Thank you for creating a Screening of <b>Esperando el Tsunami</b></p>
 <p>We will approve your screening as soon as possible and inform you by email once it has been approved.</p>
 <p>Please add <b>" . get_option('screenings_notify_from_email') . "</b> to your address book to prevent the email from being categorized as junk mail.</p>
-<p>You should receive an email shortly with the details you just registered and your log-in info for <a href=\"http://www.esperando.cc\">www.esperando.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>
+<p>You should receive an email shortly with the details you just registered and your log-in info for <a href=\"http://www.esperando.cc/\">www.esperando.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>
 <p>Thanks,</p>
 <p>Vincent Moon & Lulacruza</p>";
 
