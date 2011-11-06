@@ -6,34 +6,41 @@
 	
 	$.lc_select_region = function(region, reset)
 	{
-		$('.country-select').hide();
+		$('.concert_venue_country_select').hide();
+		$('.concert_region_schedule_select').hide();
+		
 		if(region == 0)
 		{
-			$('#concert_country').hide().val('');
+			$('#concert_venue_country').hide().val('');
 		}
-		else if($('#country-select-' + region).length > 0)
+		else if($('#concert_venue_country_' + region).length > 0)
 		{
 			if(reset)
-				$('#country-select-' + region).show().val('0');
+				$('#concert_venue_country_' + region).show().val('0');
 			else
-				$('#country-select-' + region).show();
-			$('#concert_country').hide().val('');
+				$('#concert_venue_country_' + region).show();
+			$('#concert_venue_country').hide().val('');
 		}
 		else
 		{
-			$('#concert_country').show();
+			$('#concert_venue_country').show();
 		}
+		
+		if(reset)
+			$('#concert_region_schedule_' + region).show().val('0');
+		else
+			$('#concert_region_schedule_' + region).show();
 	};
 	
 	$(document).ready( function() {
-		var val = $('#concert-region-id option:selected').val();
+		var val = $('#concert_venue_region_id option:selected').val();
 	    if(undefined != val)
 	    {
 	    	$.lc_select_region(val, false);
 	    }
 
-	    $('#concert-region-id').change(function() {
-	    	var val = $('#concert-region-id option:selected').val();
+	    $('#concert_venue_region_id').change(function() {
+	    	var val = $('#concert_venue_region_id option:selected').val();
 	    	$.lc_select_region(val, true);
 	    });
 	});

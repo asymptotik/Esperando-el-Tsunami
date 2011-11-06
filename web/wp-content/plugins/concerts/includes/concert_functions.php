@@ -77,7 +77,7 @@ function lc_concerts_check_logged_in()
 		$user = $concerts_username;
 		$pass = md5($concerts_password);
 		
-		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE email='%s' AND password='%s'", $user, $pass ));
+		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE host_email='%s' AND password='%s'", $user, $pass ));
 		
 		if ($user_count >= 1)
 		{
@@ -96,7 +96,7 @@ function lc_concerts_check_logged_in()
 		$user = $_SESSION['concerts_email'];
 		$pass = $_SESSION['concerts_password'];
   
-		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE email='%s' AND password='%s'", $user, $pass ));
+		$user_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE host_email='%s' AND password='%s'", $user, $pass ));
 
 		if ($user_count >= 1){
 			$_SESSION['concerts_email'] = $user;
@@ -146,6 +146,18 @@ function get_lc_region_schedule($schedule, $output = OBJECT, $filter = 'raw') {
 	} else {
 		return $_schedule;
 	}
+}
+
+function get_lc_region_schedules($region) {
+	global $wpdb;
+
+	if ( is_object($region) ) {
+		$region_id = $region->id;
+	} else {
+		$region_id = $region;
+	}
+
+	return $wpdb->get_results($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "concerts_region_schedule WHERE region_id = %d", $region_id));
 }
 
 function get_lc_concert($concert, $output = OBJECT, $filter = 'raw') {

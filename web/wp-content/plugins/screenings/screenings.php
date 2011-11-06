@@ -46,6 +46,8 @@ function lc_screenings_install() {
 	include('includes/installdb.php'); 	
 	add_option('screenings_notify', 'default@email.com');
 	add_option('screenings_accounts', 'default@email.com');
+	add_option('screenings_notify_from_name', 'Your Name');
+	add_option('screenings_notify_from_email', 'default@email.com');
 	}
 
 // Runs on plugin deactivation
@@ -139,6 +141,8 @@ function lc_screenings_sub_func() {
 	if ($_POST['screenings_option']){
 		update_option('screenings_notify', $_POST['screenings_notify']);
 		update_option('screenings_accounts', $_POST['screenings_accounts']);
+		update_option('screenings_notify_from_name', $_POST['screenings_notify_from_name']);
+		update_option('screenings_notify_from_email', $_POST['screenings_notify_from_email']);
 		$updateSucces = true;
 	}
 

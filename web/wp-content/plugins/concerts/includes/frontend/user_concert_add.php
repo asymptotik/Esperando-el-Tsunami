@@ -10,53 +10,72 @@
 <?php
 
 extract(lc_concerts_get_vars(array(
+'concert_id', 
 'concert_status',
-'concert_place',
-'concert_address',
-'concert_address_show',
-'concert_city',
-'concert_postalcode',
-'concert_country',
+'concert_venue_name', 
+'concert_venue_address', 
+'concert_venue_city', 
+'concert_venue_postalcode',
+'concert_venue_hide_address',  
+'concert_venue_region_id',
+'concert_venue_country_id',
+'concert_venue_country',
+'concert_region_schedule_id',
 'concert_date',
 'concert_time',
-'concert_max',
-'concert_additional',
-'concert_name',
-'concert_email',
-'concert_phone',
-'concert_password',
-'concert_imageurl'
-)));
+'concert_venue_type',
+'concert_venue_size',
+'concert_venue_capacity', 
+'concert_additional_info', 
+'concert_host_name', 
+'concert_host_email',
+'concert_host_address', 
+'concert_host_city', 
+'concert_host_postalcode', 
+'concert_host_phone', 
+'concert_password')));
 
-$datetime = DateTime::createFromFormat('n/j/Y G:i', $concert_date .' '. $concert_time);
-$mysqldatetime = $datetime->format('Y-m-d H:i:s');
 
-echo "Date Parsed: " . $mysqldatetime;
+$timestamp = strtotime($concert_date . ' ' . $concert_time);
+$mysqldatetime = date('Y-m-d H:i:s', $timestamp);
+
+$concert_venue_region_id = empty($concert_venue_region_id) ? 0 : $concert_venue_region_id;
+$concert_venue_country_id = (empty($concert_venue_region_id) || empty($concert_venue_country_id)) ? 0 : $concert_venue_country_id;
+$concert_venue_country = empty($concert_venue_country_id) ? $concert_venue_country : '';
+$concert_venue_show_address = ($concert_venue_hide_address == 1 ? 0 : 1);
+$concert_region_schedule_id = (empty($concert_region_schedule_id) || $concert_region_schedule_id < 0) ? 0 : $concert_region_schedule_id;
 
 // IMPORT DB 
 global $wpdb;
 
-$count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE place='%s' AND dateandtime='%s' AND email='%s'", $concert_place, $mysqldatetime, $concert_email));
+$count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM " . $wpdb->prefix . "concerts_events WHERE venue_name='%s' AND dateandtime='%s' AND host_email='%s'", $concert_venue_name, $mysqldatetime, $concert_host_email));
 
 $rows_affected = 0;
 if ($count < 1) {
 	$rows_affected = $wpdb->insert($wpdb->prefix . 'concerts_events', array( 
 		'status' => $concert_status,
 		'active' => 0,
-		'place' => $concert_place,
-		'address' => $concert_address,
-		'show_address' => $concert_address_show,
-		'city' => $concert_city,
-		'postalcode' => $concert_postalcode,
-		'country' => $concert_country,
-		'dateandtime' => $mysqldatetime,
-		'max' => $concert_max,
-		'additional' => $concert_additional,
-		'name' => $concert_name,
-		'email' => $concert_email,
-		'phone' => $concert_phone,
-		'password' => md5($concert_password),
-		'imageurl' => $concert_imageurl,
+		'venue_name' => $concert_venue_name,
+	  'venue_address' => $concert_venue_address,
+	  'venue_city' => $concert_venue_city,
+	  'venue_postalcode' => $concert_venue_postalcode,
+	  'venue_show_address' => $concert_venue_show_address,
+	  'venue_region_id' => $concert_venue_region_id,
+	  'venue_country_id' => $concert_venue_country_id,
+	  'venue_country' => $concert_venue_country,
+	  'region_schedule_id' => $concert_region_schedule_id,
+	  'dateandtime' => $concert_dateandtime,
+	  'venue_type' => $concert_venue_type,
+	  'venue_size' => $concert_venue_size,
+	  'venue_capacity' => $concert_venue_capacity,
+	  'additional_info' => $concert_additional_info,
+	  'host_name' => $concert_host_name,
+	  'host_email' => $concert_host_email,
+	  'host_address' => $concert_host_address,
+	  'host_city' => $concert_host_city,
+	  'host_postalcode' => $concert_host_postalcode,
+	  'host_phone' => $concert_host_phone,
+	  'password' => md5($concert_password)
 		));
 }
 
@@ -64,45 +83,13 @@ if ($count < 1) {
 // EMAIL /////
 
 // multiple recipients
-$to  = $post->email; // note the comma
+$to  = $post->host_email; // note the comma
 $backup = get_option('concerts_accounts');
 
 // subject
-$subject = 'Thanks for creating a Concert of Petites Planètes';
+$subject = 'Thanks for creating a Concert for Lulacruza';
 // message
-/*
-$message = '
-		<html>
-	<head>
-		<title>'.$subject.'</title>
-		</head>
-	<body>
-		<p>Hello '.$post->name.'</p>
-		<p>Thank you for creating a <strong>Private-Public Concert of An Island</strong>.</p>
-		<p>We will approve your concert as soon as possible and inform you by email once it has been approved. </p>
-	<p>Please add <a href="mailto:concerts@anisland.cc">concerts@anisland.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
-		<p>If you need to change any details regarding your Private-Public Concert or mark the concert as fully booked, you can log in at <a href="http://anisland.cc/home/host-a-concert/login/">http://anisland.cc/home/host-a-concert/login/</a> Please make sure you display the <strong>Time</strong> for the concert correct. We use the 24-hour clock on the site. We also suggest that you let your guests know who you are and how you will screen the film? And if they should bring something? etc You can do this in the <strong>Additional Info</strong> field. </p>
-	<p>Username: '.$post->email.'<br />
-		Password: '.$_POST['concert_password'].'</p>
-		<p>For more info about the Private-Public Concerts please refer to www.anisland.cc/home/host-a-concert/</p>
-	<p>These are the details you have registered:<p><b>Place: </b>'.$post->place.'<br />
-		<b>Address: </b>'.$post->address.'<br />
-		<b>City: </b>'.$post->city.'<br />
-		<b>postalcode: </b>'.$post->postalcode.'<br />
-		<b>Country: </b>'.$post->country.'<br />
-		<b>Date And Time: </b>'.$_POST['concert_date'].'<br />
-		<b>Max Attendants: </b>'.$post->max.'<br />
-		<b>Additional: </b>'.$post->additional.'<br />
-		<b>Name: </b>'.$post->name.'<br />
-		<b>Email: </b>'.$post->email.'<br />
-		<b>Phone: </b>'.$post->phone.'	</p>
-	<p>Best Wishes,</p>
-		<p>Vincent Moon &amp; Efterklang</p>
-		<p><a href="http://www.AnIsland.cc">www.AnIsland.cc</a></p>
-	</body>
-		</html>
-	';*/
-	
+
 $message = "
 <html>
 	<head>
@@ -144,7 +131,7 @@ v.";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .= 'From: Petites Planètes by Vincent Moon <concerts@petitesplanetes.cc>' . "\r\n";
+$headers .=  'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
 
 $message = stripslashes($message);
 if ($count < 1) {
@@ -168,8 +155,7 @@ if ($count < 1) {
 $notify = get_option('concerts_notify');
 $sub = "New concert";
 $msg = 'There is a new SCREENING awaiting your approval';
-$sender = "no-reply@petitesplanetes.cc";
-$head = "From: $sender";
+$head = 'From: ' . get_option('concerts_notify_from_name') . ' ' . get_option('concerts_notify_from_email') . "\r\n";
 
 if ($count < 1) {
 	if (mail($notify,$sub,$msg,$head)) {
@@ -180,7 +166,7 @@ if ($count < 1) {
 	}	
 }
 
-$msg = '<p class="dest upper">Thank you for creating a Concert of Petites Planètes!</p>
+$msg = '<p class="dest upper">Thank you for creating a Concert for Lulacruza!</p>
 <p>We will approve your concert as soon as possible and inform you by email once it has been approved.</p>
 <p>Please add <a href="concerts@petitesplanetes.cc">concerts@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
 <p>Already now you should have received an email with the details you just registered and your log-in info for <a href="http://www.petitesplanetes.cc">www.petitesplanetes.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>

@@ -63,6 +63,42 @@ wp_nonce_field( $nonce_action ); echo "\n";
 
 			<input type="hidden" id="user-id" name="user_ID" value="<?php echo (int) $user_ID ?>" /> 
 
+			<?php 
+			
+				if ( !empty($screening_id) ) 
+				{
+					$screening_place = $screening->place;
+					$screening_address = $screening->address;
+					$screening_show_address = $screening->show_address;
+					$screening_city = $screening->city;
+					$screening_postalcode = $screening->postalcode;
+					$screening_country = $screening->country;
+					$screening_dateandtime = $screening->dateandtime;
+					$screening_max = $screening->max;
+					$screening_name = $screening->name;
+					$screening_additional = $screening->additional;
+					$screening_email = $screening->email;
+					$screening_pass = '';
+					$screening_phone = $screening->phone;
+				}
+				else 
+				{
+					$screening_place = '';
+					$screening_address = '';
+					$screening_show_address = '';
+					$screening_city = '';
+					$screening_postalcode = '';
+					$screening_country = '';
+					$screening_dateandtime = '';
+					$screening_max = '';
+					$screening_name = '';
+					$screening_additional = '';
+					$screening_email = '';
+					$screening_pass = '';
+					$screening_phone = '';
+				}
+			?>
+			
 			<div id="side-info-column" class="inner-sidebar">
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
 					<div id="linksubmitdiv" class="postbox ">
@@ -91,42 +127,6 @@ wp_nonce_field( $nonce_action ); echo "\n";
 					</div>
 				</div>
 			</div>
-
-			<?php 
-			
-			if ( !empty($screening_id) ) 
-			{
-				$screening_place = $screening->place;
-				$screening_address = $screening->address;
-				$screening_show_address = $screening->show_address;
-				$screening_city = $screening->city;
-				$screening_postalcode = $screening->postalcode;
-				$screening_country = $screening->country;
-				$screening_dateandtime = $screening->dateandtime;
-				$screening_max = $screening->max;
-				$screening_name = $screening->name;
-				$screening_additional = $screening->additional;
-				$screening_email = $screening->email;
-				$screening_pass = '';
-				$screening_phone = $screening->phone;
-			}
-			else 
-			{
-				$screening_place = '';
-				$screening_address = '';
-				$screening_show_address = '';
-				$screening_city = '';
-				$screening_postalcode = '';
-				$screening_country = '';
-				$screening_dateandtime = '';
-				$screening_max = '';
-				$screening_name = '';
-				$screening_additional = '';
-				$screening_email = '';
-				$screening_pass = '';
-				$screening_phone = '';
-			}
-			?>
 
 			<div id="post-body">
 				<div id="post-body-content">

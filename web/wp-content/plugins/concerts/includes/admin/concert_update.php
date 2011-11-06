@@ -9,47 +9,59 @@
 
 extract(lc_concerts_get_vars(array(
 'concert_id', 
-'concert_place', 
-'concert_address', 
-'concert_hide_address', 
-'concert_city', 
-'concert_postalcode', 
-'concert_region_id',
-'concert_country', 
+'concert_venue_name', 
+'concert_venue_address', 
+'concert_venue_city', 
+'concert_venue_postalcode',
+'concert_venue_hide_address',  
+'concert_venue_region_id',
+'concert_venue_country',
 'concert_dateandtime', 
-'concert_max', 
-'concert_additional', 
-'concert_name', 
-'concert_email', 
-'concert_phone', 
+'concert_venue_type',
+'concert_venue_size',
+'concert_venue_capacity', 
+'concert_additional_info', 
+'concert_host_name', 
+'concert_host_email',
+'concert_host_address', 
+'concert_host_city', 
+'concert_host_postalcode', 
+'concert_host_phone', 
 'concert_password')));
 
-$concert_country_name = "concert_country_" . $concert_region_id;
-$concert_country_id = lc_concerts_get_var($concert_country_name);
+$concert_venue_country_name = "concert_venue_country_" . $concert_venue_region_id;
+$concert_venue_country_id = lc_concerts_get_var($concert_venue_country_name);
+$concert_region_schedule_name = "concert_region_schedule_" . $concert_venue_region_id;
+$concert_region_schedule_id = lc_concerts_get_var($concert_region_schedule_name);
 
-$concert_region_id = empty($concert_region_id) ? 0 : $concert_region_id;
-$concert_country_id = (empty($concert_region_id) || empty($concert_country_id)) ? 0 : $concert_country_id;
-$concert_country = empty($concert_country_id) ? $concert_country : '';
-$concert_show_address = ($concert_hide_address == 1 ? 0 : 1);
-
-echo "concert_place: $concert_place <br>";
+$concert_venue_region_id = empty($concert_venue_region_id) ? 0 : $concert_venue_region_id;
+$concert_venue_country_id = (empty($concert_venue_region_id) || empty($concert_venue_country_id)) ? 0 : $concert_venue_country_id;
+$concert_region_schedule_id = (empty($concert_venue_region_id) || empty($concert_region_schedule_id)) ? 0 : $concert_region_schedule_id;
+$concert_venue_country = empty($concert_venue_country_id) ? $concert_venue_country : '';
+$concert_venue_show_address = ($concert_venue_hide_address == 1 ? 0 : 1);
 
 global $wpdb;
 $rows = array( 
-	'place' => $concert_place,
-	'address' => $concert_address,
-	'show_address' => $concert_show_address,
-	'city' => $concert_city,
-	'postalcode' => $concert_postalcode,
-  'region_id' => $concert_region_id,
-  'country_id' => $concert_country_id,
-	'country' => $concert_country,
-	'dateandtime' => $concert_dateandtime,
-	'max' => $concert_max,
-	'additional' => $concert_additional,
-	'name' => $concert_name,
-	'email' => $concert_email,
-	'phone' => $concert_phone,
+	  'venue_name' => $concert_venue_name,
+	  'venue_address' => $concert_venue_address,
+	  'venue_city' => $concert_venue_city,
+	  'venue_postalcode' => $concert_venue_postalcode,
+	  'venue_show_address' => $concert_venue_show_address,
+	  'venue_region_id' => $concert_venue_region_id,
+	  'venue_country_id' => $concert_venue_country_id,
+	  'venue_country' => $concert_venue_country,
+    'region_schedule_id' => $concert_region_schedule_id,
+	  'dateandtime' => $concert_dateandtime,
+	  'venue_type' => $concert_venue_type,
+	  'venue_size' => $concert_venue_size,
+	  'venue_capacity' => $concert_venue_capacity,
+	  'additional_info' => $concert_additional_info,
+	  'host_name' => $concert_host_name,
+	  'host_email' => $concert_host_email,
+	  'host_address' => $concert_host_address,
+	  'host_city' => $concert_host_city,
+	  'host_postalcode' => $concert_host_postalcode,
+	  'host_phone' => $concert_host_phone
 	);
 
 if(!empty($concert_id))

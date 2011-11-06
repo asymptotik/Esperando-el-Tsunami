@@ -7,52 +7,63 @@
 	* @package View
 	**/
 
-wp_enqueue_script('lc-concerts');
+wp_enqueue_script('lc-screenings');
+
 ?>
-<div id="host_concerts" class="lc-host-form">
-  <p class="req"><span class="required">*</span> required fields</p>
-  <p class="pub"><span class="public">*</span> fields that will be visible to the public on petitesplanetes.cc</p>
-  <br />
-  <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="host_concert" class="validate" id="host_concert">
-    <input type="hidden" name="action" value="concerts_host_add" />
+<div id="host_screenings" class="lc-host-form-narrow lc-host-form-2col">
+  
+  <form action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_form" class="validate" id="screening_form">
+    <input type="hidden" name="action" value="screenings_host_add" />
     <table>
       <tr>
-        <td class="label"><label>Place</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" tabindex="1" type="text" id="concert_place" name="concert_place" alt="Mike\'s place / Caf&eacute; Luna / etc" /></td>
-        <td class="label"><label>Additional Info</label>
-        <span class="public">*</span></td>
-        <td valign="bottom" rowspan="2"><textarea name="concert_additional" tabindex="20" class="initialValue" id="concert_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea></td>
+        <td colspan="3">
+					<strong>
+          (r) required fields<br/>
+          (v) fields that will be visible to the public on petitesplanetes.cc
+          </strong>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="divider-dotted-full">&nbsp;</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="screening_place">Place (r)(v)</label><br/>
+          <input class="required initialValue" tabindex="1" type="text" id="screening_place" name="screening_place" alt="Mike\'s place / Caf&eacute; Luna / etc" />
+        </td>
+        <td class="lc-host-form-empty-col">&nbsp;</td>
+        
+        <td>
+          <label for="screening_max">Maximum Attendants (r)(v)</label><br/>
+          <input id="screening_max" class="required number initialValue" tabindex="2" type="text" name="screening_max" id="screening_max" alt="Maximum Attendants" /><br/>
+          <input type="checkbox" tabindex="3" name="screening_status" value="1" /><span class="sub">Already fully booked</span>
+        </td>
       </tr>
       
       <tr>
-        <td class="label"><label>Address</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" tabindex="2" type="text" name="concert_address" id="concert_address" alt="Street name &amp; number" />
-          <br/>
-          <input type="checkbox" tabindex="3" name="concert_address_show" value="1" />
-          <span class="sub">don't make this info visible!</span></td>
-        <td class="label"></td>
+        <td>
+          <label for="screening_address">Address (r)(v)</label><br/>
+          <input class="required initialValue" tabindex="4" type="text" name="screening_address" id="screening_address" alt="Street name &amp; number" /><br/>
+          <input type="checkbox" tabindex="5" name="screening_address_show" value="1" /><span class="sub">don't make this info visible!</span>
+        </td>
+        <td class="lc-host-form-empty-col">&nbsp;</td>
+        <td>
+          <label for="screening_city">City (r)(v)</label><br/>
+          <input class="required initialValue" tabindex="6" name="screening_city" id="screening_city" type="text" alt="City" />
+        </td>
       </tr>
+      
       <tr>
-        <td class="label"><label>City</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" tabindex="4" name="concert_city" id="concert_city" type="text" alt="City" /></td>
-        <td class="label">&nbsp;</td>
-        <td><p class="notice"><em>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </em></p></td>
-      </tr>
-      <tr>
-        <td class="label"><label>Postal Code</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required initialValue" tabindex="5" type="text" name="concert_postalcode" id="concert_postalcode" alt="Postal Code" /></td>
-        <td class="label"><label>Your Name</label>
-        <span class="required">*</span></td>
-        <td><input class="required initialValue" tabindex="22" name="concert_name" id="concert_name" type="text" alt="Name" /></td>
-      </tr>
-      <tr>
-        <td class="label"><label>Country</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><select class="required" tabindex="6" name="concert_country" id="concert_country">
+				<td>
+				  <label for="screening_postalcode">Postal Code (r)(v)</label><br/>
+				  <input class="required initialValue" tabindex="7" type="text" name="screening_postalcode" id="screening_postalcode" alt="Postal Code" />
+				</td>
+				<td class="lc-host-form-empty-col">&nbsp;</td>
+				<td>
+				  <label for="screening_country">Country (r)(v)</label><br/>
+          <select class="required" tabindex="8" name="screening_country" id="screening_country">
             <option selected="selected" value="">select your country</option>
             <option value="AF">AFGHANISTAN</option>
             <option value="AX">ALAND ISLANDS</option>
@@ -294,32 +305,65 @@ wp_enqueue_script('lc-concerts');
             <option value="YE">YEMEN</option>
             <option value="ZM">ZAMBIA</option>
             <option value="ZW">ZIMBABWE</option>
-          </select></td>
-        <td class="label"><label>Your Email</label>
-        <span class="required">*</span></td>
-        <td><input class="required initialValue" tabindex="23" name="concert_email" id="concert_email" type="text" alt="your@e-mail.com" /></td>
+          </select>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <label for="screening_date">Date mm/dd/yyyy (r)(v)</label><br/>
+          <input class="required datepicker initialValue" tabindex="9" type="text" name="screening_date" id="screening_date" alt="mm/dd/yyyy" /> 
+        </td>
+        <td class="lc-host-form-empty-col">&nbsp;</td>
+
+				<td>
+          <label for="screening_date">Time hh:mm (r)(v)</label><br/>
+          <input class="required timepicker initialValue" tabindex="10" type="text" name="screening_time" id="screening_time" alt="hh:mm" />
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="3">
+        	<label for="screening_additional">Additional Info</label><br/>
+          <textarea name="screening_additional" tabindex="20" class="initialValue" id="screening_additional" rows="6" alt="Let your guests know who you are and how you will screen the film? And if they should bring something? etc. ">Let your guests know who you are and how you will screen the film? And if they should bring something? etc. </textarea>
+        </td>
       </tr>
       <tr>
-        <td class="label"><label>Date &amp; Time</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input class="required datepicker initialValue" tabindex="7" type="text" name="concert_date" id="concert_date" alt="MM/DD/YYYY" /> 
-        <input class="required timepicker initialValue" tabindex="8" type="text" name="concert_time" id="concert_time" alt="HH:MM" /></td>
-        <td class="label"><label>Your Password</label>
-        <span class="required">*</span></td>
-        <td><input class="required initialValue" tabindex="24" name="concert_password" id="concert_password" type="password" alt="password" /></td>
+        <td colspan="3">
+          <div class="divider-dotted-full">&nbsp;</div>
+        </td>
       </tr>
       <tr>
-        <td class="label"><label>Maximum attendants</label>
-        <span class="required">*</span><span class="public">*</span></td>
-        <td><input id="concert_max" class="required number initialValue" tabindex="9" type="text" name="concert_max" id="concert_max" alt="Maximum Attendants" />
-          <br/>
-          <input type="checkbox" tabindex="10" name="concert_status" value="1" />
-          <span class="sub">Already fully booked</span></td>
-        <td class="label"><label>Your Phone</label><span class="required">*</span></td>
-        <td><input class="required phone initialValue" tabindex="25" name="concert_phone" id="concert_phone" type="text" alt="(countrycode) + number" /></td>
+        <td colspan="3">
+          <strong>The info below is needed so you are able to log in and manage your event and so we are able to contact you if needed </strong>
+        </td>
       </tr>
+      
+      <tr>
+        <td>
+          <label for="screening_name">Your Name (r)</label><br/>
+          <input class="required initialValue" tabindex="22" name="screening_name" id="screening_name" type="text" alt="Name" />
+        </td>
+        <td class="lc-host-form-empty-col">&nbsp;</td>
+        <td>
+          <label for="screening_email">Your Email (r)</label><br/>
+          <input class="required initialValue" tabindex="23" name="screening_email" id="screening_email" type="text" alt="your@e-mail.com" />
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <label for="screening_password">Your Password</label><br/>
+          <input class="required initialValue" tabindex="24" name="screening_password" id="screening_password" type="password" alt="password" />
+        </td>
+        <td class="lc-host-form-empty-col">&nbsp;</td>
+        <td>
+          <label for="screening_phone">Your Phone (r)</label><br/>
+          <input class="required phone initialValue" tabindex="25" name="screening_phone" id="screening_phone" type="text" alt="(countrycode) + number" />
+        </td>
+      </tr>
+
     </table>
-    <input type="submit" class="submit" id="submit" value="SEND" />
-    <!--<input id="submit" type="image" src="http://petitesplanetes.cc/home/wp-content/themes/anisland/images/btnsubmit.jpg" />-->
+    <a class="btn-rect btn-rect-lg" onclick="javascript:lc_screenings.submit_host_form()"><div class="btn-rect-text">submit</div></a>
   </form>
 </div>

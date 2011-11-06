@@ -142,7 +142,7 @@ v.";
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 // Additional headers
-$headers .= 'From: Petites Planètes by Vincent Moon <screenings@petitesplanetes.cc>' . "\r\n";
+$headers .=  'From: ' . get_option('screenings_notify_from_name') . ' ' . get_option('screenings_notify_from_email') . "\r\n";
 
 $message = stripslashes($message);
 if ($count < 1) {
@@ -166,8 +166,7 @@ if ($count < 1) {
 $notify = get_option('screenings_notify');
 $sub = "New screening";
 $msg = 'There is a new SCREENING awaiting your approval';
-$sender = "no-reply@petitesplanetes.cc";
-$head = "From: $sender";
+$head = 'From: ' . get_option('screenings_notify_from_name') . ' ' . get_option('screenings_notify_from_email') . "\r\n";
 
 if ($count < 1) {
 	if (mail($notify,$sub,$msg,$head)) {

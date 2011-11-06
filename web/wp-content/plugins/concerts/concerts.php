@@ -46,9 +46,9 @@ register_activation_hook(__FILE__,'lc_concerts_install');
 function lc_concerts_install() {
 	lc_install_concert_database();
 	add_option('concerts_notify', 'default@email.com');
+	add_option('concerts_accounts', 'default@email.com');
 	add_option('concerts_notify_from_name', 'Your Name');
 	add_option('concerts_notify_from_email', 'default@email.com');
-	add_option('concerts_accounts', 'default@email.com');
 	}
 
 // Runs on plugin deactivation
@@ -62,8 +62,6 @@ function lc_concerts_plugin_uri($file)
 	return plugins_url( $file, __FILE__ );
 }
 
-
-
 // ----------- SCRIPTS -------------//
 
 add_action('wp_footer', 'lc_concerts_print_scripts');
@@ -75,7 +73,7 @@ function lc_concerts_print_scripts()
 wp_deregister_script('jquery-validate');
 wp_register_script('jquery-validate', plugins_url( 'js/jquery.validate.min.js', __FILE__ ), array( 'jquery' ), false, true);
 wp_deregister_script('lc-concerts');
-wp_register_script('lc-concerts', plugins_url( 'js/host.js', __FILE__ ), array( 'jquery', 'jquery-watermark', 'jquery-validate' ), false, true);
+wp_register_script('lc-concerts', plugins_url( 'js/concerts.js', __FILE__ ), array( 'jquery', 'jquery-watermark', 'jquery-validate' ), false, true);
 
 
 // ----------- ADMIN ------------ //
@@ -275,12 +273,19 @@ function lc_concerts_host_func() {
 	
 	extract(lc_concerts_get_vars(array('action')));
 	
-	if($action == "concerts_host_add") {
+	if($action == "concerts_host_add") 
+	{
 		$output = include('includes/frontend/user_concert_add.php'); 		
 	}
-	else {
-		$output = lc_concerts_contents('includes/frontend/host.php'); 
+	else if($action == "concerts_host_lookup") 
+	{
+		$output = lc_concerts_contents('includes/frontend/user_concert_host_2.php'); 
 	}
+	else 
+	{
+		$output = lc_concerts_contents('includes/frontend/user_concert_host_1.php'); 
+	}
+	
 	return $output;
 }
 

@@ -43,43 +43,47 @@ wp_enqueue_script('lc-screenings');
 </script>
 <div class="lc-host-form-narrow">
 <p> 
-  <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_update" id="screening_update">
+  <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="screening_form" id="screening_form">
     <a href="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" title="go back" >&lt; Go back to Events list</a></p><br /><br />
     
     <input type="hidden" name="action" value="screenings_user_update" />
     <input type="hidden" name="screening_id" value="<?php echo esc_attr($screening->id) ?>" />
     <table  border="0" class="cacona">
       <tr>
-        <td><label>Place</label></td>
-        <td><input class="required" name="screening_place" type="text" value="<?php echo esc_attr($screening->place) ?>"/></td>
+        <td><label for="screening_place">Place</label></td>
+        <td><input class="required" name="screening_place" id="screening_place" type="text" value="<?php echo esc_attr($screening->place) ?>"/></td>
       </tr>
       <tr>
-        <td><label>Address</label></td>
+        <td><label for="screening_address">Address</label></td>
         <td>
-          <input class="required" name="screening_address" type="text" value="<?php echo esc_attr($screening->address) ?>" alt="Street name &amp; number" />
+          <input class="required" name="screening_address" id="screening_address" type="text" value="<?php echo esc_attr($screening->address) ?>" alt="Street name &amp; number" />
           <br/>
           <input type="checkbox" name="screening_address_show" value="1" <?php if($screening->show_address != 1) echo "checked";?> />
           hide this field!
         </td>
       </tr>
       <tr>
-        <td><label>Date &amp; Time:</label></td>
-        <td><input class="required datepicker" name="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /> <input class="required timepicker" type="text" name="screening_time" value="<?php echo esc_attr($newTime) ?>" /></td>
+        <td><label for="screening_date">Date:</label></td>
+        <td><input class="required datepicker" name="screening_date" id="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
       </tr>
       <tr>
-        <td><label>Maximum attendants:</label></td>
-        <td><input class="required" name="screening_max" type="text" id="screening_max" value="<?php echo esc_attr($screening->max) ?>" alt="Maximum Attendants" /></td>
+        <td><label for="screening_date">Time:</label></td>
+        <td><input class="required timepicker" type="text" name="screening_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
-        <td><label>Additional Info:</label></td>
-        <td rowspan="2"><textarea class="required" name="screening_additional" rows="6" alt="additional information"><?php echo esc_html($screening->additional) ?></textarea></td>
+        <td><label for="screening_max">Maximum attendants:</label></td>
+        <td><input class="required number" name="screening_max" id="screening_max" type="text" id="screening_max" value="<?php echo esc_attr($screening->max) ?>" alt="Maximum Attendants" /></td>
+      </tr>
+      <tr>
+        <td><label for="screening_additional">Additional Info:</label></td>
+        <td rowspan="2"><textarea class="" name="screening_additional" id="screening_additional" rows="6" alt="additional information"><?php echo esc_html($screening->additional) ?></textarea></td>
       </tr>
       <tr>
         <td><div align="right"></div></td>
       </tr>
       <tr>
-        <td><label>Phone:</label></td>
-        <td><input class="required" name="screening_phone" type="text" value="<?php echo esc_attr($screening->phone) ?>" /></td>
+        <td><label for="screening_phone">Phone:</label></td>
+        <td><input class="required" name="screening_phone" id="screening_phone" type="text" value="<?php echo esc_attr($screening->phone) ?>" /></td>
       </tr>
       <tr>
         <td> </td>

@@ -41,45 +41,62 @@ wp_enqueue_script('lc-concerts');
 		});
 	});
 </script>
-<div class="">
+<div class="lc-host-form-narrow">
 <p> 
-  <form class="validate" action="'<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="concert_update" id="concert_update">
+  <form class="validate" action="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" method="post" name="concert_form" id="concert_form">
     <a href="<?php echo str_replace("%7E", "~", $_SERVER["REQUEST_URI"]) ?>" title="go back" >&lt; Go back to Events list</a></p><br /><br />
     
     <input type="hidden" name="action" value="concerts_user_update" />
     <input type="hidden" name="concert_id" value="<?php echo esc_attr($concert->id) ?>" />
     <table  border="0" class="cacona">
       <tr>
-        <td><label>Place</label></td>
-        <td><input class="required" name="concert_place" type="text" value="<?php echo esc_attr($concert->place) ?>"/></td>
+        <td><label for="concert_venue_name">Venue Name:</label></td>
+        <td><input class="required" name="concert_venue_name" id="concert_venue_name" type="text" value="<?php echo esc_attr($concert->venue_name) ?>"/></td>
       </tr>
       <tr>
-        <td><label>Address</label></td>
+        <td><label for="concert_venue_address">Venue Address:</label></td>
         <td>
-          <input class="required" name="concert_address" type="text" value="<?php echo esc_attr($concert->address) ?>" alt="Street name &amp; number" />
+          <input class="required" name="concert_venue_address" id="concert_venue_address" type="text" value="<?php echo esc_attr($concert->venue_address) ?>" alt="Street name &amp; number" />
           <br/>
-          <input type="checkbox" name="concert_address_show" value="1" <?php if($concert->show_address != 1) echo "checked";?> />
+          <input type="checkbox" name="concert_venue_show_address" value="1" <?php if($concert->venue_show_address != 1) echo "checked";?> />
           hide this field!
         </td>
       </tr>
       <tr>
-        <td><label>Date &amp; Time:</label></td>
-        <td><input class="required datepicker" name="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /> <input class="required timepicker" type="text" name="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
+        <td><label for="concert_date">Date:</label></td>
+        <td><input class="required datepicker" name="concert_date" id="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
       </tr>
       <tr>
-        <td><label>Maximum attendants:</label></td>
-        <td><input class="required" name="concert_max" type="text" id="concert_max" value="<?php echo esc_attr($concert->max) ?>" alt="Maximum Attendants" /></td>
+        <td><label for="concert_time">Time:</label></td>
+        <td><input class="required timepicker" type="text" name="concert_time" id="concert_time" value="<?php echo esc_attr($newTime) ?>" /></td>
       </tr>
       <tr>
-        <td><label>Additional Info:</label></td>
-        <td rowspan="2"><textarea class="required" name="concert_additional" rows="6" alt="additional information"><?php echo esc_html($concert->additional) ?></textarea></td>
+        <td><label for="concert_venue_capacity">Maximum attendants:</label></td>
+        <td><input class="required" type="text" name="concert_venue_capacity" id="concert_venue_capacity" value="<?php echo esc_attr($concert->venue_capacity) ?>" alt="Maximum Attendants" /></td>
+      </tr>
+      <tr>
+        <td valign="top" style="vertical-align: middle;"><label for="concert_additional_info">Additional Info:</label></td>
+        <td rowspan="2"><textarea class="required" name="concert_additional_info" id="concert_additional_info" rows="6" alt="additional information"><?php echo esc_html($concert->additional_info) ?></textarea></td>
       </tr>
       <tr>
         <td><div align="right"></div></td>
       </tr>
+      
       <tr>
-        <td><label>Phone:</label></td>
-        <td><input class="required" name="concert_phone" type="text" value="<?php echo esc_attr($concert->phone) ?>" /></td>
+        <td><label for="concert_host_phone">Concert Host Email:</label></td>
+        <td><input class="required" name="concert_host_email" id="concert_host_email" type="text" value="<?php echo esc_attr($concert->host_email) ?>" /></td>
+      </tr>
+      <tr>
+        <td><label for="concert_host_phone">Concert Host Address:</label></td>
+        <td><input class="required" name="concert_host_address" id="concert_host_address" type="text" value="<?php echo esc_attr($concert->host_address) ?>" /></td>
+      </tr>
+      <tr>
+        <td><label for="concert_host_phone">Concert Host City:</label></td>
+        <td><input class="required" name="concert_host_city" id="concert_host_city" type="text" value="<?php echo esc_attr($concert->host_city) ?>" /></td>
+      </tr>
+      <tr>
+        <td><label for="concert_host_phone">Concert Host Phone:</label></td>
+        <td><input class="required" name="concert_host_phone" id="concert_host_phone" type="text" value="<?php echo esc_attr($concert->host_phone) ?>" /></td>
       </tr>
       <tr>
         <td> </td>

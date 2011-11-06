@@ -53,20 +53,20 @@
 					    <table class="form-table edit-concert concert-form-table">
 					    
 								<tr valign="top">
-									<td class="first">Notification email</td>
-									<td><input type="text" name="concerts_notify" value="<?php echo get_option('concerts_notify'); ?>" /></td>
+									<td class="first">Notification email <br/>Email will be sent here when a user signs up to Host a Concert.</td>
+									<td><input type="text" name="concerts_notify" value="<?php echo esc_attr(get_option('concerts_notify')); ?>" /></td>
 								</tr>
 								<tr valign="top">
-									<td class="first">Send Notification from name</td>
-									<td><input type="text" name="concerts_notify_from_name" value="<?php echo get_option('concerts_notify_from_name'); ?>" /></td>
+									<td class="first">Send Notification from name. <br/>Emails sent to the user will be from this name.</td>
+									<td><input type="text" name="concerts_notify_from_name" value="<?php echo esc_attr(get_option('concerts_notify_from_name')); ?>" /></td>
 								</tr>
 								<tr valign="top">
-									<td class="first">Send Notification from email</td>
-									<td><input type="text" name="concerts_notify_from_email" value="<?php echo get_option('concerts_notify_from_email'); ?>" /></td>
+									<td class="first">Send Notification from email. <br/>Emails sent to the user will be from this email.</td>
+									<td><input type="text" name="concerts_notify_from_email" value="<?php echo esc_attr(get_option('concerts_notify_from_email')); ?>" /></td>
 								</tr>
 								<tr valign="top">
-									<td class="first">Account backup email</td>
-									<td><input type="text" name="concerts_accounts" value="<?php echo get_option('concerts_accounts'); ?>" /></td>
+									<td class="first">Account backup email. <br/>Email sent to the user will be sent here as well.</td>
+									<td><input type="text" name="concerts_accounts" value="<?php echo esc_attr(get_option('concerts_accounts')); ?>" /></td>
 								</tr>
 							</table>
 					<br>

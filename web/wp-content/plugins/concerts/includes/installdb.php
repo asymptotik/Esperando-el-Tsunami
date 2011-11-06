@@ -35,7 +35,8 @@ function lc_install_concert_database()
 	  `id` INT NOT NULL,
 	  `region_id` INT NOT NULL,
 	  `name` VARCHAR(45) NULL,
-	  PRIMARY KEY (`id`));";
+	  PRIMARY KEY (`id`)
+	  INDEX `" . $wpdb->prefix . "idx_concerts_countries_region_id` (`region_id` ASC));";
 		
 		$the_id = 1;
 		$sql [] = "INSERT INTO " . $concerts_countries_table_name . " (id, region_id, name) VALUES
@@ -186,12 +187,13 @@ function lc_install_concert_database()
 	  `startdate` DATE NOT NULL,
 	  `enddate` DATE NOT NULL,
 	  PRIMARY KEY (`id`),
-	  INDEX `" . $wpdb->prefix . "fk_concerts_region_id` (`region_id` ASC),
-	  CONSTRAINT `" . $wpdb->prefix . "fk_concerts_region_schedule_region_id`
-	    FOREIGN KEY (`region_id`)
-	    REFERENCES `" . $concerts_regions_table_name . "` (`id` )
-	    ON DELETE NO ACTION
-	    ON UPDATE NO ACTION);";
+	  INDEX `" . $wpdb->prefix . "fk_concerts_region_id` (`region_id` ASC));";
+	  //CONSTRAINT `" . $wpdb->prefix . "fk_concerts_region_schedule_region_id`
+	  //  FOREIGN KEY (`region_id`)
+	  //  REFERENCES `" . $concerts_regions_table_name . "` (`id` )
+	  //  ON DELETE NO ACTION
+	  //  ON UPDATE NO ACTION
+	    
 		
 		$rows = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) FROM ' . $concerts_region_schedule_table_name));
 		if($rows == 0)
@@ -217,29 +219,51 @@ function lc_install_concert_database()
 	  `id` INT NOT NULL AUTO_INCREMENT,
 	  `active` TINYINT NOT NULL DEFAULT 0,
 	  `status` TINYINT NOT NULL DEFAULT 0,
-	  `place` VARCHAR(128) NOT NULL,
-	  `address` VARCHAR(255) NULL,
-	  `show_address` TINYINT NULL,
-	  `city` VARCHAR(128) NULL,
-	  `postalcode` VARCHAR(18) NULL,
-	  `region_id` INT NULL,
-	  `country_id` INT NULL,
-	  `country` VARCHAR(45) NULL,
+	  `region_schedule_id` INT NOT NULL,
+	  `venue_name`  VARCHAR(128) NOT NULL,
+	  `venue_address`  VARCHAR(255) NOT NULL,
+	  `venue_city` VARCHAR(128) NULL,
+	  `venue_postalcode` VARCHAR(18) NULL,
+	  `venue_show_address` TINYINT NULL,
+	  `venue_region_id` INT NULL,
+	  `venue_country_id` INT NULL,
+	  `venue_country` VARCHAR(64) NULL,
 	  `dateandtime` DATETIME NULL,
-	  `max` INT NULL,
-	  `additional` TEXT NULL,
-	  `name` VARCHAR(128) NULL,
-	  `email` VARCHAR(255) NULL,
-	  `phone` VARCHAR(28) NULL,
+	  `venue_type` VARCHAR(255) NOT NULL, 
+	  `venue_size` VARCHAR(64) NOT NULL, 
+	  `venue_capacity` INT NOT NULL,
+	  `additional_info` TEXT NULL,
+	  `host_name` VARCHAR(128) NULL,
+	  `host_email` VARCHAR(255) NULL,
+	  `host_address` VARCHAR(255) NULL,
+	  `host_city` VARCHAR(128) NULL,
+	  `host_postalcode` VARCHAR(18) NULL,
+	  `host_phone` VARCHAR(28) NULL,
 	  `password` VARCHAR(255) NULL,
 	  `imageurl` VARCHAR(192) NULL,
-	  PRIMARY KEY (`id`),
-	  CONSTRAINT `" . $wpdb->prefix . "fk_concerts_events_region_id`
-	    FOREIGN KEY (`region_id` )
-	    REFERENCES `" . $concerts_regions_table_name . "` (`id` )
-	    ON DELETE NO ACTION
-	    ON UPDATE NO ACTION);";
+	  PRIMARY KEY (`id`));";
+	  //CONSTRAINT `" . $wpdb->prefix . "fk_concerts_events_region_id`
+	  //  FOREIGN KEY (`region_id` )
+	  //  REFERENCES `" . $concerts_regions_table_name . "` (`id` )
+	  //  ON DELETE NO ACTION
+	  //  ON UPDATE NO ACTION);";
 		
+		 // add venue_name
+		 // add venue_address
+		 // add venue_city
+		 // add venue_postalcode
+		 // show_address -> venue_show_address
+		 // region_id -> venue_region_id
+		 // country_id -> venue_country_id
+		 // country -> venue_country
+		 // additional -> additional_info
+		 // add venue_type
+		 // add venue_size
+		 // max -> venue_capacity
+		 // add venue_has_events
+		 // add venue_past_events
+		 // add host_reason
+		 
 		 echo $table;
 		 
 		 $sql[] = $table;
@@ -251,13 +275,12 @@ function lc_install_concert_database()
 	  `name` VARCHAR(255) NULL,
 	  `message` TEXT NULL,
 	  `attendants` INT NULL,
-	  PRIMARY KEY (`id`, `events_id`),
-	  INDEX `" . $wpdb->prefix . "fk_concerts_attending_concerts_events` (`events_id` ASC),
-	  CONSTRAINT `" . $wpdb->prefix . "fk_concerts_attending_events_id`
-	    FOREIGN KEY (`events_id` )
-	    REFERENCES `" . $concerts_events_table_name . "` (`id` )
-	    ON DELETE NO ACTION
-	    ON UPDATE NO ACTION);";
+	  PRIMARY KEY (`id`, `events_id`));";
+	  //CONSTRAINT `" . $wpdb->prefix . "fk_concerts_attending_events_id`
+	  //  FOREIGN KEY (`events_id` )
+	  //  REFERENCES `" . $concerts_events_table_name . "` (`id` )
+	  //  ON DELETE NO ACTION
+	  //  ON UPDATE NO ACTION);";
 	  
 		
 		$sql[] = "SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;";

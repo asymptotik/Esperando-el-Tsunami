@@ -31,7 +31,7 @@ $sceeningsAll = 0;
 	</thead>
 	<tfoot>
 	<tr>
-		<th class="manage-column lc-column" style="" scope="col">Place</th>
+		<th class="manage-column lc-column" style="" scope="col">Venue Name</th>
 		<th class="manage-column lc-column" style="" scope="col">Date</th>
 		<th class="manage-column lc-column" style="" scope="col">Max att.</th>
 		<th class="manage-column lc-column" style="" scope="col">Full</th>
@@ -51,7 +51,7 @@ $sceeningsAll = 0;
 
 			 <td class="column-name">
 				<strong>
-					<a class="row-title" title="Edit ÒDocumentationÓ" href="admin.php?page=concerts&action=concert_view&concert_id=<?php echo $event->id ?>"><?php echo stripslashes($event->place);?></a>
+					<a class="row-title" title="Edit ÒDocumentationÓ" href="admin.php?page=concerts&action=concert_view&concert_id=<?php echo $event->id ?>"><?php echo stripslashes($event->venue_name);?></a>
 				</strong>
 				<br>
 				<div class="row-actions">
@@ -67,7 +67,7 @@ $sceeningsAll = 0;
 				</div>
 			</td>
 			<td><?php echo $event->dateandtime;?></td>
-			<td><?php echo $event->max;?></td>
+			<td><?php echo $event->venue_capacity;?></td>
 			<td>
 					<?php if($event->status == 0) :?>
 					  <a href="<?php echo wp_nonce_url( "admin.php?page=concerts&amp;action=concert_status&amp;concert_id=$event->id", 'update-concert_' . $event->id )  ?>"><img src="<?php echo $plugin_url . "images/block_16_grey.png" ?>"></a>
