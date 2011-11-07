@@ -18,7 +18,7 @@ if ($concert->status == false) {
 	$wpdb->update( $wpdb->prefix . 'concerts_events', array( 'status' => 1), array( 'id' => $concert_id));	
 	echo "<p>".esc_html($concert->place).' has been set to full'.'</p>';
 }
-else if ($lastRecord->status == true) {
+else if ($concert->status == true) {
 	$wpdb->update( $wpdb->prefix . 'concerts_events', array( 'status' => 0), array( 'id' => $concert_id));	
 	echo "<p>".esc_html($concert->place).' has been opened for more attendants '.'</p>';
 }

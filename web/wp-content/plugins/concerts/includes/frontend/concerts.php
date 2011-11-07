@@ -32,6 +32,20 @@ if($event_count > 0)
 		$date = strtotime($event->dateandtime);
 		$month = date('m', $date);
 		
+		$concert_venue_country_name = '';
+		if(!empty($event->$venue_country_id))
+		{
+			$concert_venue_country_object = get_lc_country($event->venue_country_id);
+			if(!empty($concert_venue_country_object))
+			{
+				$concert_venue_country_name = $concert_venue_country_object->name;
+			}
+		}
+		else 
+		{
+			$concert_venue_country_name = $event->venue_country;
+		}
+					
 		if ($month >= $monthBreaker) {
 			$monthBreaker = $month + 1;
 			if($event_num > 1)
@@ -46,7 +60,7 @@ if($event_count > 0)
 			<ul>
 		<?php  } ?>
 	
-	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html(date('d.m', $date)) ?></span> - <span class="event-location"><?php echo esc_html($event->venue_city) ?>, <?php echo esc_html($event->venue_country) ?></span> / <span class="event-venue"><?php echo esc_html($event->venue_name) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more</a></div>
+	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html(date('d.m', $date)) ?></span> - <span class="event-location"><?php echo esc_html($event->venue_city) ?>, <?php echo esc_html($concert_venue_country_name) ?></span> / <span class="event-venue"><?php echo esc_html($event->venue_name) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more info</a></div>
 		
 	  <div class="event-details hidden" id="event-<?php echo esc_attr($event->id) ?>">
 	  		<div class="event-divider">&nbsp;</div>
@@ -65,7 +79,7 @@ if($event_count > 0)
 					<input type="hidden"name="action" value="concerts_user_request_invite">
 					<input type="hidden" name="concert_id" value="<?php echo esc_attr($event->id) ?>">
 					<br/>
-					<a class="" onclick="lc_concerts.submit_form('form_<?php echo esc_attr($event->id) ?>');" href="javascript:void(0);">attend</a>
+					<a class="" onclick="lc_concerts.submit_form('form_<?php echo esc_attr($event->id) ?>');" href="javascript:void(0);">ATTEND</a>
 			  </form>
 				
 				<?php  }  ?>

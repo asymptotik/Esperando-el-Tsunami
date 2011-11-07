@@ -317,7 +317,7 @@ wp_enqueue_script('lc-screenings');
         <td class="lc-host-form-empty-col">&nbsp;</td>
 
 				<td>
-          <label for="screening_date">Time hh:mm (r)(v)</label><br/>
+          <label for="screening_time">Time hh:mm (r)(v)</label><br/>
           <input class="required time timepicker initialValue" tabindex="10" type="text" name="screening_time" id="screening_time" alt="hh:mm" />
         </td>
       </tr>

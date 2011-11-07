@@ -18,7 +18,7 @@ if ($screening->status == false) {
 	$wpdb->update( $wpdb->prefix . 'screenings_events', array( 'status' => 1), array( 'id' => $screening_id));	
 	echo "<p>".esc_html($screening->place).' has been set to full'.'</p>';
 }
-else if ($lastRecord->status == true) {
+else if ($screening->status == true) {
 	$wpdb->update( $wpdb->prefix . 'screenings_events', array( 'status' => 0), array( 'id' => $screening_id));	
 	echo "<p>".esc_html($screening->place).' has been opened for more attendants '.'</p>';
 }
