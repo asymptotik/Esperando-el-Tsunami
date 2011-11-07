@@ -60,7 +60,7 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
         <td colspan="3">
 					<strong>
           (r) required fields<br/>
-          (v) fields that will be visible to the public
+          (v) fields that will be visible to the public on esperando.cc
           </strong>
         </td>
       </tr>

@@ -10,15 +10,17 @@
 <div class="screen-wrapper" style="margin-bottom:0;padding-bottom:0;">
 <?php
 
+global $wpdb;
+
 extract(lc_concerts_get_vars(array('concert_id')));
 $concert = get_lc_concert($concert_id);
 
 if ($concert->status == 0) {
-	//$wpdb->update($wpdb->prefix . 'concerts_events', array( 'status' => 1), array( 'id' => $concert->id));	
+	$wpdb->update($wpdb->prefix . 'concerts_events', array( 'status' => 1), array( 'id' => $concert->id));	
 	$message = "has been set to fully booked.";
 }
 else if ($concert->status == 1) {
-	//$wpdb->update($wpdb->prefix . 'concerts_events', array( 'status' => 0), array( 'id' => $concert->id));	
+	$wpdb->update($wpdb->prefix . 'concerts_events', array( 'status' => 0), array( 'id' => $concert->id));	
 	$message = "has been opened for more attendants.";
 }
 ?>

@@ -96,36 +96,16 @@ $message = "
 		<title>'.$subject.'</title>
 		</head>
 	<body>
-		<p>Helloooo you, beautiful stranger </p>
+		<p>Hello, and thanks for wishing to participate by hosting a Lulacruza Private-Public Concert.</p>
 
 <p>And thanks for wishing to screen some of those little films i make</p>
 
-<p>As you have read on the website, you are welcome to screen any films you want - and not only the ones from the collection <strong>Petites Planetes</strong>. You might even ask me for some un-released films - check on my vincentmoon.com website to see what i have been up to recently. i can send you links to work in progress for some of them.</p>
+<p>It is really exciting for us to share with you our music in such a unique way. These concerts are our attempt at creating a healthy, sustainable touring method that creates a direct link between the audience and the performer and gives Lulacruza the opportunity to go to places Ôoff the tour grid,Õ reaching new audiences and sharing the necessary tools for clusters of people to organize their own community events. We want the audience and the performer to share equally as co-creators of the experience.</p>
 
-<p>The vast majority of the films is available on internet for free, on vimeo - <a href=\"http://www.vimeo.com/vincentmoon/videos\">http://www.vimeo.com/vincentmoon/videos</a><br />
-You can download the films directly from the pages, you will find a link on the right side, in the little About This Video box</p>
-
-<p>Some films though requires a password to be viewed. It's often because i dont have the right to offer them online. Most of them are feature length films, and are or were sold as dvds. If you want to screen them also, ask me the password, i will give it to you.</p>
-
-<p>The quality of each film on vimeo should be good enough for the concert. But be careful maybe with some older films, which are not that well compressed.</p>
-
-<p>Fill the informations on my website to let people know more or less what you are gonna screen, and how many people can join. Alright?</p>
-
-<p>And here is some important info that I would like to be sure you have read:</p>
-
-<p>you don't need to use a projector to screen the films, but it would probably be better as soon as you are more than 3 people in the room. Be careful to screen the films are the right size too! they are all in 16/9 format.</p>
-
-<p>what you need though, is a good sound system. LOUD please, as much as possible - dont worry about the neighbours, send me their complaints.</p>
-
-<p>please, be open to welcome strangers in your home, or where you screen those films. It's part of the game, right?</p>
-
-<p>last thing, the entrance is supposed to be for free. I can imagine if you rented a place, you might ask for a little contribution. all good, just let me know about it</p>
-
-<p><span style='font-size:16pt;'>THANK YOU</span> <br />
-and i hope you will enjoy the films and the moment<br />
-talk soon</p>
-
-v.";
+<p>We encourage you to make the concerts open to strangers, it's part of what we envision. These concerts are moments to come together. And we hope that they become rewarding experiences.</p>
+<p>Before approving your screening we will get in touch with you to determine a few more details about the concert and to decide collectively on the best time and day when it could happen. You will hear from us soon.</p>
+<p>Thanks,<br />
+Lulacruza</p>";
 
 // To send HTML mail, the Content-type header must be set
 $headers  = 'MIME-Version: 1.0' . "\r\n";
@@ -152,7 +132,7 @@ if ($count < 1) {
 // CREATE A SCREENING notice
 $notify = get_option('concerts_notify');
 $sub = "New concert";
-$msg = 'There is a new SCREENING awaiting your approval';
+$msg = 'There is a new CONCERT awaiting your approval';
 $head = 'From: ' . lc_concerts_get_email(get_option('concerts_notify_from_name'), get_option('concerts_notify_from_email')). "\r\n";
 
 if ($count < 1) {
@@ -164,11 +144,14 @@ if ($count < 1) {
 	}	
 }
 
-$msg = '<p class="dest upper">Thank you for creating a Concert for Lulacruza!</p>
-<p>We will approve your concert as soon as possible and inform you by email once it has been approved.</p>
-<p>Please add <a href="concerts@petitesplanetes.cc">concerts@petitesplanetes.cc</a> to your address book to prevent the email from being categorized as junk mail.</p>
-<p>Already now you should have received an email with the details you just registered and your log-in info for <a href="http://www.petitesplanetes.cc">www.petitesplanetes.cc</a> so you can edit and manage your event. Please make sure you have received this email.</p>
-<p>Thanks,<br />Vincent Moon</p>';
+$msg = '<p>Thank you for your interest in hosting a Private/Public Concert with Lulacruza! We are excited to connect with you.</p>
+
+<p>First you will receive an auto-reply stating that we have received your form. Then we will be contacting you over email to talk about details for the concert. Once your event is approved we will work with you over email to create your concert.</p>
+<p>Looking forward to meeting and sharing with you!</p>
+<p>Abrazos - Lulacruza</p>
+<p>----------------------------------</p>
+<p>Disclaimer: While Lulacruza would like to accept every offer for a Private/Public Concert, it will not always be possible to visit every host that we connect with. Distance, timing and travel costs are important factors that will determine where and when we will be able to perform. In order to keep the Private/Public Concerts affordable for everybody, we are supporting the tour with Official Concert at Festivals and Cultural Institutions. These events will partly dictate our schedule and allow us to come to your region of the world and perform Private/Public Concerts in your space.</p>
+<p>We reserve the right to change or cancel a P/P Concert at our own discretion within a reasonable time frame. </p>';
 
 if ($count < 1) {
 	return $msg;

@@ -46,8 +46,8 @@ if($event_count > 0)
 			$concert_venue_country_name = $event->venue_country;
 		}
 		
-		if ($month >= $monthBreaker) {
-			$monthBreaker = $month + 1;
+		if ($month != $monthBreaker) {
+			$monthBreaker = $month;
 			if($event_num > 1)
 			{?>
 			</ul>

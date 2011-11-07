@@ -32,8 +32,8 @@ if($event_count > 0)
 		$date = new DateTime($event->dateandtime);
 		$month = $date->format('m');
 		
-		if ($month >= $monthBreaker) {
-			$monthBreaker = $month + 1;
+		if ($month != $monthBreaker) {
+			$monthBreaker = $month;
 			if($event_num > 1)
 			{?>
 			</ul>

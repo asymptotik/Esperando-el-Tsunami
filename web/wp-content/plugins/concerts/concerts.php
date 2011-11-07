@@ -263,7 +263,7 @@ function lc_concerts_show_func() {
 // SHORTCODE FOR SCREENINGS PAGE [concerts_past]
 add_shortcode('concerts_past', 'lc_concerts_show_past_func');
 function lc_concerts_show_past_func() {
-	$output = include('includes/frontend/concert_past.php'); 
+	$output = lc_concerts_contents('includes/frontend/concert_past.php'); 
 	return $output;
 }
 

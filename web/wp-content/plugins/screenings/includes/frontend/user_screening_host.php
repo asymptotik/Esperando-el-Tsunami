@@ -19,7 +19,7 @@ wp_enqueue_script('lc-screenings');
         <td colspan="3">
 					<strong>
           (r) required fields<br/>
-          (v) fields that will be visible to the public on petitesplanetes.cc
+          (v) fields that will be visible to the public on esperando.cc
           </strong>
         </td>
       </tr>

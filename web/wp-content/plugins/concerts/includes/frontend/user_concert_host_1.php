@@ -19,7 +19,7 @@ $regions = get_lc_regions('name', 'asc');
         <td colspan="3">
 					<strong>
           (r) required fields<br/>
-          (v) fields that will be visible to the public on petitesplanetes.cc
+          (v) fields that will be visible to the public on esperando.cc
           </strong>
         </td>
       </tr>
