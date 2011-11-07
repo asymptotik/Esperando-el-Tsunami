@@ -212,8 +212,8 @@ a:hover { color: #444; text-decoration: underline; }
 .best-things-bg {
   width: 100%; 
   margin-bottom: 0; 
-  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top; 
-  height: 5549px;
+  /* background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top;  */
+  /* height: 5549px; */
   position: fixed;
 }
 
@@ -1177,11 +1177,12 @@ a.btn-var:hover .btn-var-right
 }
 
 #social-content .social-column{
+    
     height:550px;
 }
 
 #welcome_content .text, #social-content .text{
-    font-family:"Times New Roman", serif;
+    font-family:"Didot Italic", serif;
     font-size:13px;
     text-align:left;
 }
@@ -1218,6 +1219,10 @@ a.btn-var:hover .btn-var-right
 #formSubscribe input{
     width:185px;
     background:none;
+}
+
+#formSubscribe p{
+    margin:10px auto;
 }
 
 .close-button:hover{
