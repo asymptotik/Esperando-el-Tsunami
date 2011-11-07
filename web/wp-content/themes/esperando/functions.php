@@ -47,6 +47,10 @@
 	   wp_deregister_script('jquery-cycle');
 	   wp_register_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.all.js', array( 'jquery' ), '2.9993', false);
 	   wp_enqueue_script('jquery-cycle');
+
+	   wp_deregister_script('twitter-widget');
+	   wp_register_script('twitter-widget', get_template_directory_uri() . '/js/twitter-widget.js', array( 'jquery' ), '1.4.10', false);
+	   wp_enqueue_script('twitter-widget');
 	}
 	
 	wp_deregister_script('jquery-colorbox');
@@ -145,7 +149,7 @@
 		    $ret .= '</div>' . "\n";
 		    
 		    $ret .= '<div class="latest-news-info">' . "\n";
-		    $ret .= lc_get_the_post_time('F jS, Y') . ' ' . the_author( '', false ) ;
+		    $ret .= 'by ' . the_author( '', false ) ;
 		    $ret .= '</div>' . "\n";
 			} 
 		}
