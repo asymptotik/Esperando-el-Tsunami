@@ -32,6 +32,20 @@ if($event_count > 0)
 		$date = new DateTime($event->dateandtime);
 		$month = $date->format('m');
 		
+	  $concert_venue_country_name = '';
+		if(!empty($event->$venue_country_id))
+		{
+			$concert_venue_country_object = get_lc_country($event->venue_country_id);
+			if(!empty($concert_venue_country_object))
+			{
+				$concert_venue_country_name = $concert_venue_country_object->name;
+			}
+		}
+		else 
+		{
+			$concert_venue_country_name = $event->venue_country;
+		}
+		
 		if ($month >= $monthBreaker) {
 			$monthBreaker = $month + 1;
 			if($event_num > 1)
@@ -46,16 +60,16 @@ if($event_count > 0)
 			<ul>
 		<?php  } ?>
 	
-	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html($date->format('d.m')) ?></span> - <span class="event-location"><?php echo esc_html($event->city) ?>, <?php echo esc_html($event->country) ?></span> / <span class="event-venue"><?php echo esc_html($event->place) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more...</a></div>
+	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html($date->format('d.m')) ?></span> - <span class="event-location"><?php echo esc_html($event->venue_city) ?>, <?php echo esc_html($concert_venue_country_name) ?></span> / <span class="event-venue"><?php echo esc_html($event->venue_name) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more info</a></div>
 		
 	  <div class="event-details hidden" id="event-<?php echo esc_attr($event->id) ?>">
 	  		<div class="event-divider">&nbsp;</div>
 
 				<b>Time:</b> <?php echo esc_html($date->format('H:i')) ?><br/>
-				<b>Max attendants:</b><?php echo esc_html($event->max) ?> people<br/>
-				<?php  if ($event->show_address == 1){ ?><b>Adress:</b> <?php echo esc_html($event->address) ?><br/><?php } ?>
-				<b>Postal Code:</b> <?php echo esc_html($event->postalcode) ?><br/>
-				<b>Additional info:</b> <?php echo esc_html($event->additional) ?><br/>
+				<b>Max attendants:</b><?php echo esc_html($event->venue_capacity) ?> people<br/>
+				<?php  if ($event->show_address == 1){ ?><b>Adress:</b> <?php echo esc_html($event->venue_address) ?><br/><?php } ?>
+				<b>Postal Code:</b> <?php echo esc_html($event->venue_postalcode) ?><br/>
+				<b>Additional info:</b> <?php echo esc_html($event->additional_info) ?><br/>
 
 				<div class="event-divider">&nbsp;</div>
 	   </div>

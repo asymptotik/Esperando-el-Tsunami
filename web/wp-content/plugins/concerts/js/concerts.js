@@ -68,7 +68,7 @@ var lc_concerts =
 	
 		$.validator.addMethod("time", function(value, element) { 
 			  return this.optional(element) || /^([0-9]|[0-1][0-9]|2[0-3])[:][0-5][0-9]$/.test(value); 
-			}, "Please specify the correct time");
+			}, "Please specify a correct time.");
 		
 		lc_concerts.lc_validate = $("#concert_form").validate({ 
 			errorPlacement: function(error, element) {

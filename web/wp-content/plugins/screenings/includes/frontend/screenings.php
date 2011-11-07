@@ -46,7 +46,7 @@ if($event_count > 0)
 			<ul>
 		<?php  } ?>
 	
-	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html($date->format('d.m')) ?></span> - <span class="event-location"><?php echo esc_html($event->city) ?>, <?php echo esc_html($event->country) ?></span> / <span class="event-venue"><?php echo esc_html($event->place) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more</a></div>
+	  <li><div class="event-summary"><span class="event-date"><?php echo esc_html($date->format('d.m')) ?></span> - <span class="event-location"><?php echo esc_html($event->city) ?>, <?php echo esc_html($event->country) ?></span> / <span class="event-venue"><?php echo esc_html($event->place) ?></span> / <a class="event-more" href="javascript:void(0)" id="!event-<?php echo esc_attr($event->id) ?>">more info</a></div>
 		
 	  <div class="event-details hidden" id="event-<?php echo esc_attr($event->id) ?>">
 	  		<div class="event-divider">&nbsp;</div>
@@ -65,7 +65,7 @@ if($event_count > 0)
 					<input type="hidden"name="action" value="screenings_user_request_invite">
 					<input type="hidden" name="screening_id" value="<?php echo esc_attr($event->id) ?>">
 					<br/>
-					<a class="" onclick="lc_screenings.submit_form('form_<?php echo esc_attr($event->id) ?>');" href="javascript:void(0);">attend</a>
+					<a class="" onclick="lc_screenings.submit_form('form_<?php echo esc_attr($event->id) ?>');" href="javascript:void(0);">ATTEND</a>
 			  </form>
 				
 				<?php  }  ?>
