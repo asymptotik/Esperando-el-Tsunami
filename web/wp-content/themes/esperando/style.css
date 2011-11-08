@@ -106,7 +106,49 @@ ul, ol { margin: 0 0 10px 0; }
 
 /* post */
 
-.post { }
+#posts-container{
+    float:left;
+}
+
+.post {
+    margin:125px 0 20px 0;
+}
+
+
+/* comments */
+
+#commentform div{
+    margin:15px 0;
+}
+
+#commentform label{
+    margin-left:10px;
+}
+
+#respond{
+}
+
+#respond #author, #respond #email, #respond #url{
+    width:350px;
+}
+
+#respond #comment{
+    width:600px;
+}
+
+#respond input[type="submit"]{
+    background: none;
+    color:#000;
+    border: 2px dotted #000;
+    padding: 5px;
+    font-size:20px;
+    font-family:"Didot Bold", serif;
+    
+}
+
+
+
+
 
 .entry { }
 .entry a { }
@@ -162,8 +204,8 @@ ol.commentlist li.comment ul.children li.depth-3 { border-left: 5px solid #999; 
 ol.commentlist li.comment ul.children li.depth-4 { border-left: 5px solid #bbb; margin: 0 0 10px 10px; }
 ol.commentlist li.comment ul.children li.depth-5 { }
 ol.commentlist li.comment ul.children li.odd { }
-ol.commentlist li.even { background: #fff; }
-ol.commentlist li.odd { background: #f6f6f6; }
+ol.commentlist li.even {  }
+ol.commentlist li.odd {  }
 ol.commentlist li.parent { border-left: 5px solid #111; }
 ol.commentlist li.thread-alt { }
 ol.commentlist li.thread-even { }
