@@ -254,8 +254,8 @@ a:hover { color: #444; text-decoration: underline; }
 .best-things-bg {
   width: 100%; 
   margin-bottom: 0; 
-  /* background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top;  */
-  /* height: 5549px; */
+  background: #BFD1D8 url(img/main-bg.jpg) repeat-y center top;
+  height: 5549px;
   position: fixed;
 }
 
@@ -1220,7 +1220,7 @@ a.btn-var:hover .btn-var-right
 
 #social-content .social-column{
     
-    height:550px;
+    height:450px;
 }
 
 #welcome_content .text, #social-content .text{
