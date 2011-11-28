@@ -40,8 +40,8 @@ $events = $wpdb->get_results( "SELECT * FROM " . $wpdb->prefix . "concerts_event
 					$activate = '';
 				}
 				
-				$datetime = new DateTime($concert->dateandtime);
-				$dateandtime = $datetime->format('m/d/Y H:i');
+				$datetime = new DateTime($items->dateandtime);
+				$dateandtime = $datetime->format('Y-m-d H:i');
 		?>
 		
 		<tr>

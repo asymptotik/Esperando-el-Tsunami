@@ -39,8 +39,8 @@ wp_enqueue_script('lc-concerts');
         </td>
       </tr>
       <tr>
-        <td><label for="concert_date">Date (mm/dd/yyyy):</label></td>
-        <td><input class="required date datepicker" name="concert_date" id="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
+        <td><label for="concert_date">Date (yyyy-mm-dd):</label></td>
+        <td><input class="required date datepicker" name="concert_date" id="concert_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="yyyy-mm-dd" /></td>
       </tr>
       <tr>
         <td><label for="concert_time">Time (hh:mm 24 hour):</label></td>

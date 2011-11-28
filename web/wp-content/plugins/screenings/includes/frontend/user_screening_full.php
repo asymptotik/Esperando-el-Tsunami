@@ -15,8 +15,6 @@ global $wpdb;
 extract(lc_screenings_get_vars(array('screening_id')));
 $screening = get_lc_screening($screening_id);
 
-echo "screening->status: $screening->status";
-
 if ($screening->status == 0) {
 	$wpdb->update($wpdb->prefix . 'screenings_events', array( 'status' => 1), array( 'id' => $screening->id));	
 	$message = "has been set to fully booked.";

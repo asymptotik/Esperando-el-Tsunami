@@ -110,8 +110,8 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
       
       <tr id="concert_date_wrapper" style="display:none;">
         <td>
-          <label for="concert_date">Suggest a Date mm/dd/yyyy (r)(v)</label><br/>
-          <input class="date datepicker required initialValue" tabindex="2" type="text" name="concert_date" id="concert_date" alt="mm/dd/yyyy" /> 
+          <label for="concert_date">Suggest a Date yyyy-mm-dd (r)(v)</label><br/>
+          <input class="date datepicker required initialValue" tabindex="2" type="text" name="concert_date" id="concert_date" alt="yyyy-mm-dd" /> 
         </td>
       </tr>
       
@@ -146,7 +146,7 @@ $region_schedule = get_lc_region_schedules($concert_venue_region_id);
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>
 				<td>
-          <label for="concert_time">Concert Time hh:mm (r)(v)</label><br/>
+          <label for="concert_time">Concert Time hh:mm 24 hr (r)(v)</label><br/>
           <input class="required time timepicker initialValue" tabindex="9" type="text" name="concert_time" id="concert_time" alt="hh:mm" />
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>

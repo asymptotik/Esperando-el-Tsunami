@@ -311,13 +311,13 @@ wp_enqueue_script('lc-screenings');
       
       <tr>
         <td>
-          <label for="screening_date">Date mm/dd/yyyy (r)(v)</label><br/>
-          <input class="required date datepicker initialValue" tabindex="9" type="text" name="screening_date" id="screening_date" alt="mm/dd/yyyy" /> 
+          <label for="screening_date">Date yyyy-mm-dd (r)(v)</label><br/>
+          <input class="required date datepicker initialValue" tabindex="9" type="text" name="screening_date" id="screening_date" alt="yyyy-mm-dd" /> 
         </td>
         <td class="lc-host-form-empty-col">&nbsp;</td>
 
 				<td>
-          <label for="screening_time">Time hh:mm (r)(v)</label><br/>
+          <label for="screening_time">Time hh:mm 24 hr (r)(v)</label><br/>
           <input class="required time timepicker initialValue" tabindex="10" type="text" name="screening_time" id="screening_time" alt="hh:mm" />
         </td>
       </tr>

@@ -5,6 +5,10 @@
 
 <head profile="http://gmpg.org/xfn/11">
 	
+	<!--  facebook  -->
+	<link rel="image_src" href="<?php echo mr_image_url('lulacruza-esperando-md.jpg'); ?>" />
+	<meta property="og:image" content="<?php echo mr_image_url('lulacruza-esperando-md.jpg'); ?>" />
+	
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	
 	<?php if (is_search()) { ?>

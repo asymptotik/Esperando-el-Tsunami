@@ -10,7 +10,7 @@ extract(lc_screenings_get_vars(array('screening_id')));
 $screening = get_lc_screening($screening_id);
 
 $datetime = strtotime($screening->dateandtime);
-$newdate = date('m/d/Y', $datetime);
+$newdate = date('Y-m-d', $datetime);
 $newTime = date('H:i', $datetime);
 
 wp_enqueue_script('lc-screenings');
@@ -39,8 +39,8 @@ wp_enqueue_script('lc-screenings');
         </td>
       </tr>
       <tr>
-        <td><label for="screening_date">Date (mm/dd/yyyy):</label></td>
-        <td><input class="required date datepicker" name="screening_date" id="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="date/month/year" /></td>
+        <td><label for="screening_date">Date (yyyy-mm-dd):</label></td>
+        <td><input class="required date datepicker" name="screening_date" id="screening_date" type="text" value="<?php echo esc_attr($newdate) ?>" alt="yyyy-mm-dd" /></td>
       </tr>
       <tr>
         <td><label for="screening_time">Time (hh:mm 24 hour):</label></td>
