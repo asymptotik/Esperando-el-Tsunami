@@ -174,17 +174,20 @@ function onFocus(el) {
 	// bind 'read more' functionality to its button
 	$('.read-more').click(function(){
 	    $('#welcome_content').toggle(300);
+	    return false;
 	  });
 
 	// bind 'close' functionality to its button
 	$('.close-button').click(function(){
 	    $(this).parent().toggle(300);
+	    return false;
 	  });
 
 	// bind 'play' to show appropriate container
 	// jQuery cycle (see below) handles the paging
 	$('.trailer-thumb').click(function(){
 	    $('#trailer-container').show(300);
+	    return false;
 	  });
 
 
