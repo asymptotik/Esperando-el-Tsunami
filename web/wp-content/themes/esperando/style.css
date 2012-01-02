@@ -961,6 +961,7 @@ a.btn-var:hover .btn-var-right
   width: 40px;
   height: 40px;
   position: relative;
+  margin:0 auto;
 }
 
 .btn-rnd-top:hover {
